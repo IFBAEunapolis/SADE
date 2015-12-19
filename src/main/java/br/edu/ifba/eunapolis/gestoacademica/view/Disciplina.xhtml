@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <meta charset="UTF-8"/>
+<title>Tela de Disciplina</title>
+</h:head>
+<h:body>
+<h:form>
+<h1>Disciplina</h1>
+Id: <h:inputText value="#{disciplina.id}" />
+<br/>
+Nome: <h:inputText value="#{disciplina.nome}" />
+<br/>
+Curso: <h:inputText value="#{disciplina.curso}" />
+<br/>
+Ementa: <h:inputText value="#{disciplina.ementa}" />
+<br/>
+Carga Horária: <h:inputText value="#{disciplina.cargaHoraria}" />
+<br/>
+Pré Requisitos: <h:inputText value="#{disciplina.preRequisitos}" />
+<br/>
+Turmas: <h:inputText value="#{disciplina.turmas}" />
+<br/>
+Periodo: <h:inputText value="#{disciplina.periodo}" />
+<br/>
+<h:commandButton value="Enviar" action="#{ementa.cadastrar}" />
+</h:form>
+</h:body>
+</html>

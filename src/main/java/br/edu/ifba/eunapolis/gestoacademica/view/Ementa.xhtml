@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <meta charset="UTF-8"/>
+<title>Tela de Ementa</title>
+</h:head>
+<h:body>
+<h:form>
+<h1>Ementa</h1>
+Id: <h:inputText value="#{ementa.id}" />
+<br/>
+Nome: <h:inputText value="#{ementa.nome}" />
+<br/>
+Disciplinas: <h:inputText value="#{ementa.disciplinas}" />
+<br/>
+Descrição: <h:inputText value="#{ementa.descricao}" />
+<br/>
+<h:commandButton value="Enviar" action="#{ementa.cadastrar}" />
+</h:form>
+</h:body>
+</html>
