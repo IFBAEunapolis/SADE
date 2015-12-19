@@ -9,13 +9,15 @@
 <h:body>
 	<h:form>
 		<h1>Horário de Aula</h1>
-	Dia Semana: <h:inputText />
+	Dia Semana: <h:inputText value="#{hora.diaSemana}" />
 		<br />
-	Horário Início<h:inputText />
+	Horário Início<h:inputText value="#{hora.horaInicio}" />
 		<br />
-	Horário Fim<h:inputText />
+	Horário Fim<h:inputText value="#{hora.horaFim}" />
 		<br />
-		<h:commandButton value="Enviar" />
+		<h:commandButton value="Enviar" action="#{hora.MensagemCadastro}"/>
+		<br />
+		 #{hora.mensagem}
 	</h:form>
 </h:body>
 </html>
