@@ -9,11 +9,12 @@
 <h:body>
 	<h:form>
 		<h1>Plano de Aula</h1>
-	Turma: <h:inputText />
+	Turma: <h:inputText value="#{plano.turma}" />
 		<br />
-	Descrição<h:inputText />
+	Descrição<h:inputText value="#{plano.descricao}" />
 		<br />
-		<h:commandButton value="Enviar" />
+		<h:commandButton value="Enviar" action="#{plano.MensagemCadastro}" />
 	</h:form>
+	#{plano.mensagem}
 </h:body>
 </html>
