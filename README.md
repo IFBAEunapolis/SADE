@@ -1,8 +1,26 @@
 # SADE
-Leonardo Rufino esteve aqui.
-William Altoé esteve aqui também.
-Jonathas esteve aqui testando o commit.
-Luana Teste de commit
-Michael - Teste Commit 2
-Anderson - testando
-William Andrade esteve aqui.
+
+Este repositório será utilizado no desenvolvimento de todo o projeto da disciplina.
+https://github.com/IFBAEunapolisTOP004/SADE
+
+## Prova 1
+
+Dentro do pacote *model* foi acrescentado um diagrama para facilitar a compreensão das classes.
+
+Para a primeira prova deverá ser entregue:
+- Arquivo de configuração do maven (pom.xml)
+- Anotações nas classes do pacote *model* para o JPA;
+- Arquivo persistence.xml;
+- Telas funcionais para todas as classes do pacote model usando JSF;
+- As telas devem apresentar campos para todos os atributos das classes;
+- Construir Maneged Beans para todas as telas;
+
+Não deve ser feito *push* sem ter uma tarefa associada.
+
+Ex:
+
+abrir a issue "Criar mapeamento para classe Professor"
+realizar a implementação 
+fechar a issue 
+
+Só serão considerados os códigos entregues no repositório.
