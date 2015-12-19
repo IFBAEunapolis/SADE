@@ -2,11 +2,21 @@ package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.util.List;
 
-public class SemestreProfessor {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-    private Professor professor;
-    private Semestre semestre;
-    private List<Turma> turmas;
-    private Integer maximoHorasProfessor;
+@Entity
+@Table(name = "tab_SemestreProfessor")
+public class SemestreProfessor {
+	@OneToMany
+	private Professor professor;
+	@OneToMany
+	private Semestre semestre;
+	@OneToMany
+	private List<Turma> turmas;
+	@Column(nullable = false)
+	private Integer maximoHorasProfessor;
 
 }
