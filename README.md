@@ -6,4 +6,3 @@ Luana Teste de commit
 Michael - Teste Commit 2
 Anderson - testando
 William Andrade esteve aqui.
-Bom dia
