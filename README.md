@@ -14,6 +14,7 @@ Para a primeira prova deverá ser entregue:
 - Telas funcionais para todas as classes do pacote model usando JSF;
 - As telas devem apresentar campos para todos os atributos das classes;
 - Construir Maneged Beans para todas as telas;
+- Para a tela ser considerada pronta deve ela deve sincronizar os dados dos campos com as atributos do informações do Maneged Bean e exibir uma mensagem de cadastrado com sucesso (mesmo que ainda não esteja cadastrando no banco);
 
 Não deve ser feito *push* sem ter uma tarefa associada.
 
