@@ -4,6 +4,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -17,7 +18,8 @@ public class Ementa {
     @Column(length = 60, nullable = false)
     private String nome;
     
-    @ManyToMany
+    @OneToMany
+    @JoinColumn(name = "disciplina_id")
     private List<Disciplina> disciplinas;
     
     @Column(length = 120, nullable = false)
