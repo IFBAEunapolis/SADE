@@ -7,4 +7,5 @@ public class Professor {
     private Integer id;
     private String nome;
     private List<SemestreProfessor> semestreProfessors;
+    
 }
