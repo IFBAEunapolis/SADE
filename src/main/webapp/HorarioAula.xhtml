@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Horário de Aula</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Horário de Aula" />
+			</f:facet>
+
+			<p:outputLabel value="Horário Inicial: " for="hi" />
+			<p:inputText id="hi" size="20" value="#{hora.horaInicio}" />
+
+			<p:outputLabel for="hf" value="Horário Final: " />
+			<p:inputText id="hf" size="20" value="#{hora.horaFim}" />
+
+			<p:outputLabel value="Dia da Semana: " for="diaSemana" />
+			<p:selectOneMenu value="#{hora.diaSemana}" id="diaSemana">
+				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+				<f:selectItem itemValue="Segunda" itemLabel="Segunda" />
+				<f:selectItem itemValue="Terça" itemLabel="Terça" />
+				<f:selectItem itemValue="Quarta" itemLabel="Quarta" />
+				<f:selectItem itemValue="Quinta" itemLabel="Quinta" />
+				<f:selectItem itemValue="Sexta" itemLabel="Sexta" />
+				<f:selectItem itemValue="Sábado" itemLabel="Sábado" />
+				<f:selectItem itemValue="Domingo" itemLabel="Domingo" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+		 #{hora.mensagem}
+		<br />
+		<p:commandButton value="Cadastrar" action="#{hora.MensagemCadastro}"
+			update="@form" />
+	</h:form>
+</h:body>
+</html>
+
+
+
+
+
+
+
+
