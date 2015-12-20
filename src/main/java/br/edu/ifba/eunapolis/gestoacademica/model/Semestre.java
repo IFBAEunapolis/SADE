@@ -9,9 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-@Entity
-@Table(name="Semestre")
 
+@Entity
+@Table(name = "tab_Semestre")
 public class Semestre {
 
 	@Id
@@ -27,44 +27,55 @@ public class Semestre {
 	private Calendar fim;
 	@Column(nullable = false)
 	private Boolean ativo;
-    
-   
-    public Integer getId() {
+
+	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Integer getAno() {
 		return ano;
 	}
+
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
+
 	public Integer getPeriodoLetivo() {
 		return periodoLetivo;
 	}
+
 	public void setPeriodoLetivo(Integer periodoLetivo) {
 		this.periodoLetivo = periodoLetivo;
 	}
+
 	public Calendar getInicio() {
 		return inicio;
 	}
+
 	public void setInicio(Calendar inicio) {
 		this.inicio = inicio;
 	}
+
 	public Calendar getFim() {
 		return fim;
 	}
+
 	public void setFim(Calendar fim) {
 		this.fim = fim;
 	}
+
 	public Boolean getAtivo() {
 		return ativo;
 	}
+
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -72,6 +83,7 @@ public class Semestre {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -88,8 +100,5 @@ public class Semestre {
 			return false;
 		return true;
 	}
-    
-    
-    
-    
+
 }
