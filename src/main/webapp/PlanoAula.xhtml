@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 <h:head>
@@ -8,13 +9,24 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h1>Plano de Aula</h1>
-	Turma: <h:inputText value="#{plano.turma}" />
-		<br />
-	Descrição<h:inputText value="#{plano.descricao}" />
-		<br />
-		<h:commandButton value="Enviar" action="#{plano.MensagemCadastro}" />
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Plano de Aula" />
+			</f:facet>
+
+			<h:outputText value="Turma:" />
+			<h:inputText size="20" value="#{plano.turma}" />
+
+			<h:outputText value="Descrição" />
+			<h:inputText size="20" value="#{plano.descricao}" />
+
+			<h:outputText />
+			<h:commandButton value="Cadastrar" action="#{plano.MensagemCadastro}" />
+		</h:panelGrid>
+		#{plano.mensagem}
 	</h:form>
-	#{plano.mensagem}
 </h:body>
 </html>
+
+
+

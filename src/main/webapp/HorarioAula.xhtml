@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
 
 <h:head>
@@ -8,16 +9,39 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h1>Horário de Aula</h1>
-	Dia Semana: <h:inputText value="#{hora.diaSemana}" />
-		<br />
-	Horário Início<h:inputText value="#{hora.horaInicio}" />
-		<br />
-	Horário Fim<h:inputText value="#{hora.horaFim}" />
-		<br />
-		<h:commandButton value="Enviar" action="#{hora.MensagemCadastro}"/>
-		<br />
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Horário de Aula" />
+			</f:facet>
+			<h:outputLabel value="Dia da Semana: " for="diaSemana" />
+			<h:selectOneMenu value="#{hora.diaSemana}" id="diaSemana">
+				<f:selectItem itemValue="Segunda" />
+				<f:selectItem itemValue="Terça" />
+				<f:selectItem itemValue="Quarta" />
+				<f:selectItem itemValue="Quinta" />
+				<f:selectItem itemValue="Sexta" />
+				<f:selectItem itemValue="Sábado" />
+				<f:selectItem itemValue="Domingo" />
+			</h:selectOneMenu>
+
+			<h:outputText value="Horário Inicial: " />
+			<h:inputText size="20" value="#{hora.horaInicio}" />
+
+			<h:outputText value="Horário Final: " />
+			<h:inputText size="20" value="#{hora.horaFim}" />
+
+			<h:outputText />
+			<h:commandButton value="Cadastrar" action="#{hora.MensagemCadastro}" />
+		</h:panelGrid>
 		 #{hora.mensagem}
 	</h:form>
 </h:body>
 </html>
+
+
+
+
+
+
+
+
