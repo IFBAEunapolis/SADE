@@ -3,11 +3,9 @@ package br.edu.ifba.eunapolis.gestoacademica.model;
 import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
 @Table(name = "tab_SemestreProfessor")
 public class SemestreProfessor {
 	@OneToMany
