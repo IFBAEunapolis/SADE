@@ -14,7 +14,8 @@ public class Curso {
     @Column (name = "nome", length = 50, nullable = false)
     private String nome;
     
-    
+    @OneToMany
+    @JoinColumn (name = "disciplinas_id")
     private List<Disciplina> disciplinas;
 
     
