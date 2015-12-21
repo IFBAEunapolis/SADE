@@ -61,6 +61,7 @@ public class Ementa {
         this.descricao = descricao;
     }
 
+    //-------------------------------hashCode E equals------------------------//
     @Override
     public int hashCode() {
         int hash = 5;
