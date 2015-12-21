@@ -1,12 +1,13 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
 @Table (name = "horarioAula")
-public class HorarioAula {
+public class HorarioAula implements Serializable {
 
     @Id
     @GeneratedValue

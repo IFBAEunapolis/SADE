@@ -1,10 +1,11 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "planoAula")
-public class PlanoAula {
+public class PlanoAula implements Serializable {
 
     @Id
     @GeneratedValue
