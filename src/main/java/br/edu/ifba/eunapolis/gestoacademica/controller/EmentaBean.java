@@ -20,7 +20,7 @@ public class EmentaBean {
     private String disciplinas;
     private String descricao;
     
-    public void Cadastrar() {
+    public void cadastrar() {
        out.println("<br/>");
        out.println("Cadastrado com sucesso!");
     }

@@ -19,7 +19,7 @@ public class CursoBean {
     private String nome;
     private String disciplinas;
     
-    public void Cadastrar() {
+    public void cadastrar() {
        out.println("<br/>");
        out.println("Cadastrado com sucesso!");
     }

@@ -24,7 +24,7 @@ public class DisciplinaBean {
     private String turmas;
     private String periodo;
     
-    public void Cadastrar() {
+    public void cadastrar() {
        out.println("<br/>");
        out.println("Cadastrado com sucesso!");
     }
