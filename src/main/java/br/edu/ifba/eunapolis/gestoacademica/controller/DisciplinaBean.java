@@ -5,6 +5,7 @@
  */
 package br.edu.ifba.eunapolis.gestoacademica.controller;
 
+import static java.lang.System.out;
 import javax.faces.bean.ManagedBean;
 
 /**
@@ -24,7 +25,8 @@ public class DisciplinaBean {
     private String periodo;
     
     public void Cadastrar() {
-        System.out.println("Cadastrado com sucesso!");
+       out.println("<br/>");
+       out.println("Cadastrado com sucesso!");
     }
 
     /**

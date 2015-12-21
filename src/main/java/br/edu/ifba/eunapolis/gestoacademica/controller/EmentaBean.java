@@ -5,6 +5,7 @@
  */
 package br.edu.ifba.eunapolis.gestoacademica.controller;
 
+import static java.lang.System.out;
 import javax.faces.bean.ManagedBean;
 
 /**
@@ -20,7 +21,8 @@ public class EmentaBean {
     private String descricao;
     
     public void Cadastrar() {
-        System.out.println("Cadastrado com sucesso!");
+       out.println("<br/>");
+       out.println("Cadastrado com sucesso!");
     }
 
     /**
