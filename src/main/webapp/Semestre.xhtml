@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>Cadastro Semestre</title>
+</h:head>
+    
+<h:body>
+    <h:form>
+        <h1>Semestre</h1>
+        Id: <h:inputText value="#{semestre.id}" /><br/>
+        Ano: <h:inputText value="#{semestre.ano}" /><br/>
+        Periodo Letivo: <h:inputText value="#{semestre.periodoLetivo}" /><br/>
+        Inicio: <h:inputText value="#{semestre.inicio}" /><br/>
+        Fim: <h:inputText value="#{semestre.fim}" /><br/>
+        Ativo: <h:inputText value="#{semestre.ativo}" /><br/>
+        <h:commandButton value="Cadastrar" action="#{semestre.cadastrar()}" />
+    </h:form>
+</h:body>
+</html>
