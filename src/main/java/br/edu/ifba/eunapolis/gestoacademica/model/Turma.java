@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Turma")
 public class Turma {
+    
     @Id
     @GeneratedValue
     private Integer id;
@@ -33,7 +34,7 @@ public class Turma {
     public Turma() {
     }
 
-    //-------------------------------GETTERS E SETTERS----------------------------------//
+    //-------------------------------GETTERS E SETTERS---------------------------------//
     
     public Integer getId() {
         return id;
