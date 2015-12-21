@@ -4,11 +4,13 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "pessoa")
+@Table(name = "Turma")
 public class Turma {
+    
     @Id
     @GeneratedValue
     private Integer id;
+    
     @Column(length = 60, nullable = false)
     private String nome;
     
@@ -24,10 +26,16 @@ public class Turma {
     @JoinColumn(name = "semestreProfessor_id")
     private SemestreProfessor semestreProfessor;
     
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "horarioAulasid")
+    @OneToMany
+    @JoinColumn(name = "horarioAulas_id")
     private List<HorarioAula> horarioAulas;
+    
+    //-------------------------------CONSTRUTORES--------------------------------------//
+    public Turma() {
+    }
 
+    //-------------------------------GETTERS E SETTERS---------------------------------//
+    
     public Integer getId() {
         return id;
     }

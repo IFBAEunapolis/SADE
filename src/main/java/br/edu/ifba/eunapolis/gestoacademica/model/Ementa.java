@@ -5,8 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 public class Ementa {
@@ -18,12 +16,34 @@ public class Ementa {
     @Column(length = 60, nullable = false)
     private String nome;
     
-    @OneToMany
+    @OneToMany(mappedBy = "ementa")
     @JoinColumn(name = "disciplina_id")
     private List<Disciplina> disciplinas;
     
     @Column(length = 120, nullable = false)
     private String descricao;
+    
+    //-------------------------------CONSTRUTORES-----------------------------//
+    public Ementa() {
+    }
+
+    //-------------------------------GETTERS E SETTERS------------------------//
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -41,6 +61,7 @@ public class Ementa {
         this.descricao = descricao;
     }
 
+    //-------------------------------hashCode E equals------------------------//
     @Override
     public int hashCode() {
         int hash = 5;
