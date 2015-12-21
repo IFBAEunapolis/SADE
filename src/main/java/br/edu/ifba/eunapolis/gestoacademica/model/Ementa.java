@@ -25,11 +25,11 @@ public class Ementa {
     @Column(length = 120, nullable = false)
     private String descricao;
     
-    //-------------------------------CONSTRUTORES--------------------------------------//
+    //-------------------------------CONSTRUTORES-----------------------------//
     public Ementa() {
     }
 
-    //-------------------------------GETTERS E SETTERS---------------------------------//
+    //-------------------------------GETTERS E SETTERS------------------------//
 
     public Integer getId() {
         return id;
