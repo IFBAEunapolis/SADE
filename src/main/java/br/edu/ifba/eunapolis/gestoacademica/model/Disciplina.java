@@ -38,6 +38,11 @@ public class Disciplina {
     @Column(length = 10, nullable = false)
     private Integer periodo;
 
+    //-------------------------------CONSTRUTORES--------------------------------------//
+    public Disciplina() {
+    }
+
+    //-------------------------------GETTERS E SETTERS----------------------------------//
     public Integer getId() {
         return id;
     }
