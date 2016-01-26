@@ -4,109 +4,102 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Turma")
+@Table(name = "turma")
 public class Turma {
-    
-    @Id
-    @GeneratedValue
-    private Integer id;
-    
-    @Column(length = 60, nullable = false)
-    private String nome;
-    
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "disciplina_id")
-    private Disciplina disciplina;
-    
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "planoAula_id")
-    private PlanoAula planoAula;
-    
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "semestreProfessor_id")
-    private SemestreProfessor semestreProfessor;
-    
-    @OneToMany
-    @JoinColumn(name = "horarioAulas_id")
-    private List<HorarioAula> horarioAulas;
-    
-    //-------------------------------CONSTRUTORES--------------------------------------//
-    public Turma() {
-    }
 
-    //-------------------------------GETTERS E SETTERS---------------------------------//
-    
-    public Integer getId() {
-        return id;
-    }
+	private Integer id;
+	private String nome;
+	private Disciplina disciplina;
+	private PlanoAula planoAula;
+	private SemestreProfessor semestreProfessor;
+	private List<HorarioAula> horarioAulas;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Turma() {
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	@Id
+	@GeneratedValue
+	public Integer getId() {
+		return id;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
+	@Column(length = 50, nullable = false)
+	public String getNome() {
+		return nome;
+	}
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public PlanoAula getPlanoAula() {
-        return planoAula;
-    }
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "disciplina_id")
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
 
-    public void setPlanoAula(PlanoAula planoAula) {
-        this.planoAula = planoAula;
-    }
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
 
-    public SemestreProfessor getSemestreProfessor() {
-        return semestreProfessor;
-    }
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "planoAula_id")
+	public PlanoAula getPlanoAula() {
+		return planoAula;
+	}
 
-    public void setSemestreProfessor(SemestreProfessor semestreProfessor) {
-        this.semestreProfessor = semestreProfessor;
-    }
+	public void setPlanoAula(PlanoAula planoAula) {
+		this.planoAula = planoAula;
+	}
 
-    public List<HorarioAula> getHorarioAulas() {
-        return horarioAulas;
-    }
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "semestreProfessor_id")
+	public SemestreProfessor getSemestreProfessor() {
+		return semestreProfessor;
+	}
 
-    public void setHorarioAulas(List<HorarioAula> horarioAulas) {
-        this.horarioAulas = horarioAulas;
-    }
+	public void setSemestreProfessor(SemestreProfessor semestreProfessor) {
+		this.semestreProfessor = semestreProfessor;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (this.id != null ? this.id.hashCode() : 0);
-        return hash;
-    }
+	@OneToMany
+	@JoinColumn(name = "horarioAula_id")
+	@Column(name = "horario_aulas")
+	public List<HorarioAula> getHorarioAulas() {
+		return horarioAulas;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Turma other = (Turma) obj;
-        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	public void setHorarioAulas(List<HorarioAula> horarioAulas) {
+		this.horarioAulas = horarioAulas;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Turma other = (Turma) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 
 }

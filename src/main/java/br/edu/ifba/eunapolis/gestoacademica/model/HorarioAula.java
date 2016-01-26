@@ -1,112 +1,90 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Objects;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table (name = "horarioAula")
-public class HorarioAula implements Serializable {
+@Table(name = "horarioAula")
+public class HorarioAula {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
-    
-    @Column (name = "diaSemana", length = 7)
-    private Integer diaSemana;
-    
-    @Temporal (TemporalType.TIME)
-    @Column (name ="horaInicio")
-    private Calendar horaInicio;
-    
-    @Column (name ="horaFim")
-    @Temporal (TemporalType.TIME)
-    private Calendar horaFim;
+	private Integer id;
+	private Integer diaSemana;
+	private Calendar horaInicio;
+	private Calendar horaFim;
 
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return id;
-    }
+	public HorarioAula() {
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	}
 
-    /**
-     * @return the diaSemana
-     */
-    public Integer getDiaSemana() {
-        return diaSemana;
-    }
+	@Id
+	@GeneratedValue
+	public Integer getId() {
+		return id;
+	}
 
-    /**
-     * @param diaSemana the diaSemana to set
-     */
-    public void setDiaSemana(Integer diaSemana) {
-        this.diaSemana = diaSemana;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the horaInicio
-     */
-    public Calendar getHoraInicio() {
-        return horaInicio;
-    }
+	@Column(name = "dia_semana", length = 8, nullable = false)
+	public Integer getDiaSemana() {
+		return diaSemana;
+	}
 
-    /**
-     * @param horaInicio the horaInicio to set
-     */
-    public void setHoraInicio(Calendar horaInicio) {
-        this.horaInicio = horaInicio;
-    }
+	public void setDiaSemana(Integer diaSemana) {
+		this.diaSemana = diaSemana;
+	}
 
-    /**
-     * @return the horaFim
-     */
-    public Calendar getHoraFim() {
-        return horaFim;
-    }
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "hora_inicio", nullable = false)
+	public Calendar getHoraInicio() {
+		return horaInicio;
+	}
 
-    /**
-     * @param horaFim the horaFim to set
-     */
-    public void setHoraFim(Calendar horaFim) {
-        this.horaFim = horaFim;
-    }
+	public void setHoraInicio(Calendar horaInicio) {
+		this.horaInicio = horaInicio;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + Objects.hashCode(this.id);
-        hash = 19 * hash + Objects.hashCode(this.horaInicio);
-        hash = 19 * hash + Objects.hashCode(this.horaFim);
-        return hash;
-    }
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "hora_fim", nullable = false)
+	public Calendar getHoraFim() {
+		return horaFim;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final HorarioAula other = (HorarioAula) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    
+	public void setHoraFim(Calendar horaFim) {
+		this.horaFim = horaFim;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HorarioAula other = (HorarioAula) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 }

@@ -6,21 +6,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tab_Professor")
+@Table(name = "professor")
 public class Professor {
+
+	private Integer id;
+	private String nome;
+	private List<SemestreProfessor> semestreProfessores;
+
+	public Professor() {
+	}
+
 	@Id
 	@GeneratedValue
-	@Column(name = "id_Professor")
-	private Integer id;
-	@Column(name = "nome_Professor", nullable = false)
-	private String nome;
-
-	@Column(nullable = false)
-	private List<SemestreProfessor> semestreProfessors;
-
 	public Integer getId() {
 		return id;
 	}
@@ -29,6 +31,7 @@ public class Professor {
 		this.id = id;
 	}
 
+	@Column(length = 50, nullable = false)
 	public String getNome() {
 		return nome;
 	}
@@ -37,12 +40,15 @@ public class Professor {
 		this.nome = nome;
 	}
 
-	public List<SemestreProfessor> getSemestreProfessors() {
-		return semestreProfessors;
+	@OneToMany
+	@JoinColumn(name = "semestreProfessor_id")
+	@Column(name = "semestre_professores")
+	public List<SemestreProfessor> getSemestreProfessores() {
+		return semestreProfessores;
 	}
 
-	public void setSemestreProfessors(List<SemestreProfessor> semestreProfessors) {
-		this.semestreProfessors = semestreProfessors;
+	public void setSemestreProfessores(List<SemestreProfessor> semestreProfessores) {
+		this.semestreProfessores = semestreProfessores;
 	}
 
 	@Override

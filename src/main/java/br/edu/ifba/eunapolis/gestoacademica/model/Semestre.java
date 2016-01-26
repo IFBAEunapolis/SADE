@@ -11,23 +11,21 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "tab_Semestre")
+@Table(name = "semestre")
 public class Semestre {
+
+	private Integer id;
+	private Integer ano;
+	private Integer periodoLetivo;
+	private Calendar inicio;
+	private Calendar fim;
+	private Boolean ativo;
+
+	public Semestre() {
+	}
 
 	@Id
 	@GeneratedValue
-	private Integer id;
-	@Column(nullable = false)
-	private Integer ano;
-	@Column(nullable = false)
-	private Integer periodoLetivo;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar inicio;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar fim;
-	@Column(nullable = false)
-	private Boolean ativo;
-
 	public Integer getId() {
 		return id;
 	}
@@ -36,6 +34,7 @@ public class Semestre {
 		this.id = id;
 	}
 
+	@Column(length = 4, nullable = false)
 	public Integer getAno() {
 		return ano;
 	}
@@ -44,6 +43,7 @@ public class Semestre {
 		this.ano = ano;
 	}
 
+	@Column(name = "periodo_letivo", length = 1, nullable = false)
 	public Integer getPeriodoLetivo() {
 		return periodoLetivo;
 	}
@@ -52,6 +52,7 @@ public class Semestre {
 		this.periodoLetivo = periodoLetivo;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
 	public Calendar getInicio() {
 		return inicio;
 	}
@@ -60,6 +61,7 @@ public class Semestre {
 		this.inicio = inicio;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
 	public Calendar getFim() {
 		return fim;
 	}
@@ -68,6 +70,7 @@ public class Semestre {
 		this.fim = fim;
 	}
 
+	@Column(nullable = false)
 	public Boolean getAtivo() {
 		return ativo;
 	}

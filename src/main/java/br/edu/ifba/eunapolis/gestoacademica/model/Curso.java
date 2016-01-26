@@ -1,62 +1,79 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-@Table (name = "curso")
-public class Curso implements Serializable {
+@Table(name = "curso")
+public class Curso {
 
-    @Id
-    @GeneratedValue
-    private Integer id;
-    
-    @Column (name = "nome", length = 50, nullable = false)
-    private String nome;
-    
-    @OneToMany
-    @JoinColumn (name = "disciplinas_id")
-    private List<Disciplina> disciplinas;
+	private Integer id;
+	private String nome;
+	private List<Disciplina> disciplinas;
 
-    
-    public Integer getId() {
-        return id;
-    }
+	public Curso() {
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	}
 
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
+	@Id
+	@GeneratedValue
+	public Integer getId() {
+		return id;
+	}
 
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    /**
-     * @return the disciplinas
-     */
-    public List<Disciplina> getDisciplinas() {
-        return disciplinas;
-    }
+	@Column(length = 50, nullable = false)
+	public String getNome() {
+		return nome;
+	}
 
-    /**
-     * @param disciplinas the disciplinas to set
-     */
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	@OneToMany
+	@JoinColumn(name = "disciplina_id")
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Curso other = (Curso) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
 
 }
