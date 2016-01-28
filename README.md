@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/IFBAEunapolisTOP004/SADE.png?label=ready&title=Ready)](https://waffle.io/IFBAEunapolisTOP004/SADE)
 # SADE
 
 Este repositório será utilizado no desenvolvimento de todo o projeto da disciplina.
