@@ -54,6 +54,7 @@ public class PlanoAulaBeanTest {
     /**
      * Test of getDescricao method, of class PlanoAulaBean.
      */
+    @Ignore("Not Ready to Run") 
     @Test
     public void testGetDescricao() {
         System.out.println("getDescricao");
@@ -68,6 +69,7 @@ public class PlanoAulaBeanTest {
     /**
      * Test of setDescricao method, of class PlanoAulaBean.
      */
+    @Ignore("Not Ready to Run") 
     @Test
     public void testSetDescricao() {
         System.out.println("setDescricao");
@@ -81,6 +83,7 @@ public class PlanoAulaBeanTest {
     /**
      * Test of getTurma method, of class PlanoAulaBean.
      */
+    @Ignore("Not Ready to Run") 
     @Test
     public void testGetTurma() {
         System.out.println("getTurma");
@@ -95,6 +98,7 @@ public class PlanoAulaBeanTest {
     /**
      * Test of setTurma method, of class PlanoAulaBean.
      */
+    @Ignore("Not Ready to Run") 
     @Test
     public void testSetTurma() {
         System.out.println("setTurma");
@@ -108,6 +112,7 @@ public class PlanoAulaBeanTest {
     /**
      * Test of getMensagem method, of class PlanoAulaBean.
      */
+    @Ignore("Not Ready to Run") 
     @Test
     public void testGetMensagem() {
         System.out.println("getMensagem");
