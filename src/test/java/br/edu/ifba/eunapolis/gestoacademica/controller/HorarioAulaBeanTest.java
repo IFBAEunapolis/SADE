@@ -7,25 +7,17 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.TypedQuery;
-
 import org.junit.Test;
 
+import br.edu.ifba.eunapolis.gestoacademica.dao.HorarioAulaDAO;
 import br.edu.ifba.eunapolis.gestoacademica.model.HorarioAula;
-import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 
 public class HorarioAulaBeanTest {
-
-	private EntityManager manager = JpaUtil.getEntityManager();
-	private EntityTransaction trx = manager.getTransaction();
 
 	@Test
 	public void testMensagemCadastro() {
 
-		trx.begin();
-
+		// Criando um objeto do tipo HorarioAula
 		Calendar horaIni = Calendar.getInstance();
 		horaIni.set(2016, 01, 30, 20, 20, 0);
 		Calendar horaFim = Calendar.getInstance();
@@ -36,23 +28,39 @@ public class HorarioAulaBeanTest {
 		hAula.setHoraInicio(horaIni);
 		hAula.setHoraFim(horaFim);
 
-		manager.persist(hAula);
-		trx.commit();
-
-		EntityManager manager = JpaUtil.getEntityManager();
-		TypedQuery<HorarioAula> query = manager.createQuery("from HorarioAula", HorarioAula.class);
-		List<HorarioAula> hAulas = query.getResultList();
+		// Testando função criar e Listar de HorarioAulaDAO
+		HorarioAulaDAO horarioAulaDAO = new HorarioAulaDAO();
+		horarioAulaDAO.criar(hAula);
+		List<HorarioAula> listaHA = horarioAulaDAO.Listar();
 
 		DateFormat df = new SimpleDateFormat("HH:mm:ss");
 
-		for (HorarioAula h : hAulas) {
+		for (HorarioAula h : listaHA) {
 			assertEquals("Sexta", h.getDiaSemana());
 			assertEquals("22:00:00", df.format(h.getHoraFim().getTime()));
 			assertEquals("20:20:00", df.format(h.getHoraInicio().getTime()));
 
 		}
 
-		manager.close();
+		// Testando função deletar de HorarioAulaDAO
+		horarioAulaDAO.Deletar(hAula);
+		listaHA = horarioAulaDAO.Listar();
+		assertEquals(true, listaHA.isEmpty());
+
+		// Testando função atualizar de HorarioAulaDAO
+		HorarioAula hAula2 = new HorarioAula();
+		hAula2.setDiaSemana("Sábado");
+		hAula2.setHoraInicio(horaIni);
+		hAula2.setHoraFim(horaFim);
+		horarioAulaDAO.Atualizar(hAula2);
+
+		listaHA = horarioAulaDAO.Listar();
+		for (HorarioAula h : listaHA) {
+			assertEquals("Sábado", h.getDiaSemana());
+			assertEquals("22:00:00", df.format(h.getHoraFim().getTime()));
+			assertEquals("20:20:00", df.format(h.getHoraInicio().getTime()));
+
+		}
 
 	}
 
