@@ -1,5 +1,6 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -12,10 +13,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "horarioAula")
-public class HorarioAula {
+public class HorarioAula implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Integer id;
-	private Integer diaSemana;
+	private String diaSemana;
 	private Calendar horaInicio;
 	private Calendar horaFim;
 
@@ -34,11 +37,11 @@ public class HorarioAula {
 	}
 
 	@Column(name = "dia_semana", length = 8, nullable = false)
-	public Integer getDiaSemana() {
+	public String getDiaSemana() {
 		return diaSemana;
 	}
 
-	public void setDiaSemana(Integer diaSemana) {
+	public void setDiaSemana(String diaSemana) {
 		this.diaSemana = diaSemana;
 	}
 
