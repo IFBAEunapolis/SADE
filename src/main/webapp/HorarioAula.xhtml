@@ -7,6 +7,7 @@
 
 <h:head>
 	<title>Horário de Aula</title>
+	<h:outputScript library="js" name="Calendario pt_BR.js"/>
 </h:head>
 <h:body>
 	<h:form>
@@ -16,26 +17,18 @@
 			</f:facet>
 
 			<p:outputLabel value="Horário Inicial: " for="hi" />
-			<p:inputText id="hi" size="20" value="#{hora.horaInicio}" />
+			<p:calendar id="hi" value="#{hora.horaInicio}" pattern="HH:mm" timeOnly="true" locale="br" />
 
 			<p:outputLabel for="hf" value="Horário Final: " />
-			<p:inputText id="hf" size="20" value="#{hora.horaFim}" />
+			<p:calendar id="hf" value="#{hora.horaFim}" pattern="HH:mm" timeOnly="true" locale="br" />
 
-			<p:outputLabel value="Dia da Semana: " for="diaSemana" />
-			<p:selectOneMenu value="#{hora.diaSemana}" id="diaSemana">
-				<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
-				<f:selectItem itemValue="Segunda" itemLabel="Segunda" />
-				<f:selectItem itemValue="Terça" itemLabel="Terça" />
-				<f:selectItem itemValue="Quarta" itemLabel="Quarta" />
-				<f:selectItem itemValue="Quinta" itemLabel="Quinta" />
-				<f:selectItem itemValue="Sexta" itemLabel="Sexta" />
-				<f:selectItem itemValue="Sábado" itemLabel="Sábado" />
-				<f:selectItem itemValue="Domingo" itemLabel="Domingo" />
-			</p:selectOneMenu>
+			<p:outputLabel for="button" value="Dia da Semana:" />
+			<p:calendar id="button" value="#{hora.diaSemana}" locale="br" showOn="button" pattern="dd/mm/yyyy" />
+
 		</p:panelGrid>
 		 #{hora.mensagem}
 		<br />
-		<p:commandButton value="Cadastrar" action="#{hora.MensagemCadastro}"
+		<p:commandButton value="Cadastrar" action="#{hora.cadastrar}"
 			update="@form" />
 	</h:form>
 </h:body>
