@@ -10,70 +10,85 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ *
+ * @author valtecio
+ * @version 1.0
+ */
 @Entity
 @Table(name = "curso")
 public class Curso {
 
-	private Integer id;
-	private String nome;
-	private List<Disciplina> disciplinas;
+    private Integer id;
+    private String nome;
+    private List<Disciplina> disciplinas;
 
-	public Curso() {
+    public Curso() {
 
-	}
+    }
 
-	@Id
-	@GeneratedValue
-	public Integer getId() {
-		return id;
-	}
+    public Curso(String nome, List<Disciplina> disciplinas) {
+        this.nome = nome;
+        this.disciplinas = disciplinas;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Id
+    @GeneratedValue
+    public Integer getId() {
+        return id;
+    }
 
-	@Column(length = 50, nullable = false)
-	public String getNome() {
-		return nome;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @Column(length = 50, nullable = false)
+    public String getNome() {
+        return nome;
+    }
 
-	@OneToMany
-	@JoinColumn(name = "disciplina_id")
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    @OneToMany
+    @JoinColumn(name = "disciplina_id")
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Curso other = (Curso) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
 
-	public void setDisciplinas(List<Disciplina> disciplinas) {
-		this.disciplinas = disciplinas;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Curso other = (Curso) obj;
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
 
 }

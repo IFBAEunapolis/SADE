@@ -14,12 +14,18 @@ import javax.persistence.TypedQuery;
 /**
  *
  * @author Franciel
+ * @version 1.0
  */
 public class TurmaDao {
 
     private EntityManager manager = JpaUtil.getEntityManager();
     private EntityTransaction trx = manager.getTransaction();
 
+    /**
+     * Lista todos os objetos Turma armazenados no banco de dados
+     *
+     * @return
+     */
     public List<Turma> listar() {
 
         TypedQuery<Turma> query = manager.createQuery("from Turma", Turma.class);
@@ -27,9 +33,15 @@ public class TurmaDao {
         return turmas;
     }
 
+    /**
+     * Retorna o objetos Turma armazenados no banco de dados
+     *
+     * @param nome
+     * @return
+     */
     public Turma consultar(String nome) {
         Turma turma = null;
-        try{
+        try {
             trx.begin();
             turma = manager.find(Turma.class, nome);
             trx.commit();
@@ -40,6 +52,11 @@ public class TurmaDao {
         return turma;
     }
 
+    /**
+     * Armazana no banco de dados o objeto recebido por parametro
+     *
+     * @param turma
+     */
     public void inserir(Turma turma) {
         try {
             trx.begin();
@@ -51,6 +68,11 @@ public class TurmaDao {
         }
     }
 
+    /**
+     * Atualiza no banco de dados o objeto recebido por parametro
+     *
+     * @param turma
+     */
     public void Atualizar(Turma turma) {
         try {
             trx.begin();
@@ -62,6 +84,11 @@ public class TurmaDao {
         }
     }
 
+    /**
+     * Apaga do banco de dados o objeto horarioAula recebido por parametro
+     *
+     * @param turma
+     */
     public void Deletar(Turma turma) {
         try {
             trx.begin();
