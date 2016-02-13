@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class JpaUtil {
 
-	private static EntityManagerFactory factory;
+	private static  EntityManagerFactory factory;
 
 	static {
 		factory = Persistence.createEntityManagerFactory("br.edu.ifba.eunapolis_SADE_war_0.0.1-SNAPSHOTPU");
