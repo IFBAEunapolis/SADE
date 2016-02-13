@@ -4,8 +4,8 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- *
  * @author Franciel
+ * @version 1.0
  */
 @Entity
 @Table(name = "turma")
@@ -84,6 +84,7 @@ public class Turma {
 
     /**
      * Retorna a plano de aula da turma
+     *
      * @return
      */
     @ManyToOne(optional = false)
@@ -96,6 +97,10 @@ public class Turma {
         this.planoAula = planoAula;
     }
 
+    /**
+     *Retorna o professor do semestre na turma
+     * @return
+     */
     @ManyToOne(optional = false)
     @JoinColumn(name = "semestreProfessor_id")
     public SemestreProfessor getSemestreProfessor() {
@@ -108,6 +113,7 @@ public class Turma {
 
     /**
      * Retorna a lista de horariosAaula da turma
+     *
      * @return
      */
     @OneToMany
