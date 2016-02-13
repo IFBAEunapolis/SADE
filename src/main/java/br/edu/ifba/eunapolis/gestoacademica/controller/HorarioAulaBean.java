@@ -6,6 +6,15 @@ import javax.faces.bean.ManagedBean;
 
 @ManagedBean(name = "hora")
 public class HorarioAulaBean {
+	
+	//@PersistenceContext(name="br.edu.ifba.eunapolis_SADE_war_0.0.1-SNAPSHOTPU")
+	//private EntityManager entityManager;
+	
+	//private HorarioAula horarioAula;
+
+	//public void cadastrar(){
+	//	entityManager.persist(getHorarioAula());
+	//}
 
 	private String diaSemana;
 	private Calendar horaInicio;
