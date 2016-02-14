@@ -29,3 +29,52 @@ realizar a implementação
 fechar a issue 
 
 Só serão considerados os códigos entregues no repositório.
+
+##Cronograma
+
+Por enquanto deixarei ele aqui. No mais resolvi dividir as etapas de desenvolvimento usando a nomenclatura *PACk*, leiam com cuidado e quaisquer dúvidas ou sugestões/questionamentos me mandem um e-mail.
+
+PACK01{
+
+12/02-levantamento de requisitos;
+
+16/02-documento de caso de uso.;
+     -diagrama Caso de uso;
+
+
+17/02:
+  - Documento de requisito>>>(Valtecio);
+  - Ambiente configurado >>>(Hugo,William Altoé);
+	 - NETBEANS 
+	 - GLASFISH
+	 - MYSQL
+
+
+18/02-desenvolvimento de layout(Index)>>>(Michael);
+
+19/02-Ambiente com a integração de todos os containeres completo(Hugo,William Altoé e Leonardo).
+
+21/02:
+ - Documentação pt-I>>>(Anderson,Luana);
+	- Apresentação de ferramenta e amostra do que já foi feito 20/02.
+ - Todas as paginas funcionando(CRUD,sem regras de negócio,com primefaces)
+	 - professor : (hugo) 17/02
+	 - Semestre : (Luana) -17/02
+	 - SemestreProfessor : (Jhon) 17/02
+	 - Ementa : (Anderson) 17/02
+	 - Curso : (Altoé) 17/02
+	 - PlanoAula : (Valtecio) 17/02
+	 - Disciplina : (William) 18/02
+	 - Turma : (leonardo) 18/02
+	 - HorarioAula : (Michael) 18/02
+	 
+25/02-Testes unitários de todas as classes(CRUD sem regras de negocio):
+
+	  - 23/02 - Professor,Semestre,SemestreProfessor;
+	  - 24/02 - Ementa,Curso,PlanoAula;
+	  - 25/02 - Disciplina,Turma,HorarioAula;
+
+28/02-versão alpha;
+
+}
+
