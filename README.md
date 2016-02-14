@@ -32,7 +32,7 @@ Só serão considerados os códigos entregues no repositório.
 
 ##Cronograma
 
-Por enquanto deixarei ele aqui. No mais resolvi dividir as etapas de desenvolvimento usando a nomenclatura *PACk*, leiam com cuidado e quaisquer dúvidas ou sugestões/questionamentos me mandem um e-mail.
+Por enquanto deixarei ele aqui. No mais resolvi dividir as etapas de desenvolvimento usando a nomenclatura *PACK*, leiam com cuidado e quaisquer dúvidas ou sugestões/questionamentos me mandem um e-mail.
 
 PACK01{
 
