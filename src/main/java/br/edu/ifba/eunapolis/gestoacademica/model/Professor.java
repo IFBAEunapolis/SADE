@@ -1,5 +1,6 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -9,20 +10,37 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+/**
+ *
+ * @author Luana Almeida
+ * @version 1.0
+ */
 @Entity
 @Table(name = "professor")
-public class Professor {
+public class Professor implements Serializable {
 
-	private Integer id;
-	private String nome;
-	private List<SemestreProfessor> semestreProfessores;
-
-	public Professor() {
-	}
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue
+	private Integer id;
+	@Column(length = 50, nullable = false)
+	private String nome;
+	@OneToMany
+	@JoinColumn(name = "semestreProfessor_id")
+	@Column(name = "semestre_professores")
+	private List<SemestreProfessor> semestreProfessores;
+
+	public Professor() {}
+	
+	public Professor(String nome) {
+		this.id = id;
+		this.nome = nome;
+		this.semestreProfessores = null;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -31,7 +49,6 @@ public class Professor {
 		this.id = id;
 	}
 
-	@Column(length = 50, nullable = false)
 	public String getNome() {
 		return nome;
 	}
@@ -40,9 +57,6 @@ public class Professor {
 		this.nome = nome;
 	}
 
-	@OneToMany
-	@JoinColumn(name = "semestreProfessor_id")
-	@Column(name = "semestre_professores")
 	public List<SemestreProfessor> getSemestreProfessores() {
 		return semestreProfessores;
 	}
