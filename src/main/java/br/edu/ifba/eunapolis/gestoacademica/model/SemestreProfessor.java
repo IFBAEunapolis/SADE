@@ -1,5 +1,6 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,22 +11,33 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+/**
+ *
+ * @author Luana Almeida
+ * @version 1.0
+ */
 @Entity
 @Table(name = "semestreProfessor")
-public class SemestreProfessor {
-
+public class SemestreProfessor implements Serializable {
+        @Id
+	@GeneratedValue
 	private Integer id;
+        @ManyToOne
+	@JoinColumn(name = "professor_id")
 	private Professor professor;
-	private Semestre semestre;
-	private List<Turma> turmas;
-	private Integer maximoHorasProfessor;
+	@ManyToOne
+	@JoinColumn(name = "semestre_id")
+        private Semestre semestre;
+	@OneToMany
+	@JoinColumn(name = "turma_id")
+        private List<Turma> turmas;
+	@Column(length = 2, name = "maximo_horas_professor", nullable = false)
+        private Integer maximoHorasProfessor;
 
 	public SemestreProfessor() {
 	}
 
-	@Id
-	@GeneratedValue
+	
 	public Integer getId() {
 		return id;
 	}
@@ -34,8 +46,7 @@ public class SemestreProfessor {
 		this.id = id;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "professor_id")
+	
 	public Professor getProfessor() {
 		return professor;
 	}
@@ -44,8 +55,7 @@ public class SemestreProfessor {
 		this.professor = professor;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "semestre_id")
+	
 	public Semestre getSemestre() {
 		return semestre;
 	}
@@ -54,8 +64,7 @@ public class SemestreProfessor {
 		this.semestre = semestre;
 	}
 
-	@OneToMany
-	@JoinColumn(name = "turma_id")
+	
 	public List<Turma> getTurmas() {
 		return turmas;
 	}
@@ -64,7 +73,7 @@ public class SemestreProfessor {
 		this.turmas = turmas;
 	}
 
-	@Column(length = 2, name = "maximo_horas_professor", nullable = false)
+	
 	public Integer getMaximoHorasProfessor() {
 		return maximoHorasProfessor;
 	}
