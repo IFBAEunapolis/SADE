@@ -1,7 +1,7 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,23 +9,32 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+/**
+*
+* @author Luana Almeida
+* @version 1.0
+*/
 @Entity
 @Table(name = "semestre")
-public class Semestre {
-
+public class Semestre implements Serializable {
+	@Id
+	@GeneratedValue
 	private Integer id;
+	@Column(length = 4, nullable = false)
 	private Integer ano;
+	@Column(name = "periodo_letivo", length = 1, nullable = false)
 	private Integer periodoLetivo;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar inicio;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar fim;
+	@Column(nullable = false)
 	private Boolean ativo;
 
 	public Semestre() {
 	}
 
-	@Id
-	@GeneratedValue
+	
 	public Integer getId() {
 		return id;
 	}
@@ -34,7 +43,7 @@ public class Semestre {
 		this.id = id;
 	}
 
-	@Column(length = 4, nullable = false)
+	
 	public Integer getAno() {
 		return ano;
 	}
@@ -43,7 +52,7 @@ public class Semestre {
 		this.ano = ano;
 	}
 
-	@Column(name = "periodo_letivo", length = 1, nullable = false)
+	
 	public Integer getPeriodoLetivo() {
 		return periodoLetivo;
 	}
@@ -52,7 +61,7 @@ public class Semestre {
 		this.periodoLetivo = periodoLetivo;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+	
 	public Calendar getInicio() {
 		return inicio;
 	}
@@ -61,7 +70,7 @@ public class Semestre {
 		this.inicio = inicio;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+	
 	public Calendar getFim() {
 		return fim;
 	}
@@ -70,7 +79,7 @@ public class Semestre {
 		this.fim = fim;
 	}
 
-	@Column(nullable = false)
+	
 	public Boolean getAtivo() {
 		return ativo;
 	}
