@@ -48,25 +48,25 @@ PACK01{
 	 - NETBEANS 
 	 - GLASFISH
 	 - MYSQL
-
+  - Classe de CRUD unificada para uso de todas as entidades>>>(Roberto,Leonardo)
 
 18/02-desenvolvimento de layout(Index)>>>(Michael);
 
-19/02-Ambiente com a integração de todos os containeres completo(Hugo,William Altoé e Leonardo).
+19/02-Ambiente com a integração de todos os containeres completo(Hugo,William Altoé).
 
 21/02:
  - Documentação pt-I>>>(Anderson,Luana);
 	- Apresentação de ferramenta e amostra do que já foi feito 20/02.
  - Todas as paginas funcionando(CRUD,sem regras de negócio,com primefaces)
-	 - professor : (hugo) 17/02
-	 - Semestre : (Luana) -17/02
-	 - SemestreProfessor : (Jhon) 17/02
-	 - Ementa : (Anderson) 17/02
-	 - Curso : (Altoé) 17/02
-	 - PlanoAula : (Valtecio) 17/02
-	 - Disciplina : (William) 18/02
-	 - Turma : (leonardo) 18/02
-	 - HorarioAula : (Michael) 18/02
+	 - professor : (hugo) 18/02
+	 - Semestre : (Luana) -18/02
+	 - SemestreProfessor : (Jhon) 19/02
+	 - Ementa : (Anderson) 18/02
+	 - Curso : (Altoé) 18/02
+	 - PlanoAula : (Valtecio) 18/02
+	 - Disciplina : (William) 19/02
+	 - Turma : (leonardo) 19/02
+	 - HorarioAula : (Michael) 19/02
 	 
 25/02-Testes unitários de todas as classes(CRUD sem regras de negocio):
 
