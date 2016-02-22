@@ -5,139 +5,120 @@
  */
 package br.edu.ifba.eunapolis.gestoacademica.controller;
 
-import static java.lang.System.out;
+
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.model.Curso;
+import br.edu.ifba.eunapolis.gestoacademica.model.Disciplina;
 
 /**
  *
  * @author Will
  */
-@ManagedBean (name = "disciplina")
+@ManagedBean 
+@ApplicationScoped
 public class DisciplinaBean {
     
-    private String id;
+    private EntityManager manager=JpaUtil.getEntityManager();;
+    private Disciplina discip;
+    private Curso curs;
     private String nome;
     private String curso;
     private String ementa;
-    private String cargaHoraria;
+    private Integer cargaHoraria;
     private String preRequisitos;
     private String turmas;
-    private String periodo;
+    private Integer periodo;
+    
+    
+    public DisciplinaBean(){
+    	
+    }
     
     public void cadastrar() {
-       out.println("<br/>");
-       out.println("Cadastrado com sucesso!");
+       feed();
+       EntityTransaction trx= this.manager.getTransaction();
+       trx.begin();
+       this.manager.persist(discip);
+       trx.commit();
+       manager.close();
     }
 
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
+	public Disciplina getDisciplina() {
+		return discip;
+	}
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setDisciplina(Disciplina discip) {
+		this.discip= discip;
+	}
 
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    /**
-     * @return the curso
-     */
-    public String getCurso() {
-        return curso;
-    }
+	public String getCurso() {
+		return curso;
+	}
 
-    /**
-     * @param curso the curso to set
-     */
-    public void setCurso(String curso) {
-        this.curso = curso;
-    }
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
 
-    /**
-     * @return the ementa
-     */
-    public String getEmenta() {
-        return ementa;
-    }
+	public String getEmenta() {
+		return ementa;
+	}
 
-    /**
-     * @param ementa the ementa to set
-     */
-    public void setEmenta(String ementa) {
-        this.ementa = ementa;
-    }
+	public void setEmenta(String ementa) {
+		this.ementa = ementa;
+	}
 
-    /**
-     * @return the cargaHoraria
-     */
-    public String getCargaHoraria() {
-        return cargaHoraria;
-    }
+	public Integer getCargaHoraria() {
+		return cargaHoraria;
+	}
 
-    /**
-     * @param cargaHoraria the cargaHoraria to set
-     */
-    public void setCargaHoraria(String cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
+	public void setCargaHoraria(Integer cargaHoraria) {
+		this.cargaHoraria = cargaHoraria;
+	}
 
-    /**
-     * @return the preRequisitos
-     */
-    public String getPreRequisitos() {
-        return preRequisitos;
-    }
+	public String getPreRequisitos() {
+		return preRequisitos;
+	}
 
-    /**
-     * @param preRequisitos the preRequisitos to set
-     */
-    public void setPreRequisitos(String preRequisitos) {
-        this.preRequisitos = preRequisitos;
-    }
+	public void setPreRequisitos(String preRequisitos) {
+		this.preRequisitos = preRequisitos;
+	}
 
-    /**
-     * @return the turmas
-     */
-    public String getTurmas() {
-        return turmas;
-    }
+	public String getTurmas() {
+		return turmas;
+	}
 
-    /**
-     * @param turmas the turmas to set
-     */
-    public void setTurmas(String turmas) {
-        this.turmas = turmas;
-    }
+	public void setTurmas(String turmas) {
+		this.turmas = turmas;
+	}
 
-    /**
-     * @return the periodo
-     */
-    public String getPeriodo() {
-        return periodo;
-    }
+	public Integer getPeriodo() {
+		return periodo;
+	}
 
-    /**
-     * @param periodo the periodo to set
-     */
-    public void setPeriodo(String periodo) {
-        this.periodo = periodo;
-    }
+	public void setPeriodo(Integer periodo) {
+		this.periodo = periodo;
+	}
+
+	private void feed(){
+		discip=new Disciplina();
+		curs=new Curso();
+		curs.setNome("TESTE");
+		discip.setNome(this.nome);
+		discip.setCargaHoraria(this.cargaHoraria);
+		discip.setPeriodo(this.periodo);
+		discip.setCurso(curs);
+	}
 }

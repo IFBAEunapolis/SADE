@@ -14,14 +14,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "disciplina")
 public class Disciplina {
-
+	@Id
+    @GeneratedValue
     private Integer id;
+	@Column(length = 50, nullable = false)
     private String nome;
+	@ManyToOne(optional = false)
+    @JoinColumn(name = "curso_id")
     private Curso curso;
+	@ManyToOne(optional = false)
+    @JoinColumn(name = "ementa_id")
     private Ementa ementa;
+	@Column(name = "carga_horaria", length = 3, nullable = false)
     private Integer cargaHoraria;
+	@OneToMany
+    @Column(name = "pre_requisitos")
     private List<Disciplina> preRequisitos;
+	@OneToMany
     private List<Turma> turmas;
+	@Column(length = 10, nullable = false)
     private Integer periodo;
 
     public Disciplina() {
@@ -37,8 +48,6 @@ public class Disciplina {
         this.periodo = periodo;
     }
 
-    @Id
-    @GeneratedValue
     public Integer getId() {
         return id;
     }
@@ -46,8 +55,7 @@ public class Disciplina {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    @Column(length = 50, nullable = false)
+    
     public String getNome() {
         return nome;
     }
@@ -56,8 +64,6 @@ public class Disciplina {
         this.nome = nome;
     }
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "curso_id")
     public Curso getCurso() {
         return curso;
     }
@@ -65,9 +71,7 @@ public class Disciplina {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "ementa_id")
+    
     public Ementa getEmenta() {
         return ementa;
     }
@@ -75,8 +79,7 @@ public class Disciplina {
     public void setEmenta(Ementa ementa) {
         this.ementa = ementa;
     }
-
-    @Column(name = "carga_horaria", length = 3, nullable = false)
+    
     public Integer getCargaHoraria() {
         return cargaHoraria;
     }
@@ -84,9 +87,7 @@ public class Disciplina {
     public void setCargaHoraria(Integer cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
-
-    @OneToMany
-    @Column(name = "pre_requisitos")
+    
     public List<Disciplina> getPreRequisitos() {
         return preRequisitos;
     }
@@ -94,8 +95,7 @@ public class Disciplina {
     public void setPreRequisitos(List<Disciplina> preRequisitos) {
         this.preRequisitos = preRequisitos;
     }
-
-    @OneToMany
+    
     public List<Turma> getTurmas() {
         return turmas;
     }
@@ -103,8 +103,7 @@ public class Disciplina {
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
     }
-
-    @Column(length = 10, nullable = false)
+    
     public Integer getPeriodo() {
         return periodo;
     }
