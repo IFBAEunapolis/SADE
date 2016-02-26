@@ -51,7 +51,6 @@ public class Semestre implements Serializable {
 	public void setAno(Integer ano) {
 		this.ano = ano;
 	}
-
 	
 	public Integer getPeriodoLetivo() {
 		return periodoLetivo;

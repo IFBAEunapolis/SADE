@@ -14,6 +14,7 @@ import javax.persistence.EntityTransaction;
 import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
 import br.edu.ifba.eunapolis.gestoacademica.model.Curso;
 import br.edu.ifba.eunapolis.gestoacademica.model.Disciplina;
+import br.edu.ifba.eunapolis.gestoacademica.model.Ementa;
 
 /**
  *
@@ -26,6 +27,7 @@ public class DisciplinaBean {
     private EntityManager manager=JpaUtil.getEntityManager();;
     private Disciplina discip;
     private Curso curs;
+    private Ementa ementa2;
     private String nome;
     private String curso;
     private String ementa;
@@ -40,10 +42,11 @@ public class DisciplinaBean {
     }
     
     public void cadastrar() {
+    
        feed();
        EntityTransaction trx= this.manager.getTransaction();
        trx.begin();
-       this.manager.persist(discip);
+       this.manager.persist(this.discip);
        trx.commit();
        manager.close();
     }
@@ -112,13 +115,27 @@ public class DisciplinaBean {
 		this.periodo = periodo;
 	}
 
+	public Curso getCurs() {
+		return curs;
+	}
+
+	public void setCurs(Curso curs) {
+		this.curs = curs;
+	}
+
 	private void feed(){
+		ementa2=new Ementa();
+		ementa2.setId(10);
+	    ementa2.setNome("testenome");
+	    ementa2.setDescricao("Teste maroto");
 		discip=new Disciplina();
 		curs=new Curso();
+		curs.setId(8);
 		curs.setNome("TESTE");
 		discip.setNome(this.nome);
 		discip.setCargaHoraria(this.cargaHoraria);
 		discip.setPeriodo(this.periodo);
 		discip.setCurso(curs);
+		discip.setEmenta(ementa2);
 	}
 }

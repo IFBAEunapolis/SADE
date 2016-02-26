@@ -5,12 +5,15 @@
  */
 package br.edu.ifba.eunapolis.gestoacademica.controller;
 
-import static java.lang.System.out;
 import java.util.Calendar;
+import java.util.Date;
 import javax.faces.bean.ManagedBean;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+
+
+import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.model.Semestre;
 
 /**
  *
@@ -18,99 +21,82 @@ import javax.persistence.TemporalType;
  */
 @ManagedBean(name = "semestre")
 public class SemestreBean {
-    private String id;
-    private String ano;
-    private String periodoLetivo;
-    private String inicio;
-    private String fim;
-    private String ativo;
+	
+	
+	private Integer ano;
+	private Integer periodoLetivo;
+	private Date inicio;
+	private Date fim;
+	private Boolean ativo;
+    private EntityManager manager;
+    private Semestre semestreModel;
+    
+    public SemestreBean(){
+    	manager=JpaUtil.getEntityManager();
+    	semestreModel= new Semestre();
+    }
     
     public void cadastrar(){
-       out.println("<br/>");
-       out.println("Cadastrado com sucesso!");
+    	cast();
+    	EntityTransaction trx= this.manager.getTransaction();
+        trx.begin();
+        this.manager.persist(semestreModel);
+        trx.commit();
+        manager.close();
     }
 
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
+	public Integer getAno() {
+		return ano;
+	}
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setAno(Integer ano) {
+		this.ano = ano;
+	}
 
-    /**
-     * @return the ano
-     */
-    public String getAno() {
-        return ano;
-    }
+	public Integer getPeriodoLetivo() {
+		return periodoLetivo;
+	}
 
-    /**
-     * @param ano the ano to set
-     */
-    public void setAno(String ano) {
-        this.ano = ano;
-    }
+	public void setPeriodoLetivo(Integer periodoLetivo) {
+		this.periodoLetivo = periodoLetivo;
+	}
 
-    /**
-     * @return the periodoLetivo
-     */
-    public String getPeriodoLetivo() {
-        return periodoLetivo;
-    }
+	public Date getInicio() {
+		return inicio;
+	}
 
-    /**
-     * @param periodoLetivo the periodoLetivo to set
-     */
-    public void setPeriodoLetivo(String periodoLetivo) {
-        this.periodoLetivo = periodoLetivo;
-    }
+	public void setInicio(Date inicio) {
+		this.inicio = inicio;
+	}
 
-    /**
-     * @return the inicio
-     */
-    public String getInicio() {
-        return inicio;
-    }
+	public Date getFim() {
+		return fim;
+	}
 
-    /**
-     * @param inicio the inicio to set
-     */
-    public void setInicio(String inicio) {
-        this.inicio = inicio;
-    }
+	public void setFim(Date fim) {
+		this.fim = fim;
+	}
 
-    /**
-     * @return the fim
-     */
-    public String getFim() {
-        return fim;
-    }
+	public Boolean getAtivo() {
+		return ativo;
+	}
 
-    /**
-     * @param fim the fim to set
-     */
-    public void setFim(String fim) {
-        this.fim = fim;
-    }
-
-    /**
-     * @return the ativo
-     */
-    public String getAtivo() {
-        return ativo;
-    }
-
-    /**
-     * @param ativo the ativo to set
-     */
-    public void setAtivo(String ativo) {
-        this.ativo = ativo;
-    }
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+	
+	private void cast(){
+		Calendar Inicio=Calendar.getInstance();
+		Calendar Fim=Calendar.getInstance();
+		Inicio.setTime(this.inicio);
+		Fim.setTime(this.fim);
+		semestreModel.setAno(this.ano);
+		semestreModel.setPeriodoLetivo(this.periodoLetivo);
+		semestreModel.setAtivo(this.ativo);
+		semestreModel.setInicio(Inicio);
+		semestreModel.setFim(Fim);
+	}
+	
+	
+  
 }
