@@ -1,9 +1,11 @@
-package br.edu.ifba.eunapolis.gestoacademica.modell;
 
+package br.edu.ifba.eunapolis.gestoacademica.modell;
 import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
 import javax.persistence.EntityManager;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import br.edu.ifba.eunapolis.gestoacademica.model.Professor;
 import junit.framework.TestCase;
@@ -11,17 +13,18 @@ import junit.framework.TestCase;
 /**
  * Classe responsavel pelos testes da tabela professor
  * 
- * @author Luana
- * @version 1.0
+ * @author Luana Almeida
+ * @version 1.1
  */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ProfessorTesteJPA extends TestCase {
-       /**
-       * Salva um objeto do tipo professor no banco.
-       * 
-       */
+	
+	private static Integer idProfessorSalvo; 
+	
+	
 	
 	@Test
-	public void testSalvar() throws Exception {
+	public void testAdicionar() throws Exception {
 		
 		Professor professorTeste = new Professor("ProfessorTeste");
 
@@ -31,54 +34,44 @@ public class ProfessorTesteJPA extends TestCase {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 
+		idProfessorSalvo = professorTeste.getId();
 	}
-        
-        /**
-       * Busca um objeto no banco de Dados
-       * 
-       */
-
+	
 	@Test
-	public void testbuscar() throws Exception {
+	public void testBuscar() throws Exception {
 
 		EntityManager entityManager = JpaUtil.getEntityManager();
 
-		entityManager.find(Professor.class, 1);
+		entityManager.find(Professor.class, idProfessorSalvo);
 
 		entityManager.close();
-
+		
 	}
 
-        /**
-       * Atualiza um objeto do tipo professor no banco de Dados
-       * 
-       */
 	@Test
 	public void testAtualizar() throws Exception {
 
 		EntityManager entityManager = JpaUtil.getEntityManager();
+		
 		entityManager.getTransaction().begin();
 
-		Professor professorTeste = entityManager.find(Professor.class, 1);
+		Professor professorTeste = entityManager.find(Professor.class, idProfessorSalvo);
 
 		professorTeste.setNome("ProfessorTesteAtualizando");
 
 		entityManager.persist(professorTeste);
+		
 		entityManager.getTransaction().commit();
 		entityManager.close();
 
 	}
-       /**
-       * Deleta um objeto do tipo professor no banco de Dados
-       * 
-       */
 	@Test
-	public void testdelete() throws Exception {
+	public void testDelete() throws Exception {
 
 		EntityManager entityManager = JpaUtil.getEntityManager();
 		entityManager.getTransaction().begin();
 
-		Professor professorTeste = entityManager.find(Professor.class, 1);
+		Professor professorTeste = entityManager.find(Professor.class, idProfessorSalvo);
 		entityManager.remove(professorTeste);
 
 		entityManager.getTransaction().commit();
