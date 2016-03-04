@@ -1,11 +1,11 @@
-[![Stories in Ready](https://badge.waffle.io/IFBAEunapolisTOP004/SADE.png?label=ready&title=Ready)](https://waffle.io/IFBAEunapolisTOP004/SADE)
-[![Stories in Progress](https://badge.waffle.io/IFBAEunapolisTOP004/SADE.png?label=in%20progress&title=In%20Progress)](https://waffle.io/IFBAEunapolisTOP004/SADE)
-[![Travis Status](https://travis-ci.org/IFBAEunapolisTOP004/SADE.svg?branch=master)](https://travis-ci.org/IFBAEunapolisTOP004/SADE)
+[![Stories in Ready](https://badge.waffle.io/IFBAEunapolis/SADE.png?label=ready&title=Ready)](https://waffle.io/IFBAEunapolis/SADE)
+[![Stories in Progress](https://badge.waffle.io/IFBAEunapolis/SADE.png?label=in%20progress&title=In%20Progress)](https://waffle.io/IFBAEunapolis/SADE)
+[![Travis Status](https://travis-ci.org/IFBAEunapolis/SADE.svg?branch=master)](https://travis-ci.org/IFBAEunapolis/SADE)
 
 # SADE
 
 Este repositório será utilizado no desenvolvimento de todo o projeto da disciplina.
-https://github.com/IFBAEunapolisTOP004/SADE
+https://github.com/IFBAEunapolis/SADE
 
 ## Prova 1
 
