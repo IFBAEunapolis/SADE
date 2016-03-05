@@ -12,7 +12,7 @@ public class CriarTabelas {
 
     public static void main(String[] args) {
         
-        Persistence.createEntityManagerFactory("br.edu.ifba.eunapolis_SADE_war_0.0.1-SNAPSHOTPU");
+        Persistence.createEntityManagerFactory("SADE_PU");
 
     }
 
