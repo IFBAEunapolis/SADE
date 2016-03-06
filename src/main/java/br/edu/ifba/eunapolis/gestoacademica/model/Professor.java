@@ -21,53 +21,53 @@ import javax.persistence.Table;
 @Table(name = "professor")
 public class Professor implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
     private Integer id;
+
     @Column(length = 50, nullable = false)
     private String nome;
+
     @OneToMany
     @JoinColumn(name = "semestreProfessor_id")
     @Column(name = "semestre_professores")
     private List<SemestreProfessor> semestreProfessores;
 
-    public Professor() {}
-    
+    public Professor() {
+    }
+
     public Professor(String nome) {
         this.setId(id);
         this.nome = nome;
         this.semestreProfessores = null;
     }
-    
+
     public Integer getId() {
-	return id;
+        return id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getNome() {
         return nome;
     }
-    
+
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     public List<SemestreProfessor> getSemestreProfessores() {
         return semestreProfessores;
     }
-    
+
     public void setSemestreProfessores(List<SemestreProfessor> semestreProfessores) {
         this.semestreProfessores = semestreProfessores;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -75,21 +75,26 @@ public class Professor implements Serializable {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Professor other = (Professor) obj;
         if (id == null) {
-            if (other.id != null)
+            if (other.id != null) {
                 return false;
-        } else if (!id.equals(other.id))
+            }
+        } else if (!id.equals(other.id)) {
             return false;
+        }
         return true;
-	}
+    }
 }

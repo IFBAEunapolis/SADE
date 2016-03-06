@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 /**
  *
  * @author Luana & Jonathas "John"
@@ -18,72 +19,75 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "semestre")
 public class Semestre implements Serializable {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue
     private Integer id;
+
     @Column(length = 4, nullable = false)
     private Integer ano;
+
     @Column(name = "periodo_letivo", length = 1, nullable = false)
     private Integer periodoLetivo;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar inicio;
+
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar fim;
+
     @Column(nullable = false)
     private Boolean ativo;
-    
+
     public Semestre() {
     }
-    
+
     public Integer getId() {
         return id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public Integer getAno() {
         return ano;
     }
-    
+
     public void setAno(Integer ano) {
         this.ano = ano;
     }
-    
+
     public Integer getPeriodoLetivo() {
         return periodoLetivo;
     }
-    
+
     public void setPeriodoLetivo(Integer periodoLetivo) {
         this.periodoLetivo = periodoLetivo;
     }
-    
+
     public Calendar getInicio() {
         return inicio;
     }
-    
+
     public void setInicio(Calendar inicio) {
         this.inicio = inicio;
     }
-    
+
     public Calendar getFim() {
         return fim;
     }
-    
+
     public void setFim(Calendar fim) {
         this.fim = fim;
     }
-    
+
     public Boolean getAtivo() {
         return ativo;
     }
-    
+
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
@@ -98,18 +102,23 @@ public class Semestre implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Semestre other = (Semestre) obj;
         if (id == null) {
-            if (other.id != null)
+            if (other.id != null) {
                 return false;
-        } else if (!id.equals(other.id))
+            }
+        } else if (!id.equals(other.id)) {
             return false;
+        }
         return true;
     }
 }

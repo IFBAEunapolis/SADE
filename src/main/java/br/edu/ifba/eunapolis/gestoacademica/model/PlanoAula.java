@@ -1,5 +1,6 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,68 +11,77 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "planoAula")
-public class PlanoAula {
+public class PlanoAula implements Serializable {
 
-	private Integer id;
-	private Turma turma;
-	private String descricao;
+    private static final long serialVersionUID = 1L;
 
-	public PlanoAula() {
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	}
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "turma_id")
+    private Turma turma;
 
-	@Id
-	@GeneratedValue
-	public Integer getId() {
-		return id;
-	}
+    @Column(length = 100, nullable = false)
+    private String descricao;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public PlanoAula() {
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "turma_id")
-	public Turma getTurma() {
-		return turma;
-	}
+    }
 
-	public void setTurma(Turma turma) {
-		this.turma = turma;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	@Column(length = 100, nullable = false)
-	public String getDescricao() {
-		return descricao;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+    public Turma getTurma() {
+        return turma;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PlanoAula other = (PlanoAula) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        PlanoAula other = (PlanoAula) obj;
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        return true;
+    }
 
 }

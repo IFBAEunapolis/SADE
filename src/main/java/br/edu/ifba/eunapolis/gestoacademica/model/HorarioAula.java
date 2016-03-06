@@ -2,7 +2,6 @@ package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,79 +14,87 @@ import javax.persistence.TemporalType;
 @Table(name = "horarioAula")
 public class HorarioAula implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private Integer id;
-	private String diaSemana;
-	private Calendar horaInicio;
-	private Calendar horaFim;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	public HorarioAula() {
+    @Column(name = "dia_semana", length = 8, nullable = false)
+    private String diaSemana;
 
-	}
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "hora_inicio", nullable = false)
+    private Calendar horaInicio;
 
-	@Id
-	@GeneratedValue
-	public Integer getId() {
-		return id;
-	}
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "hora_fim", nullable = false)
+    private Calendar horaFim;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public HorarioAula() {
 
-	@Column(name = "dia_semana", length = 8, nullable = false)
-	public String getDiaSemana() {
-		return diaSemana;
-	}
+    }
 
-	public void setDiaSemana(String diaSemana) {
-		this.diaSemana = diaSemana;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "hora_inicio", nullable = false)
-	public Calendar getHoraInicio() {
-		return horaInicio;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setHoraInicio(Calendar horaInicio) {
-		this.horaInicio = horaInicio;
-	}
+    public String getDiaSemana() {
+        return diaSemana;
+    }
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "hora_fim", nullable = false)
-	public Calendar getHoraFim() {
-		return horaFim;
-	}
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
+    }
 
-	public void setHoraFim(Calendar horaFim) {
-		this.horaFim = horaFim;
-	}
+    public Calendar getHoraInicio() {
+        return horaInicio;
+    }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
+    public void setHoraInicio(Calendar horaInicio) {
+        this.horaInicio = horaInicio;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		HorarioAula other = (HorarioAula) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+    public Calendar getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(Calendar horaFim) {
+        this.horaFim = horaFim;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        HorarioAula other = (HorarioAula) obj;
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        return true;
+    }
 
 }

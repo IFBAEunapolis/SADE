@@ -1,5 +1,6 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
@@ -9,13 +10,32 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "turma")
-public class Turma {
+public class Turma implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue
     private Integer id;
+
+    @Column(length = 50, nullable = false)
     private String nome;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "disciplina_id")
     private Disciplina disciplina;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "planoAula_id")
     private PlanoAula planoAula;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "semestreProfessor_id")
     private SemestreProfessor semestreProfessor;
+
+    @OneToMany
+    @JoinColumn(name = "horarioAula_id")
+    @Column(name = "horario_aulas")
     private List<HorarioAula> horarioAulas;
 
     public Turma() {
@@ -43,8 +63,6 @@ public class Turma {
      *
      * @return
      */
-    @Id
-    @GeneratedValue
     public Integer getId() {
         return id;
     }
@@ -58,7 +76,6 @@ public class Turma {
      *
      * @return
      */
-    @Column(length = 50, nullable = false)
     public String getNome() {
         return nome;
     }
@@ -72,8 +89,6 @@ public class Turma {
      *
      * @return
      */
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "disciplina_id")
     public Disciplina getDisciplina() {
         return disciplina;
     }
@@ -87,8 +102,6 @@ public class Turma {
      *
      * @return
      */
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "planoAula_id")
     public PlanoAula getPlanoAula() {
         return planoAula;
     }
@@ -98,11 +111,10 @@ public class Turma {
     }
 
     /**
-     *Retorna o professor do semestre na turma
+     * Retorna o professor do semestre na turma
+     *
      * @return
      */
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "semestreProfessor_id")
     public SemestreProfessor getSemestreProfessor() {
         return semestreProfessor;
     }
@@ -116,9 +128,6 @@ public class Turma {
      *
      * @return
      */
-    @OneToMany
-    @JoinColumn(name = "horarioAula_id")
-    @Column(name = "horario_aulas")
     public List<HorarioAula> getHorarioAulas() {
         return horarioAulas;
     }

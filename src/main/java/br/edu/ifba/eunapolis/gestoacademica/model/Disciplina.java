@@ -1,7 +1,7 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,26 +13,36 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "disciplina")
-public class Disciplina {
-	@Id
+public class Disciplina implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @GeneratedValue
     private Integer id;
-	@Column(length = 50, nullable = false)
+
+    @Column(length = 50, nullable = false)
     private String nome;
-	@ManyToOne(optional = false)
+
+    @ManyToOne(optional = false)
     @JoinColumn(name = "curso_id")
     private Curso curso;
-	@ManyToOne(optional = false)
+
+    @ManyToOne(optional = false)
     @JoinColumn(name = "ementa_id")
     private Ementa ementa;
-	@Column(name = "carga_horaria", length = 3, nullable = false)
+
+    @Column(name = "carga_horaria", length = 3, nullable = false)
     private Integer cargaHoraria;
-	@OneToMany
+
+    @OneToMany
     @Column(name = "pre_requisitos")
     private List<Disciplina> preRequisitos;
-	@OneToMany
+
+    @OneToMany
     private List<Turma> turmas;
-	@Column(length = 10, nullable = false)
+
+    @Column(length = 10, nullable = false)
     private Integer periodo;
 
     public Disciplina() {
@@ -55,7 +65,7 @@ public class Disciplina {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getNome() {
         return nome;
     }
@@ -71,7 +81,7 @@ public class Disciplina {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-    
+
     public Ementa getEmenta() {
         return ementa;
     }
@@ -79,7 +89,7 @@ public class Disciplina {
     public void setEmenta(Ementa ementa) {
         this.ementa = ementa;
     }
-    
+
     public Integer getCargaHoraria() {
         return cargaHoraria;
     }
@@ -87,7 +97,7 @@ public class Disciplina {
     public void setCargaHoraria(Integer cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
-    
+
     public List<Disciplina> getPreRequisitos() {
         return preRequisitos;
     }
@@ -95,7 +105,7 @@ public class Disciplina {
     public void setPreRequisitos(List<Disciplina> preRequisitos) {
         this.preRequisitos = preRequisitos;
     }
-    
+
     public List<Turma> getTurmas() {
         return turmas;
     }
@@ -103,7 +113,7 @@ public class Disciplina {
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
     }
-    
+
     public Integer getPeriodo() {
         return periodo;
     }

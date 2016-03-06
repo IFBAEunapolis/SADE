@@ -1,7 +1,7 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
+import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,10 +17,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "curso")
-public class Curso {
+public class Curso implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue
     private Integer id;
+
+    @Column(length = 50, nullable = false)
     private String nome;
+
+    @OneToMany
+    @JoinColumn(name = "disciplina_id")
     private List<Disciplina> disciplinas;
 
     public Curso() {
@@ -32,8 +41,6 @@ public class Curso {
         this.disciplinas = disciplinas;
     }
 
-    @Id
-    @GeneratedValue
     public Integer getId() {
         return id;
     }
@@ -42,7 +49,6 @@ public class Curso {
         this.id = id;
     }
 
-    @Column(length = 50, nullable = false)
     public String getNome() {
         return nome;
     }
@@ -51,10 +57,12 @@ public class Curso {
         this.nome = nome;
     }
 
-    @OneToMany
-    @JoinColumn(name = "disciplina_id")
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
     }
 
     @Override
@@ -85,10 +93,6 @@ public class Curso {
             return false;
         }
         return true;
-    }
-
-    public void setDisciplinas(List<Disciplina> disciplinas) {
-        this.disciplinas = disciplinas;
     }
 
 }
