@@ -1,84 +1,108 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifba.eunapolis.gestoacademica.controller;
 
-import static java.lang.System.out;
+import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.model.Ementa;
+import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author Will
  */
-@ManagedBean (name = "ementa")
-public class EmentaBean {
-    
-    private String id;
-    private String nome;
-    private String disciplinas;
-    private String descricao;
-    
+@ManagedBean
+@ViewScoped
+public class EmentaBean implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    EntityManager manager = JpaUtil.getEntityManager();
+    EntityTransaction trx = manager.getTransaction();
+    private Ementa ementa = new Ementa();
+    private List<Ementa> ementas;
+    private Ementa ementaSelecionada;
+    private Integer id;
+
     public void cadastrar() {
-       out.println("<br/>");
-       out.println("Cadastrado com sucesso!");
+        trx.begin();
+        this.manager.persist(ementa);
+        trx.commit();
+    }
+
+    public void editar() {
+        trx.begin();
+        this.manager.merge(ementa);
+        trx.commit();
+    }
+
+    public void consultar() {
+        TypedQuery<Ementa> query = manager.createQuery(
+                "from Ementa", Ementa.class);
+        ementas = query.getResultList();
+
+    }
+
+    public void porId() {
+        ementa = manager.find(Ementa.class, getId());
+    }
+
+    public void excluir() {
+        trx.begin();
+        this.manager.remove(ementaSelecionada);
+        trx.commit();
+    }
+
+    /**
+     * @return the ementas
+     */
+    public List<Ementa> getEmentas() {
+        return ementas;
+    }
+
+    /**
+     * @return the ementaSelecionada
+     */
+    public Ementa getEmentaSelecionada() {
+        return ementaSelecionada;
+    }
+
+    /**
+     * @param ementaSelecionada the ementaSelecionada to set
+     */
+    public void setEmentaSelecionada(Ementa ementaSelecionada) {
+        this.ementaSelecionada = ementaSelecionada;
+    }
+
+    /**
+     * @return the ementa
+     */
+    public Ementa getEmenta() {
+        return ementa;
+    }
+
+    /**
+     * @param ementa the ementa to set
+     */
+    public void setEmenta(Ementa ementa) {
+        this.ementa = ementa;
     }
 
     /**
      * @return the id
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    /**
-     * @return the disciplinas
-     */
-    public String getDisciplinas() {
-        return disciplinas;
-    }
-
-    /**
-     * @param disciplinas the disciplinas to set
-     */
-    public void setDisciplinas(String disciplinas) {
-        this.disciplinas = disciplinas;
-    }
-
-    /**
-     * @return the descricao
-     */
-    public String getDescricao() {
-        return descricao;
-    }
-
-    /**
-     * @param descricao the descricao to set
-     */
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-    
 }

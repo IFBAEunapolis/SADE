@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "ementa")
@@ -20,9 +22,13 @@ public class Ementa implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    @NotEmpty
+    @Size(max = 50)
     @Column(length = 50, nullable = false)
     private String nome;
 
+    @NotEmpty
+    @Size(max = 120)
     @Column(length = 120, nullable = false)
     private String descricao;
 
