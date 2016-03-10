@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" 
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Consultar Turma</title>
+    </h:head>
+
+    <h:body>
+        <f:metadata>
+            <f:viewAction action="#{turmaBean.consultar()}" />
+        </f:metadata>
+
+        <p:menubar style="width: 49%">
+            <p:menuitem value="Novo" outcome="CadastrarTurma"/>
+            <p:menuitem value="Listar" outcome="ListarTurma"/>
+        </p:menubar>
+
+        <h1  style="color: gray">Consulta de Turma</h1>
+
+        <h:form>
+            <p:dataTable value="#{turmaBean.turmas}" var="turma" style="width: 50%">
+                <p:column headerText="Id" width="5%">
+                    <h:outputText value="#{turma.id}" />
+                </p:column>
+                <p:column headerText="Nome" width="40%">
+                    <h:outputText value="#{turma.nome}" />
+                </p:column>
+                <p:column headerText="Disciplina" width="40%">
+                    <h:outputText value="#{turma.disciplina.nome}" />
+                </p:column>
+                <p:column headerText="Professor" width="40%">
+                    <h:outputText value="#{turma.semestreProfessor.professor.nome}" />
+                </p:column>
+                <p:column width="15%">
+                    <p:button icon="ui-icon-pencil" title="Editar"
+                              outcome="EditarTurma">
+                        <f:param name="id" value="#{turma.id}" />
+                    </p:button>
+                    <p:commandButton icon="ui-icon-trash" title="Excluir" process="@this"
+                                     update="@form" action="#{turmaBean.excluir}">
+                        <f:setPropertyActionListener value="#{turma}"
+                                                     target="#{turmaBean.turmaSelecionada}" />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>

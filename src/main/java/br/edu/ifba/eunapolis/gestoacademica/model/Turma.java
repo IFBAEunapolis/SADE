@@ -3,6 +3,8 @@ package br.edu.ifba.eunapolis.gestoacademica.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Franciel
@@ -18,17 +20,21 @@ public class Turma implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    @NotEmpty
+    @Size(max = 50)
     @Column(length = 50, nullable = false)
     private String nome;
 
+    @NotEmpty
     @ManyToOne(optional = false)
     @JoinColumn(name = "disciplina_id")
     private Disciplina disciplina;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     @JoinColumn(name = "planoAula_id")
     private PlanoAula planoAula;
 
+    @NotEmpty
     @ManyToOne(optional = false)
     @JoinColumn(name = "semestreProfessor_id")
     private SemestreProfessor semestreProfessor;
@@ -39,23 +45,6 @@ public class Turma implements Serializable {
     private List<HorarioAula> horarioAulas;
 
     public Turma() {
-    }
-
-    /**
-     * Construtor da classe disciplina
-     *
-     * @param nome
-     * @param disciplina
-     * @param planoAula
-     * @param semestreProfessor
-     * @param horarioAulas
-     */
-    public Turma(String nome, Disciplina disciplina, PlanoAula planoAula, SemestreProfessor semestreProfessor, List<HorarioAula> horarioAulas) {
-        this.nome = nome;
-        this.disciplina = disciplina;
-        this.planoAula = planoAula;
-        this.semestreProfessor = semestreProfessor;
-        this.horarioAulas = horarioAulas;
     }
 
     /**

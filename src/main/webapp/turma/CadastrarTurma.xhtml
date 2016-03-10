@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" >
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Cadastro Turma</title>
+    </h:head>
+    <h:body>
+        
+        <f:metadata>
+            <f:viewAction action="#{turmaBean.prepararCadastro()}" />
+        </f:metadata>
+        
+        <p:menubar style="width: 49%">
+            <p:menuitem value="Novo" outcome="CadastrarTurma"/>
+            <p:menuitem value="Listar" outcome="ListarTurma"/>
+        </p:menubar>
+
+        <h1  style="color: gray">Cadastro de Turma</h1>
+
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nome" for="nome" />
+                <p:inputText id="nome" size="50" value="#{turmaBean.turma.nome}" />
+                <p:outputLabel value="Professor" />
+                <p:selectOneMenu
+                    value="#{turmaBean.turma.semestreProfessor}"
+                    label="Professor">
+                    <f:selectItem
+                        itemLabel="Selecione" noSelectionOption="true" />
+                    <f:selectItems
+                        value="#{turmaBean.professores}"
+                        var="semestreProfessor" itemValue="#{semestreProfessor}"
+                        itemLabel="#{semestreProfessor.professor.nome}" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Disciplina" />
+                <p:selectOneMenu
+                    value="#{turmaBean.turma.disciplina}"
+                    label="Disciplina">
+                    <f:selectItem
+                        itemLabel="Selecione" noSelectionOption="true" />
+                    <f:selectItems
+                        value="#{turmaBean.disciplinas}"
+                        var="disciplina" itemValue="#{disciplina}"
+                        itemLabel="#{disciplina.nome}" />
+                </p:selectOneMenu>
+                <p:commandButton value="Salvar" action="#{turmaBean.cadastrar}" />
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>
