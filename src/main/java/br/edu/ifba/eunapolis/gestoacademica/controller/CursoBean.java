@@ -5,64 +5,114 @@
  */
 package br.edu.ifba.eunapolis.gestoacademica.controller;
 
-import static java.lang.System.out;
+import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.model.Curso;
+import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 /**
  *
- * @author Will
+ * @author Will & Jonathas "John"
+ * @version 1.1.0
+ * @since 10/03/2016
  */
-@ManagedBean(name = "curso")
-public class CursoBean {
+@ManagedBean
+@ViewScoped
+public class CursoBean implements Serializable {
     
-    private String id;
-    private String nome;
-    private String disciplinas;
+    EntityManager manager = JpaUtil.getEntityManager();
+    EntityTransaction trx = manager.getTransaction();
+    private Curso curso = new Curso();
+    private List<Curso> cursos;
+    private Curso selectCurso;
+    private Integer id;
+    
     
     public void cadastrar() {
-       out.println("<br/>");
-       out.println("Cadastrado com sucesso!");
+        trx.begin();
+        this.manager.persist(getCurso());
+        trx.commit();
+    }
+    
+    public void editar() {
+        trx.begin();
+        this.manager.merge(getCurso());
+        trx.commit();
+    }
+    
+    public void consultar() {
+        TypedQuery<Curso> query = manager.createQuery("from Curso", Curso.class);
+        setCursos(query.getResultList());
+    }
+
+    public void excluir() {
+        trx.begin();
+        this.manager.remove(getSelectCurso());
+        trx.commit();
+    }
+    
+    public void porId() {
+        setCurso(manager.find(Curso.class, getId()));
     }
 
     /**
+     * @return the curso
+     */
+    public Curso getCurso() {
+        return curso;
+    }
+    
+    /**
+     * @return the cursos
+     */
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+    
+    /**
+     * @return the selectCurso
+     */
+    public Curso getSelectCurso() {
+        return selectCurso;
+    }
+    
+    /**
      * @return the id
      */
-    public String getId() {
+    public Integer getId() {
         return id;
+    }
+    
+    /**
+     * @param curso the curso to set
+     */
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    /**
+     * @param cursos the cursos to set
+     */
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+
+    /**
+     * @param selectCurso the selectCurso to set
+     */
+    public void setSelectCurso(Curso selectCurso) {
+        this.selectCurso = selectCurso;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    /**
-     * @return the nome
-     */
-    public String getNome() {
-        return nome;
-    }
-
-    /**
-     * @param nome the nome to set
-     */
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    /**
-     * @return the disciplinas
-     */
-    public String getDisciplinas() {
-        return disciplinas;
-    }
-
-    /**
-     * @param disciplinas the disciplinas to set
-     */
-    public void setDisciplinas(String disciplinas) {
-        this.disciplinas = disciplinas;
-    }
+    }   
 }

@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://xmlns.jcp.org/jsf/html">
-<h:head>
-    <meta charset="UTF-8"/>
-<title>Tela de Curso</title>
-</h:head>
-<h:body>
-<h:form>
-<h1>Curso</h1>
-Id: <h:inputText value="#{curso.id}" />
-<br/>
-Nome: <h:inputText value="#{curso.nome}" />
-<br/>
-Disciplinas: <h:inputText value="#{curso.disciplinas}" />
-<br/>
-<h:commandButton value="Enviar" action="#{curso.cadastrar()}" />
-</h:form>
-</h:body>
+<html 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Tela de Curso</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Curso</h1>
+                Id: <h:inputText value="#{curso.id}" />
+            <br/>
+                Nome: <h:inputText value="#{curso.nome}" />
+            <br/>
+                Disciplinas: <h:inputText value="#{curso.disciplinas}" />
+            <br/>
+                <h:commandButton value="Enviar" action="#{curso.cadastrar()}" />
+        </h:form>
+    </h:body>
 </html>
