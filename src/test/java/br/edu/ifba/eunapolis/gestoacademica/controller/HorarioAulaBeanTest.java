@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import br.edu.ifba.eunapolis.gestoacademica.dao.HorarioAulaDAO;
+import br.edu.ifba.eunapolis.gestoacademica.util.HorarioAulaDAO;
 import br.edu.ifba.eunapolis.gestoacademica.model.HorarioAula;
 
 public class HorarioAulaBeanTest {

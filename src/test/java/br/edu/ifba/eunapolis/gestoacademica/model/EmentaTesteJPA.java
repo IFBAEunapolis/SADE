@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifba.eunapolis.gestoacademica.modell;
+package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import br.edu.ifba.eunapolis.gestoacademica.model.Curso;
 import br.edu.ifba.eunapolis.gestoacademica.model.Disciplina;
 import br.edu.ifba.eunapolis.gestoacademica.model.Ementa;

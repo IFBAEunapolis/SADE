@@ -1,6 +1,6 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import java.util.Calendar;
 import java.util.List;
 

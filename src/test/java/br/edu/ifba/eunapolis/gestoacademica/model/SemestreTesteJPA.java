@@ -1,42 +1,42 @@
-package br.edu.ifba.eunapolis.gestoacademica.modell;
-import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+package br.edu.ifba.eunapolis.gestoacademica.model;
+
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import java.util.Calendar;
 
 import javax.persistence.EntityManager;
 
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 
-import br.edu.ifba.eunapolis.gestoacademica.model.PeriodoLetivo;
+import br.edu.ifba.eunapolis.gestoacademica.model.Semestre;
 
 /**
  * Classe responsavel pelos testes da tabela Semestre
  * 
  * @author Luana Almeida
- * @version 1.1
+ * @version 1.0
  */
 
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PeriodoLetivoTesteJPA {
+public class SemestreTesteJPA {
 	
-	private  static Integer idSemestreSalvo; 
-	
+      /**
+       * Salva um objeto do tipo semestre no banco.
+       * 
+       */
 	
 	@Test
-	public void testAdicionar() throws Exception {
+	public void testSalvar() throws Exception {
 		
 		Calendar c  = Calendar.getInstance();
 		Calendar f = Calendar.getInstance();
 		c.set(02, 02, 2016);
 		f.set(02, 06, 2016);
 		
-		PeriodoLetivo semestreTeste = new PeriodoLetivo();
+		Semestre semestreTeste = new Semestre();
 	
 		EntityManager entityManager = JpaUtil.getEntityManager();
 		entityManager.getTransaction().begin();
 		
-		
+		semestreTeste.setId(null);
 		semestreTeste.setAno(2016);
 		semestreTeste.setInicio(c);
 		semestreTeste.setFim(f);
@@ -48,21 +48,28 @@ public class PeriodoLetivoTesteJPA {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 
-		idSemestreSalvo =semestreTeste.getId(); 
-		  
 	} 
+        
+         /**
+       * Busca um objeto do tipo semestre no banco de Dados
+       * 
+       */
  
 	@Test
-	public void testBuscar() throws Exception {
+	public void testbuscar() throws Exception {
 
 		EntityManager entityManager = JpaUtil.getEntityManager();
 
-		entityManager.find(PeriodoLetivo.class, idSemestreSalvo);
+		entityManager.find(Semestre.class, 1);
 
 		entityManager.close();
 
 	}
 	
+         /**
+       * Atualiza um objeto do tipo semestre no banco de Dados
+       * 
+       */
 	
 	@Test
 	public void testAtualizar() throws Exception {
@@ -77,7 +84,7 @@ public class PeriodoLetivoTesteJPA {
 		EntityManager entityManager = JpaUtil.getEntityManager();
 		entityManager.getTransaction().begin();
 
-		PeriodoLetivo semestreTeste = entityManager.find(PeriodoLetivo.class, idSemestreSalvo);
+		Semestre semestreTeste = entityManager.find(Semestre.class, 1);
 		
 		semestreTeste.setAno(2016);
 		semestreTeste.setInicio(c);
@@ -90,15 +97,18 @@ public class PeriodoLetivoTesteJPA {
 		entityManager.close();
 
 	}
-
+      /**
+       * Deleta  um objeto do tipo semestre no banco de Dados
+       * 
+       */
 	
 	@Test
-	public void testDelete() throws Exception {
+	public void testdelete() throws Exception {
 
 		EntityManager entityManager = JpaUtil.getEntityManager();
 		entityManager.getTransaction().begin();
 
-		PeriodoLetivo semestreTeste = entityManager.find(PeriodoLetivo.class, idSemestreSalvo);
+		Semestre semestreTeste = entityManager.find(Semestre.class, 1);
 		entityManager.remove(semestreTeste);
 
 		entityManager.getTransaction().commit();

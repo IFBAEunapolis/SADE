@@ -1,5 +1,5 @@
-package br.edu.ifba.eunapolis.gestoacademica.modell;
-import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+package br.edu.ifba.eunapolis.gestoacademica.model;
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import java.util.Calendar;
 
 import javax.persistence.EntityManager;
