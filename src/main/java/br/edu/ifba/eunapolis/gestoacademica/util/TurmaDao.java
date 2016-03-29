@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifba.eunapolis.gestoacademica.dao;
+package br.edu.ifba.eunapolis.gestoacademica.util;
 
 import br.edu.ifba.eunapolis.gestoacademica.model.Turma;
 import java.util.List;

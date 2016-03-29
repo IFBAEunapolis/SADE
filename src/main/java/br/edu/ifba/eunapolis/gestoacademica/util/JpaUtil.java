@@ -1,4 +1,4 @@
-package br.edu.ifba.eunapolis.gestoacademica.dao;
+package br.edu.ifba.eunapolis.gestoacademica.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

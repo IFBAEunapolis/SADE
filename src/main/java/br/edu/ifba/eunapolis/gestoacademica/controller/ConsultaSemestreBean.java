@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
-import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import br.edu.ifba.eunapolis.gestoacademica.model.Semestre;
 
 @ManagedBean

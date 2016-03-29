@@ -7,11 +7,14 @@ package br.edu.ifba.eunapolis.gestoacademica.controller;
 
 import br.edu.ifba.eunapolis.gestoacademica.model.Professor;
 import br.edu.ifba.eunapolis.gestoacademica.model.Semestre;
+import br.edu.ifba.eunapolis.gestoacademica.model.SemestreProfessor;
 import br.edu.ifba.eunapolis.gestoacademica.model.Turma;
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import static java.lang.System.out;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
 import javax.persistence.OneToMany;
 
 /**
@@ -25,10 +28,15 @@ public class SemestreProfessorBean {
     private String semestre;
     private String turmas;
     private String maximoHorasProfessor;
+    EntityManager manager = JpaUtil.getEntityManager();
         
     public void cadastrar(){
        out.println("<br/>");
        out.println("Cadastrado com sucesso!");
+    }
+    
+    public SemestreProfessor porId(Integer id) {
+        return manager.find(SemestreProfessor.class, id);
     }
 
     /**

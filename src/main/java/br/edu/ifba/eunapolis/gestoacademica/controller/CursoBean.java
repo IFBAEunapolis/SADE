@@ -5,7 +5,7 @@
  */
 package br.edu.ifba.eunapolis.gestoacademica.controller;
 
-import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import br.edu.ifba.eunapolis.gestoacademica.model.Curso;
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +17,8 @@ import javax.persistence.TypedQuery;
 
 /**
  *
- * @author Will & Jonathas "John"
+ * @author Jonathas "John"
+ * @author Will
  * @version 1.1.0
  * @since 10/03/2016
  */

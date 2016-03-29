@@ -22,7 +22,7 @@
 
         <h:form>
             <p:dataTable value="#{ementaBean.ementas}" var="ementa" style="width: 50%">
-                <p:column headerText="Id" width="5%">
+                <p:column headerText="Id" width="3%">
                     <h:outputText value="#{ementa.id}" />
                 </p:column>
                 <p:column headerText="Nome" width="40%">
@@ -31,7 +31,7 @@
                 <p:column headerText="Descrição" width="40%">
                     <h:outputText value="#{ementa.descricao}" />
                 </p:column>
-                <p:column width="15%">
+                <p:column width="18%">
                     <p:button icon="ui-icon-pencil" title="Editar"
                               outcome="EditarEmenta">
                         <f:param name="id" value="#{ementa.id}" />

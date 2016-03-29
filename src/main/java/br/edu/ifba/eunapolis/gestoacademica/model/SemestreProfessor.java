@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Luana & Jonathas "John"
+ * @author Luana
  * @version 1.1.0
  * @since 01/03/2016
  */

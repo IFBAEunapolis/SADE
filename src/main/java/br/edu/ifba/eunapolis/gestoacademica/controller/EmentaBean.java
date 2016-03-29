@@ -1,6 +1,6 @@
 package br.edu.ifba.eunapolis.gestoacademica.controller;
 
-import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import br.edu.ifba.eunapolis.gestoacademica.model.Ementa;
 import java.io.Serializable;
 import java.util.List;

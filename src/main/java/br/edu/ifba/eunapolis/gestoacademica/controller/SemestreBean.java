@@ -10,9 +10,7 @@ import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
-
-import br.edu.ifba.eunapolis.gestoacademica.dao.JpaUtil;
+import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import br.edu.ifba.eunapolis.gestoacademica.model.Semestre;
 
 /**
