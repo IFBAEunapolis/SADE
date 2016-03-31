@@ -18,6 +18,8 @@
             <p:menuitem value="Listar" outcome="ListarEmenta"/>
         </p:menubar>
 
+        <p:messages  showDetail="false" showSummary="true" />
+
         <h1 style="color: gray">Cadastro de Ementa</h1>
 
         <h:form>
@@ -27,7 +29,7 @@
                 <p:outputLabel value="Descrição" for="descrição" />
                 <p:inputTextarea id="descrição" rows="6" cols="50" counter="display" maxlength="120" counterTemplate="{0} caracteres restantes." value="#{ementaBean.ementa.descricao}" /><br />
                 <h:outputText id="display" /><br />
-                <p:commandButton value="Salvar"  action="#{ementaBean.editar}" />
+                <p:commandButton value="Salvar"  action="#{ementaBean.editar}" update="@form" />
             </p:panelGrid>
         </h:form>
     </h:body>

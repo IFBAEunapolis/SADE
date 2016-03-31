@@ -4,8 +4,10 @@ import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import br.edu.ifba.eunapolis.gestoacademica.model.Ementa;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
@@ -27,16 +29,41 @@ public class EmentaBean implements Serializable {
     private Ementa ementaSelecionada;
     private Integer id;
 
-    public void cadastrar() {
-        trx.begin();
-        this.manager.persist(ementa);
-        trx.commit();
+    public String cadastrar() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            trx.begin();
+            this.manager.persist(ementa);
+            context.addMessage(null, new FacesMessage(
+                    "Ementa cadastrada com sucesso!"));
+            trx.commit();
+            return "ListarEmenta?faces-redirect=true";
+        } catch (Exception e) {
+            trx.rollback();
+            FacesMessage mensagem = new FacesMessage(e.getMessage());
+            mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
+            context.addMessage(null, mensagem);
+            return "CadastrarEmenta?faces-redirect=true";
+        }
     }
 
     public void editar() {
-        trx.begin();
-        this.manager.merge(ementa);
-        trx.commit();
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        try {
+            trx.begin();
+            this.manager.merge(ementa);
+            context.addMessage(null, new FacesMessage(
+                    "Ementa alterada com sucesso!"));
+            trx.commit();
+        } catch (Exception e) {
+            trx.rollback();
+            FacesMessage mensagem = new FacesMessage(e.getMessage());
+            mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
+            context.addMessage(null, mensagem);
+
+        }
+
     }
 
     public void consultar() {
@@ -51,9 +78,21 @@ public class EmentaBean implements Serializable {
     }
 
     public void excluir() {
-        trx.begin();
-        this.manager.remove(ementaSelecionada);
-        trx.commit();
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        try {
+            trx.begin();
+            this.manager.remove(ementaSelecionada);
+            this.consultar();
+            context.addMessage(null, new FacesMessage(
+                    "Ementa excluída com sucesso!"));
+            trx.commit();
+        } catch (Exception e) {
+            FacesMessage mensagem = new FacesMessage(e.getMessage());
+            mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
+            context.addMessage(null, mensagem);
+
+        }
     }
 
     /**
