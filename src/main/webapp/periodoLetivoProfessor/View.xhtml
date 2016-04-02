@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPeriodoLetivoProfessorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoProfessorLabel_id}"/>
+                    <h:outputText value="#{periodoLetivoProfessorController.selected.id}" title="#{bundle.ViewPeriodoLetivoProfessorTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoProfessorLabel_professor}"/>
+                    <h:outputText value="#{periodoLetivoProfessorController.selected.professor}" title="#{bundle.ViewPeriodoLetivoProfessorTitle_professor}"/>
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoProfessorLabel_periodoLetivo}"/>
+                    <h:outputText value="#{periodoLetivoProfessorController.selected.periodoLetivo}" title="#{bundle.ViewPeriodoLetivoProfessorTitle_periodoLetivo}"/>
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoProfessorLabel_maximoHorasProfessor}"/>
+                    <h:outputText value="#{periodoLetivoProfessorController.selected.maximoHorasProfessor}" title="#{bundle.ViewPeriodoLetivoProfessorTitle_maximoHorasProfessor}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{periodoLetivoProfessorController.destroyAndView}" value="#{bundle.ViewPeriodoLetivoProfessorDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPeriodoLetivoProfessorEditLink}"/>
+                <br />
+                <h:commandLink action="#{periodoLetivoProfessorController.prepareCreate}" value="#{bundle.ViewPeriodoLetivoProfessorCreateLink}" />
+                <br />
+                <h:commandLink action="#{periodoLetivoProfessorController.prepareList}" value="#{bundle.ViewPeriodoLetivoProfessorShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPeriodoLetivoProfessorIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

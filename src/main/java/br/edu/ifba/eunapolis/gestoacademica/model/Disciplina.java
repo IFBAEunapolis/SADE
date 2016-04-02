@@ -2,18 +2,15 @@ package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
 
 @Entity
-@Table(name = "disciplina")
 public class Disciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,37 +23,24 @@ public class Disciplina implements Serializable {
     private String nome;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "curso_id")
     private Curso curso;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "ementa_id")
     private Ementa ementa;
 
-    @Column(name = "carga_horaria", length = 3, nullable = false)
+    @Column(nullable = false)
     private Integer cargaHoraria;
 
     @OneToMany
-    @Column(name = "pre_requisitos")
     private List<Disciplina> preRequisitos;
 
-    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="disciplina")
+    @OneToMany
     private List<Turma> turmas;
 
     @Column(length = 10, nullable = false)
-    private Integer periodo;
+    private Integer periodoDoCurso;
 
     public Disciplina() {
-    }
-
-    public Disciplina(String nome, Curso curso, Ementa ementa, Integer cargaHoraria, List<Disciplina> preRequisitos, List<Turma> turmas, Integer periodo) {
-        this.nome = nome;
-        this.curso = curso;
-        this.ementa = ementa;
-        this.cargaHoraria = cargaHoraria;
-        this.preRequisitos = preRequisitos;
-        this.turmas = turmas;
-        this.periodo = periodo;
     }
 
     public Integer getId() {
@@ -115,12 +99,12 @@ public class Disciplina implements Serializable {
         this.turmas = turmas;
     }
 
-    public Integer getPeriodo() {
-        return periodo;
+    public Integer getPeriodoDoCurso() {
+        return periodoDoCurso;
     }
 
-    public void setPeriodo(Integer periodo) {
-        this.periodo = periodo;
+    public void setPeriodoDoCurso(Integer periodoDoCurso) {
+        this.periodoDoCurso = periodoDoCurso;
     }
 
     @Override

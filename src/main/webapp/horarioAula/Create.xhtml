@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateHorarioAulaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateHorarioAulaLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{horarioAulaController.selected.id}" title="#{bundle.CreateHorarioAulaTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateHorarioAulaLabel_diaSemana}" for="diaSemana" />
+                    <h:inputText id="diaSemana" value="#{horarioAulaController.selected.diaSemana}" title="#{bundle.CreateHorarioAulaTitle_diaSemana}" required="true" requiredMessage="#{bundle.CreateHorarioAulaRequiredMessage_diaSemana}"/>
+                    <h:outputLabel value="#{bundle.CreateHorarioAulaLabel_horaInicio}" for="horaInicio" />
+                    <h:inputText id="horaInicio" value="#{horarioAulaController.selected.horaInicio}" title="#{bundle.CreateHorarioAulaTitle_horaInicio}" required="true" requiredMessage="#{bundle.CreateHorarioAulaRequiredMessage_horaInicio}"/>
+                    <h:outputLabel value="#{bundle.CreateHorarioAulaLabel_horaFim}" for="horaFim" />
+                    <h:inputText id="horaFim" value="#{horarioAulaController.selected.horaFim}" title="#{bundle.CreateHorarioAulaTitle_horaFim}" required="true" requiredMessage="#{bundle.CreateHorarioAulaRequiredMessage_horaFim}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{horarioAulaController.create}" value="#{bundle.CreateHorarioAulaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{horarioAulaController.prepareList}" value="#{bundle.CreateHorarioAulaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateHorarioAulaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

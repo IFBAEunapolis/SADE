@@ -1,3 +1,4 @@
+
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.io.Serializable;
@@ -7,7 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,7 +19,6 @@ import javax.persistence.Table;
  * @since 01/03/2016
  */
 @Entity
-@Table(name = "professor")
 public class Professor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,21 +27,17 @@ public class Professor implements Serializable {
     @GeneratedValue
     private Integer id;
 
+    
     @Column(length = 50, nullable = false)
     private String nome;
 
+    @ManyToOne
+    private Area area;
+
     @OneToMany
-    @JoinColumn(name = "semestreProfessor_id")
-    @Column(name = "semestre_professores")
-    private List<SemestreProfessor> semestreProfessores;
+    private List<PeriodoLetivoProfessor> periodoLetivoProfessors;
 
     public Professor() {
-    }
-
-    public Professor(String nome) {
-        this.setId(id);
-        this.nome = nome;
-        this.semestreProfessores = null;
     }
 
     public Integer getId() {
@@ -60,13 +56,23 @@ public class Professor implements Serializable {
         this.nome = nome;
     }
 
-    public List<SemestreProfessor> getSemestreProfessores() {
-        return semestreProfessores;
+    public Area getArea() {
+        return area;
     }
 
-    public void setSemestreProfessores(List<SemestreProfessor> semestreProfessores) {
-        this.semestreProfessores = semestreProfessores;
+    public void setArea(Area area) {
+        this.area = area;
     }
+    
+    public List<PeriodoLetivoProfessor> getPeriodoLetivoProfessors() {
+        return periodoLetivoProfessors;
+    }
+
+    public void setPeriodoLetivoProfessors(List<PeriodoLetivoProfessor> periodoLetivoProfessors) {
+        this.periodoLetivoProfessors = periodoLetivoProfessors;
+    }
+
+    
 
     @Override
     public int hashCode() {
@@ -97,4 +103,10 @@ public class Professor implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
 }

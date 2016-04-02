@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPeriodoLetivoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_id}"/>
+                    <h:outputText value="#{periodoLetivoController.selected.id}" title="#{bundle.ViewPeriodoLetivoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_ano}"/>
+                    <h:outputText value="#{periodoLetivoController.selected.ano}" title="#{bundle.ViewPeriodoLetivoTitle_ano}"/>
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_periodoLetivo}"/>
+                    <h:outputText value="#{periodoLetivoController.selected.periodoLetivo}" title="#{bundle.ViewPeriodoLetivoTitle_periodoLetivo}"/>
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_inicio}"/>
+                    <h:outputText value="#{periodoLetivoController.selected.inicio}" title="#{bundle.ViewPeriodoLetivoTitle_inicio}"/>
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_fim}"/>
+                    <h:outputText value="#{periodoLetivoController.selected.fim}" title="#{bundle.ViewPeriodoLetivoTitle_fim}"/>
+                    <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_ativo}"/>
+                    <h:outputText value="#{periodoLetivoController.selected.ativo}" title="#{bundle.ViewPeriodoLetivoTitle_ativo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{periodoLetivoController.destroyAndView}" value="#{bundle.ViewPeriodoLetivoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPeriodoLetivoEditLink}"/>
+                <br />
+                <h:commandLink action="#{periodoLetivoController.prepareCreate}" value="#{bundle.ViewPeriodoLetivoCreateLink}" />
+                <br />
+                <h:commandLink action="#{periodoLetivoController.prepareList}" value="#{bundle.ViewPeriodoLetivoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPeriodoLetivoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

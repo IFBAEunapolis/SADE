@@ -1,17 +1,15 @@
+
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
-import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Franciel
  * @version 1.0
  */
 @Entity
-@Table(name = "turma")
 public class Turma implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,29 +18,23 @@ public class Turma implements Serializable {
     @GeneratedValue
     private Integer id;
 
-    @NotEmpty
-    @Size(max = 50)
     @Column(length = 50, nullable = false)
     private String nome;
 
-    @NotEmpty
     @ManyToOne(optional = false)
-    @JoinColumn(name = "disciplina_id")
     private Disciplina disciplina;
 
     @ManyToOne(optional = true)
-    @JoinColumn(name = "planoAula_id")
-    private PlanoAula planoAula;
+    private PlanoEnsino planoEnsino;
 
-    @NotEmpty
     @ManyToOne(optional = false)
-    @JoinColumn(name = "semestreProfessor_id")
-    private SemestreProfessor semestreProfessor;
+    private PeriodoLetivoProfessor periodoLetivoProfessor;
 
     @OneToMany
-    @JoinColumn(name = "horarioAula_id")
-    @Column(name = "horario_aulas")
     private List<HorarioAula> horarioAulas;
+    
+    @ManyToOne(optional = true)
+    private EspacoFisico espacoFisico;
 
     public Turma() {
     }
@@ -87,16 +79,24 @@ public class Turma implements Serializable {
     }
 
     /**
-     * Retorna a plano de aula da turma
+     * Retorna a plano de Ensino da turma
      *
      * @return
      */
-    public PlanoAula getPlanoAula() {
-        return planoAula;
+    public PlanoEnsino getPlanoEnsino() {
+        return planoEnsino;
     }
 
-    public void setPlanoAula(PlanoAula planoAula) {
-        this.planoAula = planoAula;
+    public void setPlanoEnsino(PlanoEnsino planoEnsino) {
+        this.planoEnsino = planoEnsino;
+    }
+
+    public PeriodoLetivoProfessor getPeriodoLetivoProfessor() {
+        return periodoLetivoProfessor;
+    }
+
+    public void setPeriodoLetivoProfessor(PeriodoLetivoProfessor periodoLetivoProfessor) {
+        this.periodoLetivoProfessor = periodoLetivoProfessor;
     }
 
     /**
@@ -104,13 +104,7 @@ public class Turma implements Serializable {
      *
      * @return
      */
-    public SemestreProfessor getSemestreProfessor() {
-        return semestreProfessor;
-    }
-
-    public void setSemestreProfessor(SemestreProfessor semestreProfessor) {
-        this.semestreProfessor = semestreProfessor;
-    }
+    
 
     /**
      * Retorna a lista de horariosAaula da turma
@@ -124,6 +118,16 @@ public class Turma implements Serializable {
     public void setHorarioAulas(List<HorarioAula> horarioAulas) {
         this.horarioAulas = horarioAulas;
     }
+
+    public EspacoFisico getEspacoFisico() {
+        return espacoFisico;
+    }
+
+    public void setEspacoFisico(EspacoFisico espacoFisico) {
+        this.espacoFisico = espacoFisico;
+    }
+    
+    
 
     @Override
     public int hashCode() {

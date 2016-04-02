@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTurmaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTurmaLabel_id}"/>
+                    <h:outputText value="#{turmaController.selected.id}" title="#{bundle.ViewTurmaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTurmaLabel_nome}"/>
+                    <h:outputText value="#{turmaController.selected.nome}" title="#{bundle.ViewTurmaTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewTurmaLabel_disciplina}"/>
+                    <h:outputText value="#{turmaController.selected.disciplina}" title="#{bundle.ViewTurmaTitle_disciplina}"/>
+                    <h:outputText value="#{bundle.ViewTurmaLabel_planoEnsino}"/>
+                    <h:outputText value="#{turmaController.selected.planoEnsino}" title="#{bundle.ViewTurmaTitle_planoEnsino}"/>
+                    <h:outputText value="#{bundle.ViewTurmaLabel_periodoLetivoProfessor}"/>
+                    <h:outputText value="#{turmaController.selected.periodoLetivoProfessor}" title="#{bundle.ViewTurmaTitle_periodoLetivoProfessor}"/>
+                    <h:outputText value="#{bundle.ViewTurmaLabel_espacoFisico}"/>
+                    <h:outputText value="#{turmaController.selected.espacoFisico}" title="#{bundle.ViewTurmaTitle_espacoFisico}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{turmaController.destroyAndView}" value="#{bundle.ViewTurmaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTurmaEditLink}"/>
+                <br />
+                <h:commandLink action="#{turmaController.prepareCreate}" value="#{bundle.ViewTurmaCreateLink}" />
+                <br />
+                <h:commandLink action="#{turmaController.prepareList}" value="#{bundle.ViewTurmaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTurmaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

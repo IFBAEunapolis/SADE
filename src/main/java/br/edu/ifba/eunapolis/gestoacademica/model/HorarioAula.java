@@ -6,12 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "horarioAula")
 public class HorarioAula implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,8 +18,8 @@ public class HorarioAula implements Serializable {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "dia_semana", length = 8, nullable = false)
-    private String diaSemana;
+    @Column(nullable = false)
+    private Integer diaSemana;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "hora_inicio", nullable = false)
@@ -43,14 +41,14 @@ public class HorarioAula implements Serializable {
         this.id = id;
     }
 
-    public String getDiaSemana() {
+    public Integer getDiaSemana() {
         return diaSemana;
     }
 
-    public void setDiaSemana(String diaSemana) {
+    public void setDiaSemana(Integer diaSemana) {
         this.diaSemana = diaSemana;
     }
-
+    
     public Calendar getHoraInicio() {
         return horaInicio;
     }

@@ -1,3 +1,4 @@
+
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.io.Serializable;
@@ -5,12 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 @Entity
-@Table(name = "planoAula")
 public class PlanoEnsino implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -19,11 +17,10 @@ public class PlanoEnsino implements Serializable {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "turma_id")
+    @OneToOne(optional = false)
     private Turma turma;
 
-    @Column(length = 100, nullable = false)
+    @Column(nullable = false)
     private String descricao;
 
     public PlanoEnsino() {

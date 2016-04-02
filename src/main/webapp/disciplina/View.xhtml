@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewDisciplinaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewDisciplinaLabel_id}"/>
+                    <h:outputText value="#{disciplinaController.selected.id}" title="#{bundle.ViewDisciplinaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewDisciplinaLabel_nome}"/>
+                    <h:outputText value="#{disciplinaController.selected.nome}" title="#{bundle.ViewDisciplinaTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewDisciplinaLabel_curso}"/>
+                    <h:outputText value="#{disciplinaController.selected.curso}" title="#{bundle.ViewDisciplinaTitle_curso}"/>
+                    <h:outputText value="#{bundle.ViewDisciplinaLabel_ementa}"/>
+                    <h:outputText value="#{disciplinaController.selected.ementa}" title="#{bundle.ViewDisciplinaTitle_ementa}"/>
+                    <h:outputText value="#{bundle.ViewDisciplinaLabel_cargaHoraria}"/>
+                    <h:outputText value="#{disciplinaController.selected.cargaHoraria}" title="#{bundle.ViewDisciplinaTitle_cargaHoraria}"/>
+                    <h:outputText value="#{bundle.ViewDisciplinaLabel_periodoDoCurso}"/>
+                    <h:outputText value="#{disciplinaController.selected.periodoDoCurso}" title="#{bundle.ViewDisciplinaTitle_periodoDoCurso}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{disciplinaController.destroyAndView}" value="#{bundle.ViewDisciplinaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewDisciplinaEditLink}"/>
+                <br />
+                <h:commandLink action="#{disciplinaController.prepareCreate}" value="#{bundle.ViewDisciplinaCreateLink}" />
+                <br />
+                <h:commandLink action="#{disciplinaController.prepareList}" value="#{bundle.ViewDisciplinaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewDisciplinaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
