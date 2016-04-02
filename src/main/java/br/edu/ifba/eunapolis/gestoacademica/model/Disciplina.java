@@ -2,6 +2,7 @@ package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class Disciplina implements Serializable {
     @Column(name = "pre_requisitos")
     private List<Disciplina> preRequisitos;
 
-    @OneToMany
+    @OneToMany(cascade=CascadeType.PERSIST,mappedBy="disciplina")
     private List<Turma> turmas;
 
     @Column(length = 10, nullable = false)

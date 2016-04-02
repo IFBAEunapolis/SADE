@@ -14,6 +14,7 @@ import br.edu.ifba.eunapolis.gestoacademica.util.JpaUtil;
 import br.edu.ifba.eunapolis.gestoacademica.model.Curso;
 import br.edu.ifba.eunapolis.gestoacademica.model.Disciplina;
 import br.edu.ifba.eunapolis.gestoacademica.model.Ementa;
+import java.util.List;
 
 /**
  *
@@ -47,6 +48,11 @@ public class DisciplinaBean {
         this.manager.persist(this.discip);
         trx.commit();
         manager.close();
+    }
+    
+    public List<Curso> popularCurso(){
+        
+        return null;
     }
     
     public Disciplina porId(Integer id) {

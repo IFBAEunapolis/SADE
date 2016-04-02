@@ -16,17 +16,33 @@
                 <p:outputLabel value="Nome:" for="no" />
                 <p:inputText id="no" value="#{disciplinaBean.nome}" />
                 <p:outputLabel value="Curso:" for="cur" />
-                <p:inputText id="cur" value="#{disciplinaBean.curso}" />
+                <p:selectOneMenu id="cur" value="#{disciplinaBean.curso}" style="width:190px">
+                    <f:selectItem itemLabel="Selecione um Curso" itemValue=""/>
+                    <f:selectItem itemLabel="ADS" itemValue="ADS-curso"/>
+                </p:selectOneMenu>
                 <p:outputLabel value="Ementa:" for="em" /> 
-                <p:inputText id="em" value="#{disciplinaBean.ementa}" />
+                <p:selectOneMenu id="em" value="#{disciplinaBean.ementa}" style="width:190px">
+                    <f:selectItem itemLabel="Selecione uma Ementa" itemValue=""/>
+                    <f:selectItem itemLabel="ADS" itemValue="ADS-curso"/>
+                </p:selectOneMenu>
                 <p:outputLabel value="Carga Horária:" for="car" />
                 <p:inputText id="car" value="#{disciplinaBean.cargaHoraria}" />
                 <p:outputLabel value="Pré-requisitos:" for="pr" />
-                <p:inputText id="pr" value="#{disciplinaBean.preRequisitos}" />
+                <p:selectCheckboxMenu id="pr" value="#{disciplinaBean.preRequisitos}" label="Pré-Requisitos"
+                              filter="true" filterMatchMode="startsWith" style="width:225px" panelStyle="width:265px">
+                    <f:selectItem itemLabel="ADS" itemValue="ADS-curso"/>
+                </p:selectCheckboxMenu>
                 <p:outputLabel value="Turma:" for="tu" />
-                <p:inputText id="tu" value="#{disciplinaBean.turmas}" />
+                <p:selectCheckboxMenu id="tu" value="#{disciplinaBean.preRequisitos}" label="Turmas"
+                              filter="true" filterMatchMode="startsWith" style="width:225px" panelStyle="width:265px">
+                    <f:selectItem itemLabel="ADS" itemValue="ADS-curso"/>
+                </p:selectCheckboxMenu>
                 <p:outputLabel value="Periodo:" for="pe" />
-                <p:inputText id="pe" value="#{disciplinaBean.periodo}" />
+                <p:selectOneMenu id="pe" value="#{disciplinaBean.ementa}" style="width:190px">
+                    <f:selectItem itemLabel="Selecione uma Ementa" itemValue=""/>
+                    <f:selectItem itemLabel="ADS" itemValue="ADS-curso"/>
+                </p:selectOneMenu>
+                
                 <p:commandButton value="Cadastrar" action="#{disciplinaBean.cadastrar()}" />
             </p:panelGrid>
         </h:form>
