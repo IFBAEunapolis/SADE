@@ -3,41 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreatePeriodoLetivoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{periodoLetivoController.selected.id}" title="#{bundle.CreatePeriodoLetivoTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_ano}" for="ano" />
-                    <h:inputText id="ano" value="#{periodoLetivoController.selected.ano}" title="#{bundle.CreatePeriodoLetivoTitle_ano}" required="true" requiredMessage="#{bundle.CreatePeriodoLetivoRequiredMessage_ano}"/>
-                    <h:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_periodoLetivo}" for="periodoLetivo" />
-                    <h:inputText id="periodoLetivo" value="#{periodoLetivoController.selected.periodoLetivo}" title="#{bundle.CreatePeriodoLetivoTitle_periodoLetivo}" required="true" requiredMessage="#{bundle.CreatePeriodoLetivoRequiredMessage_periodoLetivo}"/>
-                    <h:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_inicio}" for="inicio" />
-                    <h:inputText id="inicio" value="#{periodoLetivoController.selected.inicio}" title="#{bundle.CreatePeriodoLetivoTitle_inicio}" />
-                    <h:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_fim}" for="fim" />
-                    <h:inputText id="fim" value="#{periodoLetivoController.selected.fim}" title="#{bundle.CreatePeriodoLetivoTitle_fim}" />
-                    <h:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_ativo}" for="ativo" />
-                    <h:inputText id="ativo" value="#{periodoLetivoController.selected.ativo}" title="#{bundle.CreatePeriodoLetivoTitle_ativo}" required="true" requiredMessage="#{bundle.CreatePeriodoLetivoRequiredMessage_ativo}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{periodoLetivoController.create}" value="#{bundle.CreatePeriodoLetivoSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{periodoLetivoController.prepareList}" value="#{bundle.CreatePeriodoLetivoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreatePeriodoLetivoIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="PeriodoLetivoCreateDlg" widgetVar="PeriodoLetivoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePeriodoLetivoTitle}">
+            <h:form id="PeriodoLetivoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{periodoLetivoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{periodoLetivoController.selected.id}" title="#{bundle.CreatePeriodoLetivoTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_ano}" for="ano" />
+                        <p:inputText id="ano" value="#{periodoLetivoController.selected.ano}" title="#{bundle.CreatePeriodoLetivoTitle_ano}" required="true" requiredMessage="#{bundle.CreatePeriodoLetivoRequiredMessage_ano}"/>
+                        <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_periodoLetivo}" for="periodoLetivo" />
+                        <p:inputText id="periodoLetivo" value="#{periodoLetivoController.selected.periodoLetivo}" title="#{bundle.CreatePeriodoLetivoTitle_periodoLetivo}" required="true" requiredMessage="#{bundle.CreatePeriodoLetivoRequiredMessage_periodoLetivo}"/>
+                        <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_inicio}" for="inicio" />
+                        <p:inputText id="inicio" value="#{periodoLetivoController.selected.inicio}" title="#{bundle.CreatePeriodoLetivoTitle_inicio}" />
+                        <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_fim}" for="fim" />
+                        <p:inputText id="fim" value="#{periodoLetivoController.selected.fim}" title="#{bundle.CreatePeriodoLetivoTitle_fim}" />
+                        <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_ativo}" for="ativo" />
+                        <p:selectBooleanCheckbox id="ativo" value="#{periodoLetivoController.selected.ativo}" required="true" requiredMessage="#{bundle.EditPeriodoLetivoRequiredMessage_ativo}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{periodoLetivoController.create}" value="#{bundle.Save}" update="display,:PeriodoLetivoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PeriodoLetivoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PeriodoLetivoCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

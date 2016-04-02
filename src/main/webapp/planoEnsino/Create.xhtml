@@ -3,37 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreatePlanoEnsinoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{planoEnsinoController.selected.id}" title="#{bundle.CreatePlanoEnsinoTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_turma}" for="turma" />
-                    <h:selectOneMenu id="turma" value="#{planoEnsinoController.selected.turma}" title="#{bundle.CreatePlanoEnsinoTitle_turma}" required="true" requiredMessage="#{bundle.CreatePlanoEnsinoRequiredMessage_turma}">
-                        <f:selectItems value="#{turmaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_descricao}" for="descricao" />
-                    <h:inputText id="descricao" value="#{planoEnsinoController.selected.descricao}" title="#{bundle.CreatePlanoEnsinoTitle_descricao}" required="true" requiredMessage="#{bundle.CreatePlanoEnsinoRequiredMessage_descricao}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{planoEnsinoController.create}" value="#{bundle.CreatePlanoEnsinoSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{planoEnsinoController.prepareList}" value="#{bundle.CreatePlanoEnsinoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreatePlanoEnsinoIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="PlanoEnsinoCreateDlg" widgetVar="PlanoEnsinoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePlanoEnsinoTitle}">
+            <h:form id="PlanoEnsinoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{planoEnsinoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{planoEnsinoController.selected.id}" title="#{bundle.CreatePlanoEnsinoTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_turma}" for="turma" />
+                        <p:selectOneMenu id="turma" value="#{planoEnsinoController.selected.turma}" required="true" requiredMessage="#{bundle.EditPlanoEnsinoRequiredMessage_turma}">
+                            <f:selectItems value="#{turmaController.itemsAvailableSelectOne}"
+                                           var="turmaItem"
+                                           itemValue="#{turmaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_descricao}" for="descricao" />
+                        <p:inputText id="descricao" value="#{planoEnsinoController.selected.descricao}" title="#{bundle.CreatePlanoEnsinoTitle_descricao}" required="true" requiredMessage="#{bundle.CreatePlanoEnsinoRequiredMessage_descricao}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{planoEnsinoController.create}" value="#{bundle.Save}" update="display,:PlanoEnsinoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PlanoEnsinoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PlanoEnsinoCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

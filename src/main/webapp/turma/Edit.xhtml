@@ -3,50 +3,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditTurmaTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditTurmaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditTurmaLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{turmaController.selected.nome}" title="#{bundle.EditTurmaTitle_nome}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_nome}"/>
-                    <h:outputLabel value="#{bundle.EditTurmaLabel_disciplina}" for="disciplina" />
-                    <h:selectOneMenu id="disciplina" value="#{turmaController.selected.disciplina}" title="#{bundle.EditTurmaTitle_disciplina}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_disciplina}">
-                        <f:selectItems value="#{disciplinaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditTurmaLabel_planoEnsino}" for="planoEnsino" />
-                    <h:selectOneMenu id="planoEnsino" value="#{turmaController.selected.planoEnsino}" title="#{bundle.EditTurmaTitle_planoEnsino}" >
-                        <f:selectItems value="#{planoEnsinoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditTurmaLabel_periodoLetivoProfessor}" for="periodoLetivoProfessor" />
-                    <h:selectOneMenu id="periodoLetivoProfessor" value="#{turmaController.selected.periodoLetivoProfessor}" title="#{bundle.EditTurmaTitle_periodoLetivoProfessor}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_periodoLetivoProfessor}">
-                        <f:selectItems value="#{periodoLetivoProfessorController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.EditTurmaLabel_espacoFisico}" for="espacoFisico" />
-                    <h:selectOneMenu id="espacoFisico" value="#{turmaController.selected.espacoFisico}" title="#{bundle.EditTurmaTitle_espacoFisico}" >
-                        <f:selectItems value="#{espacoFisicoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{turmaController.update}" value="#{bundle.EditTurmaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditTurmaViewLink}"/>
-                <br />
-                <h:commandLink action="#{turmaController.prepareList}" value="#{bundle.EditTurmaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditTurmaIndexLink}" />
+    <ui:composition>
+
+        <p:dialog id="TurmaEditDlg" widgetVar="TurmaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTurmaTitle}">
+            <h:form id="TurmaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{turmaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTurmaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditTurmaLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{turmaController.selected.nome}" title="#{bundle.EditTurmaTitle_nome}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_nome}"/>
+                        <p:outputLabel value="#{bundle.EditTurmaLabel_disciplina}" for="disciplina" />
+                        <p:selectOneMenu id="disciplina" value="#{turmaController.selected.disciplina}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_disciplina}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{disciplinaController.itemsAvailableSelectOne}"
+                                           var="disciplinaItem"
+                                           itemValue="#{disciplinaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTurmaLabel_planoEnsino}" for="planoEnsino" />
+                        <p:selectOneMenu id="planoEnsino" value="#{turmaController.selected.planoEnsino}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{planoEnsinoController.itemsAvailableSelectOne}"
+                                           var="planoEnsinoItem"
+                                           itemValue="#{planoEnsinoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTurmaLabel_periodoLetivoProfessor}" for="periodoLetivoProfessor" />
+                        <p:selectOneMenu id="periodoLetivoProfessor" value="#{turmaController.selected.periodoLetivoProfessor}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_periodoLetivoProfessor}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{periodoLetivoProfessorController.itemsAvailableSelectOne}"
+                                           var="periodoLetivoProfessorItem"
+                                           itemValue="#{periodoLetivoProfessorItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditTurmaLabel_espacoFisico}" for="espacoFisico" />
+                        <p:selectOneMenu id="espacoFisico" value="#{turmaController.selected.espacoFisico}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{espacoFisicoController.itemsAvailableSelectOne}"
+                                           var="espacoFisicoItem"
+                                           itemValue="#{espacoFisicoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{turmaController.update}" value="#{bundle.Save}" update="display,:TurmaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TurmaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TurmaEditDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

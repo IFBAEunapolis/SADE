@@ -3,42 +3,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewHorarioAulaTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewHorarioAulaLabel_id}"/>
-                    <h:outputText value="#{horarioAulaController.selected.id}" title="#{bundle.ViewHorarioAulaTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewHorarioAulaLabel_diaSemana}"/>
-                    <h:outputText value="#{horarioAulaController.selected.diaSemana}" title="#{bundle.ViewHorarioAulaTitle_diaSemana}"/>
-                    <h:outputText value="#{bundle.ViewHorarioAulaLabel_horaInicio}"/>
-                    <h:outputText value="#{horarioAulaController.selected.horaInicio}" title="#{bundle.ViewHorarioAulaTitle_horaInicio}"/>
-                    <h:outputText value="#{bundle.ViewHorarioAulaLabel_horaFim}"/>
-                    <h:outputText value="#{horarioAulaController.selected.horaFim}" title="#{bundle.ViewHorarioAulaTitle_horaFim}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{horarioAulaController.destroyAndView}" value="#{bundle.ViewHorarioAulaDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewHorarioAulaEditLink}"/>
-                <br />
-                <h:commandLink action="#{horarioAulaController.prepareCreate}" value="#{bundle.ViewHorarioAulaCreateLink}" />
-                <br />
-                <h:commandLink action="#{horarioAulaController.prepareList}" value="#{bundle.ViewHorarioAulaShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewHorarioAulaIndexLink}"/>
+    <ui:composition>
 
+        <p:dialog id="HorarioAulaViewDlg" widgetVar="HorarioAulaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewHorarioAulaTitle}">
+            <h:form id="HorarioAulaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horarioAulaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewHorarioAulaLabel_id}"/>
+                        <h:outputText value="#{horarioAulaController.selected.id}" title="#{bundle.ViewHorarioAulaTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewHorarioAulaLabel_diaSemana}"/>
+                        <h:outputText value="#{horarioAulaController.selected.diaSemana}" title="#{bundle.ViewHorarioAulaTitle_diaSemana}"/>
+                        <h:outputText value="#{bundle.ViewHorarioAulaLabel_horaInicio}"/>
+                        <h:outputText value="#{horarioAulaController.selected.horaInicio}" title="#{bundle.ViewHorarioAulaTitle_horaInicio}"/>
+                        <h:outputText value="#{bundle.ViewHorarioAulaLabel_horaFim}"/>
+                        <h:outputText value="#{horarioAulaController.selected.horaFim}" title="#{bundle.ViewHorarioAulaTitle_horaFim}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="HorarioAulaViewDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

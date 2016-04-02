@@ -3,35 +3,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreateEmentaTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateEmentaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{ementaController.selected.id}" title="#{bundle.CreateEmentaTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreateEmentaLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{ementaController.selected.nome}" title="#{bundle.CreateEmentaTitle_nome}" required="true" requiredMessage="#{bundle.CreateEmentaRequiredMessage_nome}"/>
-                    <h:outputLabel value="#{bundle.CreateEmentaLabel_descricao}" for="descricao" />
-                    <h:inputText id="descricao" value="#{ementaController.selected.descricao}" title="#{bundle.CreateEmentaTitle_descricao}" required="true" requiredMessage="#{bundle.CreateEmentaRequiredMessage_descricao}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{ementaController.create}" value="#{bundle.CreateEmentaSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{ementaController.prepareList}" value="#{bundle.CreateEmentaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateEmentaIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="EmentaCreateDlg" widgetVar="EmentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmentaTitle}">
+            <h:form id="EmentaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ementaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmentaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{ementaController.selected.id}" title="#{bundle.CreateEmentaTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateEmentaLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{ementaController.selected.nome}" title="#{bundle.CreateEmentaTitle_nome}" required="true" requiredMessage="#{bundle.CreateEmentaRequiredMessage_nome}"/>
+                        <p:outputLabel value="#{bundle.CreateEmentaLabel_descricao}" for="descricao" />
+                        <p:inputText id="descricao" value="#{ementaController.selected.descricao}" title="#{bundle.CreateEmentaTitle_descricao}" required="true" requiredMessage="#{bundle.CreateEmentaRequiredMessage_descricao}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ementaController.create}" value="#{bundle.Save}" update="display,:EmentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmentaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmentaCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

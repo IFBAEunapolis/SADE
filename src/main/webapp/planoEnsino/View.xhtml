@@ -3,40 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewPlanoEnsinoTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewPlanoEnsinoLabel_id}"/>
-                    <h:outputText value="#{planoEnsinoController.selected.id}" title="#{bundle.ViewPlanoEnsinoTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewPlanoEnsinoLabel_turma}"/>
-                    <h:outputText value="#{planoEnsinoController.selected.turma}" title="#{bundle.ViewPlanoEnsinoTitle_turma}"/>
-                    <h:outputText value="#{bundle.ViewPlanoEnsinoLabel_descricao}"/>
-                    <h:outputText value="#{planoEnsinoController.selected.descricao}" title="#{bundle.ViewPlanoEnsinoTitle_descricao}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{planoEnsinoController.destroyAndView}" value="#{bundle.ViewPlanoEnsinoDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewPlanoEnsinoEditLink}"/>
-                <br />
-                <h:commandLink action="#{planoEnsinoController.prepareCreate}" value="#{bundle.ViewPlanoEnsinoCreateLink}" />
-                <br />
-                <h:commandLink action="#{planoEnsinoController.prepareList}" value="#{bundle.ViewPlanoEnsinoShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewPlanoEnsinoIndexLink}"/>
+    <ui:composition>
 
+        <p:dialog id="PlanoEnsinoViewDlg" widgetVar="PlanoEnsinoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPlanoEnsinoTitle}">
+            <h:form id="PlanoEnsinoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{planoEnsinoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPlanoEnsinoLabel_id}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.id}" title="#{bundle.ViewPlanoEnsinoTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPlanoEnsinoLabel_turma}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.turma}" title="#{bundle.ViewPlanoEnsinoTitle_turma}"/>
+                        <h:outputText value="#{bundle.ViewPlanoEnsinoLabel_descricao}"/>
+                        <h:outputText value="#{planoEnsinoController.selected.descricao}" title="#{bundle.ViewPlanoEnsinoTitle_descricao}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PlanoEnsinoViewDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

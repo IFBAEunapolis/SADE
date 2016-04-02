@@ -3,40 +3,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewProfessorTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewProfessorLabel_id}"/>
-                    <h:outputText value="#{professorController.selected.id}" title="#{bundle.ViewProfessorTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewProfessorLabel_nome}"/>
-                    <h:outputText value="#{professorController.selected.nome}" title="#{bundle.ViewProfessorTitle_nome}"/>
-                    <h:outputText value="#{bundle.ViewProfessorLabel_area}"/>
-                    <h:outputText value="#{professorController.selected.area}" title="#{bundle.ViewProfessorTitle_area}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{professorController.destroyAndView}" value="#{bundle.ViewProfessorDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewProfessorEditLink}"/>
-                <br />
-                <h:commandLink action="#{professorController.prepareCreate}" value="#{bundle.ViewProfessorCreateLink}" />
-                <br />
-                <h:commandLink action="#{professorController.prepareList}" value="#{bundle.ViewProfessorShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewProfessorIndexLink}"/>
+    <ui:composition>
 
+        <p:dialog id="ProfessorViewDlg" widgetVar="ProfessorViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProfessorTitle}">
+            <h:form id="ProfessorViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{professorController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProfessorLabel_id}"/>
+                        <h:outputText value="#{professorController.selected.id}" title="#{bundle.ViewProfessorTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewProfessorLabel_nome}"/>
+                        <h:outputText value="#{professorController.selected.nome}" title="#{bundle.ViewProfessorTitle_nome}"/>
+                        <h:outputText value="#{bundle.ViewProfessorLabel_area}"/>
+                        <h:outputText value="#{professorController.selected.area}" title="#{bundle.ViewProfessorTitle_area}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProfessorViewDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

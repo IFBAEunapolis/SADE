@@ -3,77 +3,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
+
+
         <ui:define name="title">
             <h:outputText value="#{bundle.ListDisciplinaTitle}"></h:outputText>
         </ui:define>
+
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListDisciplinaEmpty}" rendered="#{disciplinaController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{disciplinaController.items.rowCount > 0}">
-                    <h:outputText value="#{disciplinaController.pagination.pageFirstItem + 1}..#{disciplinaController.pagination.pageLastItem + 1}/#{disciplinaController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{disciplinaController.previous}" value="#{bundle.Previous} #{disciplinaController.pagination.pageSize}" rendered="#{disciplinaController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{disciplinaController.next}" value="#{bundle.Next} #{disciplinaController.pagination.pageSize}" rendered="#{disciplinaController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{disciplinaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+            <h:form id="DisciplinaListForm">
+                <p:panel header="#{bundle.ListDisciplinaTitle}">
+                    <p:dataTable id="datalist" value="#{disciplinaController.items}" var="item"
+                                 selectionMode="single" selection="#{disciplinaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDisciplinaTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDisciplinaTitle_nome}"/>
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDisciplinaTitle_curso}"/>
                             </f:facet>
                             <h:outputText value="#{item.curso}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDisciplinaTitle_ementa}"/>
                             </f:facet>
                             <h:outputText value="#{item.ementa}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDisciplinaTitle_cargaHoraria}"/>
                             </f:facet>
                             <h:outputText value="#{item.cargaHoraria}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDisciplinaTitle_periodoDoCurso}"/>
                             </f:facet>
                             <h:outputText value="#{item.periodoDoCurso}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
-                            </f:facet>
-                            <h:commandLink action="#{disciplinaController.prepareView}" value="#{bundle.ListDisciplinaViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{disciplinaController.prepareEdit}" value="#{bundle.ListDisciplinaEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{disciplinaController.destroy}" value="#{bundle.ListDisciplinaDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{disciplinaController.prepareCreate}" value="#{bundle.ListDisciplinaCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListDisciplinaIndexLink}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{disciplinaController.prepareCreate}" update=":DisciplinaCreateForm" oncomplete="PF('DisciplinaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DisciplinaViewForm" oncomplete="PF('DisciplinaViewDialog').show()" disabled="#{empty disciplinaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DisciplinaEditForm" oncomplete="PF('DisciplinaEditDialog').show()" disabled="#{empty disciplinaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{disciplinaController.destroy}" update=":growl,datalist" disabled="#{empty disciplinaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
             </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
 

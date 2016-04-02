@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class HorarioAulaFacade extends AbstractFacade<HorarioAula> {
 
-    @PersistenceContext(unitName = "SADE_PU")
+    @PersistenceContext(unitName = "br.edu.ifba.eunapolis_mavenproject2_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
     @Override

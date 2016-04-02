@@ -3,38 +3,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditAreaTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditAreaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{areaController.selected.id}" title="#{bundle.EditAreaTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditAreaLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{areaController.selected.nome}" title="#{bundle.EditAreaTitle_nome}" />
-                    <h:outputLabel value="#{bundle.EditAreaLabel_coordenador}" for="coordenador" />
-                    <h:selectOneMenu id="coordenador" value="#{areaController.selected.coordenador}" title="#{bundle.EditAreaTitle_coordenador}" required="true" requiredMessage="#{bundle.EditAreaRequiredMessage_coordenador}">
-                        <f:selectItems value="#{professorController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{areaController.update}" value="#{bundle.EditAreaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditAreaViewLink}"/>
-                <br />
-                <h:commandLink action="#{areaController.prepareList}" value="#{bundle.EditAreaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditAreaIndexLink}" />
+    <ui:composition>
+
+        <p:dialog id="AreaEditDlg" widgetVar="AreaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAreaTitle}">
+            <h:form id="AreaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{areaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAreaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{areaController.selected.id}" title="#{bundle.EditAreaTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditAreaLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{areaController.selected.nome}" title="#{bundle.EditAreaTitle_nome}" />
+                        <p:outputLabel value="#{bundle.EditAreaLabel_coordenador}" for="coordenador" />
+                        <p:selectOneMenu id="coordenador" value="#{areaController.selected.coordenador}" required="true" requiredMessage="#{bundle.EditAreaRequiredMessage_coordenador}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{professorController.itemsAvailableSelectOne}"
+                                           var="coordenadorItem"
+                                           itemValue="#{coordenadorItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{areaController.update}" value="#{bundle.Save}" update="display,:AreaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AreaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AreaEditDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

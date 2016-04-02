@@ -23,6 +23,10 @@ public class JsfUtil {
         return items;
     }
 
+    public static boolean isValidationFailed() {
+        return FacesContext.getCurrentInstance().isValidationFailed();
+    }
+
     public static void addErrorMessage(Exception ex, String defaultMsg) {
         String msg = ex.getLocalizedMessage();
         if (msg != null && msg.length() > 0) {
@@ -57,4 +61,9 @@ public class JsfUtil {
         return converter.getAsObject(FacesContext.getCurrentInstance(), component, theId);
     }
 
+    public static enum PersistAction {
+        CREATE,
+        DELETE,
+        UPDATE
+    }
 }

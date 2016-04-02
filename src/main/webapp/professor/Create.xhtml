@@ -3,37 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreateProfessorTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateProfessorLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{professorController.selected.id}" title="#{bundle.CreateProfessorTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreateProfessorLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{professorController.selected.nome}" title="#{bundle.CreateProfessorTitle_nome}" required="true" requiredMessage="#{bundle.CreateProfessorRequiredMessage_nome}"/>
-                    <h:outputLabel value="#{bundle.CreateProfessorLabel_area}" for="area" />
-                    <h:selectOneMenu id="area" value="#{professorController.selected.area}" title="#{bundle.CreateProfessorTitle_area}" >
-                        <f:selectItems value="#{areaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{professorController.create}" value="#{bundle.CreateProfessorSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{professorController.prepareList}" value="#{bundle.CreateProfessorShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateProfessorIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="ProfessorCreateDlg" widgetVar="ProfessorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProfessorTitle}">
+            <h:form id="ProfessorCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{professorController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProfessorLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{professorController.selected.id}" title="#{bundle.CreateProfessorTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateProfessorLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{professorController.selected.nome}" title="#{bundle.CreateProfessorTitle_nome}" required="true" requiredMessage="#{bundle.CreateProfessorRequiredMessage_nome}"/>
+                        <p:outputLabel value="#{bundle.CreateProfessorLabel_area}" for="area" />
+                        <p:selectOneMenu id="area" value="#{professorController.selected.area}" >
+                            <f:selectItems value="#{areaController.itemsAvailableSelectOne}"
+                                           var="areaItem"
+                                           itemValue="#{areaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{professorController.create}" value="#{bundle.Save}" update="display,:ProfessorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProfessorCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProfessorCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

@@ -19,6 +19,7 @@ import javax.persistence.Table;
  * @since 01/03/2016
  */
 @Entity
+@Table(name = "professor")
 public class Professor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +28,6 @@ public class Professor implements Serializable {
     @GeneratedValue
     private Integer id;
 
-    
     @Column(length = 50, nullable = false)
     private String nome;
 
@@ -103,10 +103,4 @@ public class Professor implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return nome;
-    }
-    
 }

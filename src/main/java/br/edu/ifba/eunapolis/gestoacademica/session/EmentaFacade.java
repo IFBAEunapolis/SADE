@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class EmentaFacade extends AbstractFacade<Ementa> {
 
-    @PersistenceContext(unitName = "SADE_PU")
+    @PersistenceContext(unitName = "br.edu.ifba.eunapolis_mavenproject2_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
     @Override

@@ -3,38 +3,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditProfessorTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditProfessorLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{professorController.selected.id}" title="#{bundle.EditProfessorTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditProfessorLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{professorController.selected.nome}" title="#{bundle.EditProfessorTitle_nome}" required="true" requiredMessage="#{bundle.EditProfessorRequiredMessage_nome}"/>
-                    <h:outputLabel value="#{bundle.EditProfessorLabel_area}" for="area" />
-                    <h:selectOneMenu id="area" value="#{professorController.selected.area}" title="#{bundle.EditProfessorTitle_area}" >
-                        <f:selectItems value="#{areaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                </h:panelGrid>
-                <h:commandLink action="#{professorController.update}" value="#{bundle.EditProfessorSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditProfessorViewLink}"/>
-                <br />
-                <h:commandLink action="#{professorController.prepareList}" value="#{bundle.EditProfessorShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditProfessorIndexLink}" />
+    <ui:composition>
+
+        <p:dialog id="ProfessorEditDlg" widgetVar="ProfessorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProfessorTitle}">
+            <h:form id="ProfessorEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{professorController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProfessorLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{professorController.selected.id}" title="#{bundle.EditProfessorTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditProfessorLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{professorController.selected.nome}" title="#{bundle.EditProfessorTitle_nome}" required="true" requiredMessage="#{bundle.EditProfessorRequiredMessage_nome}"/>
+                        <p:outputLabel value="#{bundle.EditProfessorLabel_area}" for="area" />
+                        <p:selectOneMenu id="area" value="#{professorController.selected.area}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{areaController.itemsAvailableSelectOne}"
+                                           var="areaItem"
+                                           itemValue="#{areaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{professorController.update}" value="#{bundle.Save}" update="display,:ProfessorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProfessorEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProfessorEditDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

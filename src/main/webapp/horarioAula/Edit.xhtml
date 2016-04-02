@@ -3,38 +3,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditHorarioAulaTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditHorarioAulaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{horarioAulaController.selected.id}" title="#{bundle.EditHorarioAulaTitle_id}" />
-                    <h:outputLabel value="#{bundle.EditHorarioAulaLabel_diaSemana}" for="diaSemana" />
-                    <h:inputText id="diaSemana" value="#{horarioAulaController.selected.diaSemana}" title="#{bundle.EditHorarioAulaTitle_diaSemana}" required="true" requiredMessage="#{bundle.EditHorarioAulaRequiredMessage_diaSemana}"/>
-                    <h:outputLabel value="#{bundle.EditHorarioAulaLabel_horaInicio}" for="horaInicio" />
-                    <h:inputText id="horaInicio" value="#{horarioAulaController.selected.horaInicio}" title="#{bundle.EditHorarioAulaTitle_horaInicio}" required="true" requiredMessage="#{bundle.EditHorarioAulaRequiredMessage_horaInicio}"/>
-                    <h:outputLabel value="#{bundle.EditHorarioAulaLabel_horaFim}" for="horaFim" />
-                    <h:inputText id="horaFim" value="#{horarioAulaController.selected.horaFim}" title="#{bundle.EditHorarioAulaTitle_horaFim}" required="true" requiredMessage="#{bundle.EditHorarioAulaRequiredMessage_horaFim}"/>
-                </h:panelGrid>
-                <h:commandLink action="#{horarioAulaController.update}" value="#{bundle.EditHorarioAulaSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditHorarioAulaViewLink}"/>
-                <br />
-                <h:commandLink action="#{horarioAulaController.prepareList}" value="#{bundle.EditHorarioAulaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditHorarioAulaIndexLink}" />
+    <ui:composition>
+
+        <p:dialog id="HorarioAulaEditDlg" widgetVar="HorarioAulaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditHorarioAulaTitle}">
+            <h:form id="HorarioAulaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{horarioAulaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditHorarioAulaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{horarioAulaController.selected.id}" title="#{bundle.EditHorarioAulaTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditHorarioAulaLabel_diaSemana}" for="diaSemana" />
+                        <p:inputText id="diaSemana" value="#{horarioAulaController.selected.diaSemana}" title="#{bundle.EditHorarioAulaTitle_diaSemana}" required="true" requiredMessage="#{bundle.EditHorarioAulaRequiredMessage_diaSemana}"/>
+                        <p:outputLabel value="#{bundle.EditHorarioAulaLabel_horaInicio}" for="horaInicio" />
+                        <p:inputText id="horaInicio" value="#{horarioAulaController.selected.horaInicio}" title="#{bundle.EditHorarioAulaTitle_horaInicio}" required="true" requiredMessage="#{bundle.EditHorarioAulaRequiredMessage_horaInicio}"/>
+                        <p:outputLabel value="#{bundle.EditHorarioAulaLabel_horaFim}" for="horaFim" />
+                        <p:inputText id="horaFim" value="#{horarioAulaController.selected.horaFim}" title="#{bundle.EditHorarioAulaTitle_horaFim}" required="true" requiredMessage="#{bundle.EditHorarioAulaRequiredMessage_horaFim}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{horarioAulaController.update}" value="#{bundle.Save}" update="display,:HorarioAulaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'HorarioAulaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="HorarioAulaEditDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

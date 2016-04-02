@@ -3,45 +3,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreateDisciplinaTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateDisciplinaLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{disciplinaController.selected.id}" title="#{bundle.CreateDisciplinaTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreateDisciplinaLabel_nome}" for="nome" />
-                    <h:inputText id="nome" value="#{disciplinaController.selected.nome}" title="#{bundle.CreateDisciplinaTitle_nome}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_nome}"/>
-                    <h:outputLabel value="#{bundle.CreateDisciplinaLabel_curso}" for="curso" />
-                    <h:selectOneMenu id="curso" value="#{disciplinaController.selected.curso}" title="#{bundle.CreateDisciplinaTitle_curso}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_curso}">
-                        <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateDisciplinaLabel_ementa}" for="ementa" />
-                    <h:selectOneMenu id="ementa" value="#{disciplinaController.selected.ementa}" title="#{bundle.CreateDisciplinaTitle_ementa}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_ementa}">
-                        <f:selectItems value="#{ementaController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateDisciplinaLabel_cargaHoraria}" for="cargaHoraria" />
-                    <h:inputText id="cargaHoraria" value="#{disciplinaController.selected.cargaHoraria}" title="#{bundle.CreateDisciplinaTitle_cargaHoraria}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_cargaHoraria}"/>
-                    <h:outputLabel value="#{bundle.CreateDisciplinaLabel_periodoDoCurso}" for="periodoDoCurso" />
-                    <h:inputText id="periodoDoCurso" value="#{disciplinaController.selected.periodoDoCurso}" title="#{bundle.CreateDisciplinaTitle_periodoDoCurso}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_periodoDoCurso}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{disciplinaController.create}" value="#{bundle.CreateDisciplinaSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{disciplinaController.prepareList}" value="#{bundle.CreateDisciplinaShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateDisciplinaIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="DisciplinaCreateDlg" widgetVar="DisciplinaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDisciplinaTitle}">
+            <h:form id="DisciplinaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{disciplinaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDisciplinaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{disciplinaController.selected.id}" title="#{bundle.CreateDisciplinaTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateDisciplinaLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{disciplinaController.selected.nome}" title="#{bundle.CreateDisciplinaTitle_nome}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_nome}"/>
+                        <p:outputLabel value="#{bundle.CreateDisciplinaLabel_curso}" for="curso" />
+                        <p:selectOneMenu id="curso" value="#{disciplinaController.selected.curso}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_curso}">
+                            <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"
+                                           var="cursoItem"
+                                           itemValue="#{cursoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDisciplinaLabel_ementa}" for="ementa" />
+                        <p:selectOneMenu id="ementa" value="#{disciplinaController.selected.ementa}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_ementa}">
+                            <f:selectItems value="#{ementaController.itemsAvailableSelectOne}"
+                                           var="ementaItem"
+                                           itemValue="#{ementaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDisciplinaLabel_cargaHoraria}" for="cargaHoraria" />
+                        <p:inputText id="cargaHoraria" value="#{disciplinaController.selected.cargaHoraria}" title="#{bundle.CreateDisciplinaTitle_cargaHoraria}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_cargaHoraria}"/>
+                        <p:outputLabel value="#{bundle.CreateDisciplinaLabel_periodoDoCurso}" for="periodoDoCurso" />
+                        <p:inputText id="periodoDoCurso" value="#{disciplinaController.selected.periodoDoCurso}" title="#{bundle.CreateDisciplinaTitle_periodoDoCurso}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_periodoDoCurso}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{disciplinaController.create}" value="#{bundle.Save}" update="display,:DisciplinaListForm:datalist,:growl" oncomplete="handleSubmit(args,'DisciplinaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DisciplinaCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>
