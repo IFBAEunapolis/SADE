@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="titulo">SADE</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+        <p:growl id="growl" life="3000" />
+        <p:layout fullPage="true">          
+            <p:layoutUnit position="north" size="100" closable="true" collapsible="true">
+                SADE - Sistema Desenvolvimento de Horários
+            </p:layoutUnit>           
+            <p:layoutUnit position="west" size="175">
+                <h:form>
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="#{bundle.Area}" outcome="/area/List" />
+                            <p:menuitem value="#{bundle.Curso}" outcome="/curso/List" />
+                            <p:menuitem value="#{bundle.Disciplina}" outcome="/disciplina/List" />
+                            <p:menuitem value="#{bundle.Ementa}" outcome="/ementa/List" />
+                            <p:menuitem value="#{bundle.EspacoFisico}" outcome="/espacoFisico/List" />
+                            <p:menuitem value="#{bundle.HorarioAula}" outcome="/horarioAula/List" />
+                            <p:menuitem value="#{bundle.PeriodoLetivo}" outcome="/periodoLetivo/List" />
+                            <p:menuitem value="#{bundle.PeriodoLetivoProfessor}" outcome="/periodoLetivoProfessor/List" />
+                            <p:menuitem value="#{bundle.PlanoEnsino}" outcome="/planoEnsino/List" />
+                            <p:menuitem value="#{bundle.Professor}" outcome="/professor/List" />
+                            <p:menuitem value="#{bundle.Turma}" outcome="/turma/List" />
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100">
+                SADE - Instituto Federal de Educação, Ciência e Tecnologia da Bahia. 2016
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" id="conteudo">
+                <ui:insert name="corpo" />
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>
+

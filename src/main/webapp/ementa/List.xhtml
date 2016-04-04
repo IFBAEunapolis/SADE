@@ -6,19 +6,19 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/Layout.xhtml">
 
-
-        <ui:define name="title">
+        <ui:define name="titulo">
             <h:outputText value="#{bundle.ListEmentaTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="body">
+        <ui:define name="corpo">
             <h:form id="EmentaListForm">
                 <p:panel header="#{bundle.ListEmentaTitle}">
                     <p:dataTable id="datalist" value="#{ementaController.items}" var="item"
                                  selectionMode="single" selection="#{ementaController.selected}"
                                  paginator="true"
+                                 paginatorPosition="bottom"
                                  rowKey="#{item.id}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
@@ -27,22 +27,13 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmentaTitle_id}"/>
-                            </f:facet>
+                        <p:column headerText="#{bundle.ListEmentaTitle_id}">                                                  
                             <h:outputText value="#{item.id}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmentaTitle_nome}"/>
-                            </f:facet>
+                        <p:column headerText="#{bundle.ListEmentaTitle_nome}">                          
                             <h:outputText value="#{item.nome}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEmentaTitle_descricao}"/>
-                            </f:facet>
+                        <p:column headerText="#{bundle.ListEmentaTitle_descricao}">
                             <h:outputText value="#{item.descricao}"/>
                         </p:column>
                         <f:facet name="footer">

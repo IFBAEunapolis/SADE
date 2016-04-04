@@ -6,62 +6,44 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/Layout.xhtml">
 
-
-        <ui:define name="title">
+        <ui:define name="titulo">
             <h:outputText value="#{bundle.ListTurmaTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="body">
+        <ui:define name="corpo">
             <h:form id="TurmaListForm">
                 <p:panel header="#{bundle.ListTurmaTitle}">
                     <p:dataTable id="datalist" value="#{turmaController.items}" var="item"
                                  selectionMode="single" selection="#{turmaController.selected}"
                                  paginator="true"
+                                 paginatorPosition="bottom"
                                  rowKey="#{item.id}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
-
+                        
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTurmaTitle_id}"/>
-                            </f:facet>
+                        
+                        <p:column headerText="#{bundle.ListTurmaTitle_id}">                         
                             <h:outputText value="#{item.id}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTurmaTitle_nome}"/>
-                            </f:facet>
+                        <p:column headerText="#{bundle.ListTurmaTitle_nome}">
                             <h:outputText value="#{item.nome}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTurmaTitle_disciplina}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.disciplina}"/>
+                        <p:column headerText="#{bundle.ListTurmaTitle_disciplina}">
+                            <h:outputText value="#{item.disciplina.nome}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTurmaTitle_planoEnsino}"/>
-                            </f:facet>
+                        <p:column headerText="#{bundle.ListTurmaTitle_planoEnsino}">
                             <h:outputText value="#{item.planoEnsino}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTurmaTitle_periodoLetivoProfessor}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.periodoLetivoProfessor}"/>
+                        <p:column headerText="#{bundle.ListTurmaTitle_periodoLetivoProfessor}">                         
+                            <h:outputText value="#{item.periodoLetivoProfessor.professor.nome}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTurmaTitle_espacoFisico}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.espacoFisico}"/>
+                        <p:column headerText="#{bundle.ListTurmaTitle_espacoFisico}">
+                            <h:outputText value="#{item.espacoFisico.nome}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{turmaController.prepareCreate}" update=":TurmaCreateForm" oncomplete="PF('TurmaCreateDialog').show()"/>
@@ -72,7 +54,6 @@
                     </p:dataTable>
                 </p:panel>
             </h:form>
-
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

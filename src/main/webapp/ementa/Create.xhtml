@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -12,8 +11,6 @@
             <h:form id="EmentaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{ementaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateEmentaLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{ementaController.selected.id}" title="#{bundle.CreateEmentaTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateEmentaLabel_nome}" for="nome" />
                         <p:inputText id="nome" value="#{ementaController.selected.nome}" title="#{bundle.CreateEmentaTitle_nome}" required="true" requiredMessage="#{bundle.CreateEmentaRequiredMessage_nome}"/>
                         <p:outputLabel value="#{bundle.CreateEmentaLabel_descricao}" for="descricao" />

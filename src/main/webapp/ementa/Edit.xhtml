@@ -11,9 +11,7 @@
         <p:dialog id="EmentaEditDlg" widgetVar="EmentaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEmentaTitle}">
             <h:form id="EmentaEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{ementaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditEmentaLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{ementaController.selected.id}" title="#{bundle.EditEmentaTitle_id}" />
+                    <p:panelGrid columns="2" rendered="#{ementaController.selected != null}">                  
                         <p:outputLabel value="#{bundle.EditEmentaLabel_nome}" for="nome" />
                         <p:inputText id="nome" value="#{ementaController.selected.nome}" title="#{bundle.EditEmentaTitle_nome}" required="true" requiredMessage="#{bundle.EditEmentaRequiredMessage_nome}"/>
                         <p:outputLabel value="#{bundle.EditEmentaLabel_descricao}" for="descricao" />

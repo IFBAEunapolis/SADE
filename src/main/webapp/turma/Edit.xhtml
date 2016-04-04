@@ -11,9 +11,7 @@
         <p:dialog id="TurmaEditDlg" widgetVar="TurmaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTurmaTitle}">
             <h:form id="TurmaEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{turmaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditTurmaLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaTitle_id}" />
+                    <p:panelGrid columns="2" rendered="#{turmaController.selected != null}">                     
                         <p:outputLabel value="#{bundle.EditTurmaLabel_nome}" for="nome" />
                         <p:inputText id="nome" value="#{turmaController.selected.nome}" title="#{bundle.EditTurmaTitle_nome}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_nome}"/>
                         <p:outputLabel value="#{bundle.EditTurmaLabel_disciplina}" for="disciplina" />
@@ -21,28 +19,28 @@
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{disciplinaController.itemsAvailableSelectOne}"
                                            var="disciplinaItem"
-                                           itemValue="#{disciplinaItem}"/>
+                                           itemValue="#{disciplinaItem}" itemLabel="#{disciplinaItem.nome}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditTurmaLabel_planoEnsino}" for="planoEnsino" />
                         <p:selectOneMenu id="planoEnsino" value="#{turmaController.selected.planoEnsino}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{planoEnsinoController.itemsAvailableSelectOne}"
                                            var="planoEnsinoItem"
-                                           itemValue="#{planoEnsinoItem}"/>
+                                           itemValue="#{planoEnsinoItem}" itemLabel="#{planoEnsinoItem.id}" />
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditTurmaLabel_periodoLetivoProfessor}" for="periodoLetivoProfessor" />
                         <p:selectOneMenu id="periodoLetivoProfessor" value="#{turmaController.selected.periodoLetivoProfessor}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_periodoLetivoProfessor}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{periodoLetivoProfessorController.itemsAvailableSelectOne}"
                                            var="periodoLetivoProfessorItem"
-                                           itemValue="#{periodoLetivoProfessorItem}"/>
+                                           itemValue="#{periodoLetivoProfessorItem}" itemLabel="#{periodoLetivoProfessorItem.professor.nome}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditTurmaLabel_espacoFisico}" for="espacoFisico" />
                         <p:selectOneMenu id="espacoFisico" value="#{turmaController.selected.espacoFisico}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{espacoFisicoController.itemsAvailableSelectOne}"
                                            var="espacoFisicoItem"
-                                           itemValue="#{espacoFisicoItem}"/>
+                                           itemValue="#{espacoFisicoItem}" itemLabel="#{espacoFisicoItem.nome}" />
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{turmaController.update}" value="#{bundle.Save}" update="display,:TurmaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TurmaEditDialog');"/>
