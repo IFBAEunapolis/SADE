@@ -6,14 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/Layout.xhtml">
 
 
-        <ui:define name="title">
+        <ui:define name="titulo">
             <h:outputText value="#{bundle.ListDisciplinaTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="body">
+        <ui:define name="corpo">
             <h:form id="DisciplinaListForm">
                 <p:panel header="#{bundle.ListDisciplinaTitle}">
                     <p:dataTable id="datalist" value="#{disciplinaController.items}" var="item"

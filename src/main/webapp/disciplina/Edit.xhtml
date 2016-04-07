@@ -12,8 +12,6 @@
             <h:form id="DisciplinaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{disciplinaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditDisciplinaLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{disciplinaController.selected.id}" title="#{bundle.EditDisciplinaTitle_id}" />
                         <p:outputLabel value="#{bundle.EditDisciplinaLabel_nome}" for="nome" />
                         <p:inputText id="nome" value="#{disciplinaController.selected.nome}" title="#{bundle.EditDisciplinaTitle_nome}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_nome}"/>
                         <p:outputLabel value="#{bundle.EditDisciplinaLabel_curso}" for="curso" />

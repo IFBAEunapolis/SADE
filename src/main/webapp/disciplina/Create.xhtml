@@ -18,13 +18,13 @@
                         <p:selectOneMenu id="curso" value="#{disciplinaController.selected.curso}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_curso}">
                             <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"
                                            var="cursoItem"
-                                           itemValue="#{cursoItem}"/>
+                                           itemValue="#{cursoItem}" itemLabel="#{cursoItem.nome}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateDisciplinaLabel_ementa}" for="ementa" />
                         <p:selectOneMenu id="ementa" value="#{disciplinaController.selected.ementa}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_ementa}">
                             <f:selectItems value="#{ementaController.itemsAvailableSelectOne}"
                                            var="ementaItem"
-                                           itemValue="#{ementaItem}"/>
+                                           itemValue="#{ementaItem}" itemLabel="#{ementaItem.nome}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateDisciplinaLabel_cargaHoraria}" for="cargaHoraria" />
                         <p:inputText id="cargaHoraria" value="#{disciplinaController.selected.cargaHoraria}" title="#{bundle.CreateDisciplinaTitle_cargaHoraria}" required="true" requiredMessage="#{bundle.CreateDisciplinaRequiredMessage_cargaHoraria}"/>
