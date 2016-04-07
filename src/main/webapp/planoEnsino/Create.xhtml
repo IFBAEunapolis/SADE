@@ -12,13 +12,11 @@
             <h:form id="PlanoEnsinoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{planoEnsinoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{planoEnsinoController.selected.id}" title="#{bundle.CreatePlanoEnsinoTitle_id}" />
                         <p:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_turma}" for="turma" />
                         <p:selectOneMenu id="turma" value="#{planoEnsinoController.selected.turma}" required="true" requiredMessage="#{bundle.EditPlanoEnsinoRequiredMessage_turma}">
                             <f:selectItems value="#{turmaController.itemsAvailableSelectOne}"
                                            var="turmaItem"
-                                           itemValue="#{turmaItem}"/>
+                                           itemValue="#{turmaItem}" itemLabel="#{turmaItem.nome}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreatePlanoEnsinoLabel_descricao}" for="descricao" />
                         <p:inputText id="descricao" value="#{planoEnsinoController.selected.descricao}" title="#{bundle.CreatePlanoEnsinoTitle_descricao}" required="true" requiredMessage="#{bundle.CreatePlanoEnsinoRequiredMessage_descricao}"/>
