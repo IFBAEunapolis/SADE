@@ -19,14 +19,14 @@
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{professorController.itemsAvailableSelectOne}"
                                            var="professorItem"
-                                           itemValue="#{professorItem}"/>
+                                           itemValue="#{professorItem}" itemLabel="#{professorItem.nome}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoProfessorLabel_periodoLetivo}" for="periodoLetivo" />
                         <p:selectOneMenu id="periodoLetivo" value="#{periodoLetivoProfessorController.selected.periodoLetivo}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{periodoLetivoController.itemsAvailableSelectOne}"
                                            var="periodoLetivoItem"
-                                           itemValue="#{periodoLetivoItem}"/>
+                                           itemValue="#{periodoLetivoItem}" itemLabel="#{periodoLetivoItem.ano}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoProfessorLabel_maximoHorasProfessor}" for="maximoHorasProfessor" />
                         <p:inputText id="maximoHorasProfessor" value="#{periodoLetivoProfessorController.selected.maximoHorasProfessor}" title="#{bundle.EditPeriodoLetivoProfessorTitle_maximoHorasProfessor}" required="true" requiredMessage="#{bundle.EditPeriodoLetivoProfessorRequiredMessage_maximoHorasProfessor}"/>
