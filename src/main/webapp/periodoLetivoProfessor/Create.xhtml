@@ -12,17 +12,19 @@
             <h:form id="PeriodoLetivoProfessorCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{periodoLetivoProfessorController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePeriodoLetivoProfessorLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{periodoLetivoProfessorController.selected.id}" title="#{bundle.CreatePeriodoLetivoProfessorTitle_id}" />
                         <p:outputLabel value="#{bundle.CreatePeriodoLetivoProfessorLabel_professor}" for="professor" />
                         <p:selectOneMenu id="professor" value="#{periodoLetivoProfessorController.selected.professor}" >
                             <f:selectItems value="#{professorController.itemsAvailableSelectOne}"
                                            var="professorItem"
-                                           itemValue="#{professorItem}" itemLabel="#{professorItem.nome}"/>
+                                           itemValue="#{professorItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreatePeriodoLetivoProfessorLabel_periodoLetivo}" for="periodoLetivo" />
                         <p:selectOneMenu id="periodoLetivo" value="#{periodoLetivoProfessorController.selected.periodoLetivo}" >
                             <f:selectItems value="#{periodoLetivoController.itemsAvailableSelectOne}"
                                            var="periodoLetivoItem"
-                                           itemValue="#{periodoLetivoItem}" itemLabel="#{periodoLetivoItem.ano}"/>
+                                           itemValue="#{periodoLetivoItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreatePeriodoLetivoProfessorLabel_maximoHorasProfessor}" for="maximoHorasProfessor" />
                         <p:inputText id="maximoHorasProfessor" value="#{periodoLetivoProfessorController.selected.maximoHorasProfessor}" title="#{bundle.CreatePeriodoLetivoProfessorTitle_maximoHorasProfessor}" required="true" requiredMessage="#{bundle.CreatePeriodoLetivoProfessorRequiredMessage_maximoHorasProfessor}"/>
