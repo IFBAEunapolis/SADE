@@ -6,14 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/Layout.xhtml">
 
 
-        <ui:define name="title">
+        <ui:define name="titulo">
             <h:outputText value="#{bundle.ListDisciplinaTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="body">
+        <ui:define name="corpo">
             <h:form id="DisciplinaListForm">
                 <p:panel header="#{bundle.ListDisciplinaTitle}">
                     <p:dataTable id="datalist" value="#{disciplinaController.items}" var="item"
@@ -43,13 +43,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDisciplinaTitle_curso}"/>
                             </f:facet>
-                            <h:outputText value="#{item.curso}"/>
+                            <h:outputText value="#{item.curso.nome}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDisciplinaTitle_ementa}"/>
                             </f:facet>
-                            <h:outputText value="#{item.ementa}"/>
+                            <h:outputText value="#{item.ementa.nome}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

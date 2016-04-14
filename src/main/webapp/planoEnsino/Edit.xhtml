@@ -12,8 +12,6 @@
             <h:form id="PlanoEnsinoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{planoEnsinoController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditPlanoEnsinoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{planoEnsinoController.selected.id}" title="#{bundle.EditPlanoEnsinoTitle_id}" />
                         <p:outputLabel value="#{bundle.EditPlanoEnsinoLabel_turma}" for="turma" />
                         <p:selectOneMenu id="turma" value="#{planoEnsinoController.selected.turma}" required="true" requiredMessage="#{bundle.EditPlanoEnsinoRequiredMessage_turma}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

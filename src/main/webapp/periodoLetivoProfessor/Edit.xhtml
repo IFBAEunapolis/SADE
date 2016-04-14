@@ -6,27 +6,25 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition>
+<ui:composition>
 
         <p:dialog id="PeriodoLetivoProfessorEditDlg" widgetVar="PeriodoLetivoProfessorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPeriodoLetivoProfessorTitle}">
             <h:form id="PeriodoLetivoProfessorEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{periodoLetivoProfessorController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditPeriodoLetivoProfessorLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{periodoLetivoProfessorController.selected.id}" title="#{bundle.EditPeriodoLetivoProfessorTitle_id}" />
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoProfessorLabel_professor}" for="professor" />
                         <p:selectOneMenu id="professor" value="#{periodoLetivoProfessorController.selected.professor}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{professorController.itemsAvailableSelectOne}"
                                            var="professorItem"
-                                           itemValue="#{professorItem}"/>
+                                           itemValue="#{professorItem}" itemLabel="#{professorItem.nome}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoProfessorLabel_periodoLetivo}" for="periodoLetivo" />
                         <p:selectOneMenu id="periodoLetivo" value="#{periodoLetivoProfessorController.selected.periodoLetivo}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{periodoLetivoController.itemsAvailableSelectOne}"
                                            var="periodoLetivoItem"
-                                           itemValue="#{periodoLetivoItem}"/>
+                                           itemValue="#{periodoLetivoItem}" itemLabel="#{periodoLetivoItem.ano}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoProfessorLabel_maximoHorasProfessor}" for="maximoHorasProfessor" />
                         <p:inputText id="maximoHorasProfessor" value="#{periodoLetivoProfessorController.selected.maximoHorasProfessor}" title="#{bundle.EditPeriodoLetivoProfessorTitle_maximoHorasProfessor}" required="true" requiredMessage="#{bundle.EditPeriodoLetivoProfessorRequiredMessage_maximoHorasProfessor}"/>
