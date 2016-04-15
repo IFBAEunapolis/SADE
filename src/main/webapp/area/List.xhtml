@@ -43,7 +43,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListAreaTitle_coordenador}"/>
                             </f:facet>
-                            <h:outputText value="#{item.coordenador}"/>
+                            <h:outputText value="#{item.coordenador.nome}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{areaController.prepareCreate}" update=":AreaCreateForm" oncomplete="PF('AreaCreateDialog').show()"/>

@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
  * @author root
  */
 @Entity
-public class Area implements Serializable {
+public class Area extends AbstractModel{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,7 +37,8 @@ public class Area implements Serializable {
     
     @OneToMany
     private List<Professor> professores;
-
+    
+    @Override
     public Long getId() {
         return id;
     }

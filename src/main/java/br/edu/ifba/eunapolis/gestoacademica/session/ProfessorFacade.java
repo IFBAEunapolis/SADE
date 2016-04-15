@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class ProfessorFacade extends AbstractFacade<Professor> {
 
-    @PersistenceContext(unitName = "br.edu.ifba.eunapolis_mavenproject2_war_1.0-SNAPSHOTPU")
+    @PersistenceContext
     private EntityManager em;
 
     @Override

@@ -12,16 +12,14 @@
             <h:form id="PeriodoLetivoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{periodoLetivoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{periodoLetivoController.selected.id}" title="#{bundle.CreatePeriodoLetivoTitle_id}" />
                         <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_ano}" for="ano" />
                         <p:inputText id="ano" value="#{periodoLetivoController.selected.ano}" title="#{bundle.CreatePeriodoLetivoTitle_ano}" required="true" requiredMessage="#{bundle.CreatePeriodoLetivoRequiredMessage_ano}"/>
                         <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_periodoLetivo}" for="periodoLetivo" />
                         <p:inputText id="periodoLetivo" value="#{periodoLetivoController.selected.periodoLetivo}" title="#{bundle.CreatePeriodoLetivoTitle_periodoLetivo}" required="true" requiredMessage="#{bundle.CreatePeriodoLetivoRequiredMessage_periodoLetivo}"/>
                         <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_inicio}" for="inicio" />
-                        <p:inputText id="inicio" value="#{periodoLetivoController.selected.inicio}" title="#{bundle.CreatePeriodoLetivoTitle_inicio}" />
+                        <p:calendar id="inicio" pattern="dd/MM/yyyy" value="#{periodoLetivoController.selected.inicio}" title="#{bundle.CreatePeriodoLetivoTitle_inicio}" />
                         <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_fim}" for="fim" />
-                        <p:inputText id="fim" value="#{periodoLetivoController.selected.fim}" title="#{bundle.CreatePeriodoLetivoTitle_fim}" />
+                        <p:calendar id="fim" pattern="dd/MM/yyyy" value="#{periodoLetivoController.selected.fim}" title="#{bundle.CreatePeriodoLetivoTitle_fim}" />
                         <p:outputLabel value="#{bundle.CreatePeriodoLetivoLabel_ativo}" for="ativo" />
                         <p:selectBooleanCheckbox id="ativo" value="#{periodoLetivoController.selected.ativo}" required="true" requiredMessage="#{bundle.EditPeriodoLetivoRequiredMessage_ativo}"/>
                     </p:panelGrid>
