@@ -18,6 +18,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -29,13 +30,12 @@ public class EmentaController implements Serializable {
 
     private List<Ementa> items = null;
     private Ementa selected;
+    
+    @PersistenceContext
     private EntityManager manager;
 
-    @Inject
-    public EmentaController(EntityManager manager) {
-        this.manager = manager;
-    }
-
+    
+    
     public Ementa getSelected() {
         return selected;
     }

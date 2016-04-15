@@ -12,15 +12,13 @@
             <h:form id="AreaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{areaController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateAreaLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{areaController.selected.id}" title="#{bundle.CreateAreaTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateAreaLabel_nome}" for="nome" />
                         <p:inputText id="nome" value="#{areaController.selected.nome}" title="#{bundle.CreateAreaTitle_nome}" />
                         <p:outputLabel value="#{bundle.CreateAreaLabel_coordenador}" for="coordenador" />
                         <p:selectOneMenu id="coordenador" value="#{areaController.selected.coordenador}" required="true" requiredMessage="#{bundle.EditAreaRequiredMessage_coordenador}">
                             <f:selectItems value="#{professorController.itemsAvailableSelectOne}"
                                            var="coordenadorItem"
-                                           itemValue="#{coordenadorItem}"/>
+                                           itemValue="#{coordenadorItem}" itemLabel="#{coordenadorItem.nome}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{areaController.create}" value="#{bundle.Save}" update="display,:AreaListForm:datalist,:growl" oncomplete="handleSubmit(args,'AreaCreateDialog');"/>

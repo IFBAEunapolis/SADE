@@ -17,12 +17,12 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class AreaFacade extends AbstractFacade<Area> {
 
-    @PersistenceContext(unitName = "br.edu.ifba.eunapolis_mavenproject2_war_1.0-SNAPSHOTPU")
-    private EntityManager em;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     protected EntityManager getEntityManager() {
-        return em;
+        return entityManager;
     }
 
     public AreaFacade() {

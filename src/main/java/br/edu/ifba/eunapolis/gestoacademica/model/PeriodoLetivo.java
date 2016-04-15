@@ -2,6 +2,7 @@ package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,10 +31,10 @@ public class PeriodoLetivo implements Serializable {
     private Integer periodoLetivo;
 
     @Temporal(TemporalType.DATE)
-    private Calendar inicio;
+    private Date inicio;
 
     @Temporal(TemporalType.DATE)
-    private Calendar fim;
+    private Date fim;
 
     @Column(nullable = false)
     private Boolean ativo;
@@ -65,19 +66,19 @@ public class PeriodoLetivo implements Serializable {
         this.periodoLetivo = periodoLetivo;
     }
 
-    public Calendar getInicio() {
+    public Date getInicio() {
         return inicio;
     }
 
-    public void setInicio(Calendar inicio) {
+    public void setInicio(Date inicio) {
         this.inicio = inicio;
     }
 
-    public Calendar getFim() {
+    public Date getFim() {
         return fim;
     }
 
-    public void setFim(Calendar fim) {
+    public void setFim(Date fim) {
         this.fim = fim;
     }
 
