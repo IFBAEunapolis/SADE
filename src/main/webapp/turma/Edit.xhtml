@@ -11,7 +11,9 @@
         <p:dialog id="TurmaEditDlg" widgetVar="TurmaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTurmaTitle}">
             <h:form id="TurmaEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{turmaController.selected != null}">                     
+                    <p:panelGrid columns="2" rendered="#{turmaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTurmaLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{turmaController.selected.id}" title="#{bundle.EditTurmaLabel_id}" readonly="true" />
                         <p:outputLabel value="#{bundle.EditTurmaLabel_nome}" for="nome" />
                         <p:inputText id="nome" value="#{turmaController.selected.nome}" title="#{bundle.EditTurmaTitle_nome}" required="true" requiredMessage="#{bundle.EditTurmaRequiredMessage_nome}"/>
                         <p:outputLabel value="#{bundle.EditTurmaLabel_disciplina}" for="disciplina" />
