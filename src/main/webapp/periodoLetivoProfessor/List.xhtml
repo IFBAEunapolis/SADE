@@ -37,13 +37,13 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPeriodoLetivoProfessorTitle_professor}"/>
                             </f:facet>
-                            <h:outputText value="#{item.professor}"/>
+                            <h:outputText value="#{item.professor.nome}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPeriodoLetivoProfessorTitle_periodoLetivo}"/>
                             </f:facet>
-                            <h:outputText value="#{item.periodoLetivo}"/>
+                            <h:outputText value="#{item.periodoLetivo.ano}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

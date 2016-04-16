@@ -13,15 +13,15 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{periodoLetivoController.selected != null}">
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{periodoLetivoController.selected.id}" title="#{bundle.EditPeriodoLetivoTitle_id}" />
+                        <p:inputText id="id" value="#{periodoLetivoController.selected.id}" title="#{bundle.EditPeriodoLetivoTitle_id}" readonly="true" />
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoLabel_ano}" for="ano" />
                         <p:inputText id="ano" value="#{periodoLetivoController.selected.ano}" title="#{bundle.EditPeriodoLetivoTitle_ano}" required="true" requiredMessage="#{bundle.EditPeriodoLetivoRequiredMessage_ano}"/>
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoLabel_periodoLetivo}" for="periodoLetivo" />
                         <p:inputText id="periodoLetivo" value="#{periodoLetivoController.selected.periodoLetivo}" title="#{bundle.EditPeriodoLetivoTitle_periodoLetivo}" required="true" requiredMessage="#{bundle.EditPeriodoLetivoRequiredMessage_periodoLetivo}"/>
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoLabel_inicio}" for="inicio" />
-                        <p:inputText id="inicio" value="#{periodoLetivoController.selected.inicio}" title="#{bundle.EditPeriodoLetivoTitle_inicio}" />
+                        <p:calendar id="inicio" pattern="dd/MM/yyyy" value="#{periodoLetivoController.selected.inicio}" title="#{bundle.EditPeriodoLetivoTitle_inicio}" />
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoLabel_fim}" for="fim" />
-                        <p:inputText id="fim" value="#{periodoLetivoController.selected.fim}" title="#{bundle.EditPeriodoLetivoTitle_fim}" />
+                        <p:calendar id="fim" pattern="dd/MM/yyyy" value="#{periodoLetivoController.selected.fim}" title="#{bundle.EditPeriodoLetivoTitle_fim}" />
                         <p:outputLabel value="#{bundle.EditPeriodoLetivoLabel_ativo}" for="ativo" />
                         <p:selectBooleanCheckbox id="ativo" value="#{periodoLetivoController.selected.ativo}" required="true" requiredMessage="#{bundle.EditPeriodoLetivoRequiredMessage_ativo}"/>
                     </p:panelGrid>

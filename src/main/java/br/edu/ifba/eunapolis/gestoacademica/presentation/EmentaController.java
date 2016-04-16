@@ -3,34 +3,39 @@ package br.edu.ifba.eunapolis.gestoacademica.presentation;
 import br.edu.ifba.eunapolis.gestoacademica.model.Ementa;
 import br.edu.ifba.eunapolis.gestoacademica.presentation.util.JsfUtil;
 import br.edu.ifba.eunapolis.gestoacademica.presentation.util.JsfUtil.PersistAction;
-import br.edu.ifba.eunapolis.gestoacademica.session.EmentaFacade;
 
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.transaction.Transactional;
 
 @Named("ementaController")
-@SessionScoped
+@ViewScoped
 public class EmentaController implements Serializable {
 
-    @EJB
-    private br.edu.ifba.eunapolis.gestoacademica.session.EmentaFacade ejbFacade;
     private List<Ementa> items = null;
     private Ementa selected;
+    
+    @PersistenceContext
+    private EntityManager manager;
 
-    public EmentaController() {
-    }
-
+    
+    
     public Ementa getSelected() {
         return selected;
     }
@@ -43,10 +48,6 @@ public class EmentaController implements Serializable {
     }
 
     protected void initializeEmbeddableKey() {
-    }
-
-    private EmentaFacade getFacade() {
-        return ejbFacade;
     }
 
     public Ementa prepareCreate() {
@@ -76,7 +77,7 @@ public class EmentaController implements Serializable {
 
     public List<Ementa> getItems() {
         if (items == null) {
-            items = getFacade().findAll();
+            items = findAll();
         }
         return items;
     }
@@ -86,9 +87,9 @@ public class EmentaController implements Serializable {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                    manager.merge(selected);
                 } else {
-                    getFacade().remove(selected);
+                    manager.remove(selected);
                 }
                 JsfUtil.addSuccessMessage(successMessage);
             } catch (EJBException ex) {
@@ -110,15 +111,27 @@ public class EmentaController implements Serializable {
     }
 
     public Ementa getEmenta(java.lang.Integer id) {
-        return getFacade().find(id);
+        return manager.find(Ementa.class, id);
     }
 
     public List<Ementa> getItemsAvailableSelectMany() {
-        return getFacade().findAll();
+        return findAll();
     }
 
     public List<Ementa> getItemsAvailableSelectOne() {
-        return getFacade().findAll();
+        return findAll();
+    }
+
+    @Transactional
+    public List<Ementa> findAll() {
+
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Ementa> query = builder.createQuery(Ementa.class);
+
+        TypedQuery<Ementa> typedQuery = manager.createQuery(
+                query.select(query.from(Ementa.class)));
+        List<Ementa> results = typedQuery.getResultList();
+        return results;
     }
 
     @FacesConverter(forClass = Ementa.class)

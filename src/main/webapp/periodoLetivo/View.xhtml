@@ -18,9 +18,13 @@
                         <h:outputText value="#{periodoLetivoController.selected.ano}" title="#{bundle.ViewPeriodoLetivoTitle_ano}"/>
                         <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_periodoLetivo}"/>
                         <h:outputText value="#{periodoLetivoController.selected.periodoLetivo}" title="#{bundle.ViewPeriodoLetivoTitle_periodoLetivo}"/>
-                        <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_inicio}"/>
+                        <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_inicio}">
+                            <f:convertDateTime  pattern="dd/MM/yyyy"/>
+                        </h:outputText>
                         <h:outputText value="#{periodoLetivoController.selected.inicio}" title="#{bundle.ViewPeriodoLetivoTitle_inicio}"/>
-                        <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_fim}"/>
+                        <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_fim}">
+                            <f:convertDateTime  pattern="dd/MM/yyyy"/>
+                        </h:outputText>
                         <h:outputText value="#{periodoLetivoController.selected.fim}" title="#{bundle.ViewPeriodoLetivoTitle_fim}"/>
                         <h:outputText value="#{bundle.ViewPeriodoLetivoLabel_ativo}"/>
                         <p:selectBooleanCheckbox value="#{periodoLetivoController.selected.ativo}" disabled="true"/>
