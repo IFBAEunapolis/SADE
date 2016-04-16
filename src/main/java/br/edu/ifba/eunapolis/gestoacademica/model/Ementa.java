@@ -1,21 +1,19 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Ementa implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Ementa extends AbstractModel {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(length = 50, nullable = false)
     private String nome;
@@ -29,11 +27,12 @@ public class Ementa implements Serializable {
     public Ementa() {
     }
 
-    public Integer getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
