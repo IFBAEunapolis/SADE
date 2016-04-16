@@ -18,6 +18,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.model.DualListModel;
 
 @Named("disciplinaController")
 @SessionScoped
@@ -27,8 +28,10 @@ public class DisciplinaController implements Serializable {
     private br.edu.ifba.eunapolis.gestoacademica.session.DisciplinaFacade ejbFacade;
     private List<Disciplina> items = null;
     private Disciplina selected;
-
+    private DualListModel<Disciplina> preRequisitos;
+    
     public DisciplinaController() {
+        
     }
 
     public Disciplina getSelected() {
@@ -39,6 +42,20 @@ public class DisciplinaController implements Serializable {
         this.selected = selected;
     }
 
+    /**
+     * @return the preRequisitos
+     */
+    public DualListModel<Disciplina> getPreRequisitos() {
+        return preRequisitos;
+    }
+
+    /**
+     * @param preRequisitos the preRequisitos to set
+     */
+    public void setPreRequisitos(DualListModel<Disciplina> preRequisitos) {
+        this.preRequisitos = preRequisitos;
+    }
+    
     protected void setEmbeddableKeys() {
     }
 
@@ -52,10 +69,12 @@ public class DisciplinaController implements Serializable {
     public Disciplina prepareCreate() {
         selected = new Disciplina();
         initializeEmbeddableKey();
+        preRequisitos=new DualListModel<Disciplina>(this.getItemsAvailableSelectOne(),selected.getPreRequisitos());
         return selected;
     }
 
     public void create() {
+        selected.setPreRequisitos(preRequisitos.getTarget());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DisciplinaCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
