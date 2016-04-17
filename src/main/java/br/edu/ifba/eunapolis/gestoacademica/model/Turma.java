@@ -1,22 +1,24 @@
-
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import java.io.Serializable;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * @author Franciel
  * @version 1.0
  */
 @Entity
-public class Turma implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Turma extends AbstractModel {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(length = 50, nullable = false)
     private String nome;
@@ -44,11 +46,12 @@ public class Turma implements Serializable {
      *
      * @return
      */
-    public Integer getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -100,13 +103,6 @@ public class Turma implements Serializable {
     }
 
     /**
-     * Retorna o professor do semestre na turma
-     *
-     * @return
-     */
-    
-
-    /**
      * Retorna a lista de horariosAaula da turma
      *
      * @return
@@ -126,8 +122,7 @@ public class Turma implements Serializable {
     public void setEspacoFisico(EspacoFisico espacoFisico) {
         this.espacoFisico = espacoFisico;
     }
-    
-    
+       
 
     @Override
     public int hashCode() {

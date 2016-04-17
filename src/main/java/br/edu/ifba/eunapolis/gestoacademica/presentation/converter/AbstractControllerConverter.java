@@ -36,7 +36,7 @@ public class AbstractControllerConverter<T extends AbstractModel> implements Con
                 return null;
             }
             AbstractController<T> controller = (AbstractController<T>) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "areaController");
+                    getValue(facesContext.getELContext(), null, controllerName);
             return controller.getItem(getKey(value));
         }
 
