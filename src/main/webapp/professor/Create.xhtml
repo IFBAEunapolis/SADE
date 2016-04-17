@@ -11,16 +11,14 @@
         <p:dialog id="ProfessorCreateDlg" widgetVar="ProfessorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProfessorTitle}">
             <h:form id="ProfessorCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{professorController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateProfessorLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{professorController.selected.id}" title="#{bundle.CreateProfessorTitle_id}" />
+                    <p:panelGrid columns="2" rendered="#{professorController.selected != null}">       
                         <p:outputLabel value="#{bundle.CreateProfessorLabel_nome}" for="nome" />
                         <p:inputText id="nome" value="#{professorController.selected.nome}" title="#{bundle.CreateProfessorTitle_nome}" required="true" requiredMessage="#{bundle.CreateProfessorRequiredMessage_nome}"/>
                         <p:outputLabel value="#{bundle.CreateProfessorLabel_area}" for="area" />
                         <p:selectOneMenu id="area" value="#{professorController.selected.area}" >
                             <f:selectItems value="#{areaController.itemsAvailableSelectOne}"
                                            var="areaItem"
-                                           itemValue="#{areaItem}"/>
+                                           itemValue="#{areaItem}" itemLabel="#{areaItem.nome}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{professorController.create}" value="#{bundle.Save}" update="display,:ProfessorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProfessorCreateDialog');"/>
