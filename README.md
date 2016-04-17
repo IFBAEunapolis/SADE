@@ -1,6 +1,7 @@
 [![Stories in Ready](https://badge.waffle.io/IFBAEunapolis/SADE.png?label=ready&title=Ready)](https://waffle.io/IFBAEunapolis/SADE)
 [![Stories in Progress](https://badge.waffle.io/IFBAEunapolis/SADE.png?label=in%20progress&title=In%20Progress)](https://waffle.io/IFBAEunapolis/SADE)
 [![Build Status](https://travis-ci.org/IFBAEunapolis/SADE.svg?branch=prime)](https://travis-ci.org/IFBAEunapolis/SADE)
+[![Coverage Status](https://coveralls.io/repos/github/IFBAEunapolis/SADE/badge.svg?branch=master)](https://coveralls.io/github/IFBAEunapolis/SADE?branch=master)
 
 # SADE
 
