@@ -2,5 +2,5 @@ language: java
 services:
   - mysql
   
-  after_success:
+after_success:
   - mvn clean cobertura:cobertura coveralls:report
