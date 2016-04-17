@@ -5,8 +5,10 @@
  * and open the template in the editor.
  */
 package br.edu.ifba.eunapolis.gestoacademica.model;
-
-import java.io.Serializable;
+/**
+ *
+ * @author Luana
+ */
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +16,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class EspacoFisico implements Serializable {
+public class EspacoFisico extends AbstractModel{
 
-    private static final long serialVersionUID = 1L;
+  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,6 +26,7 @@ public class EspacoFisico implements Serializable {
     @Column(length = 50, nullable = false)
     private String nome;
 
+    @Override
     public Long getId() {
         return id;
     }

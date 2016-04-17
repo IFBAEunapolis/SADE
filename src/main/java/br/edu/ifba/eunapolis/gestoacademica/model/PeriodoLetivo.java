@@ -1,11 +1,10 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,13 +15,11 @@ import javax.persistence.TemporalType;
  * @version 1.0
  */
 @Entity
-public class PeriodoLetivo implements Serializable {
+public class PeriodoLetivo extends AbstractModel{
 
-    private static final long serialVersionUID = 1L;
-    
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(length = 4, nullable = false)
     private Integer ano;
@@ -42,11 +39,12 @@ public class PeriodoLetivo implements Serializable {
     public PeriodoLetivo() {
     }
 
-    public Integer getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
