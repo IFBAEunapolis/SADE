@@ -12,8 +12,8 @@
             <h:form id="ProfessorEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{professorController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditProfessorLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{professorController.selected.id}" title="#{bundle.EditProfessorTitle_id}" />
+                        <h:outputText value="#{bundle.ViewProfessorLabel_id}"/>
+                        <h:outputText value="#{professorController.selected.id}" title="#{bundle.ViewProfessorTitle_id}"/>
                         <p:outputLabel value="#{bundle.EditProfessorLabel_nome}" for="nome" />
                         <p:inputText id="nome" value="#{professorController.selected.nome}" title="#{bundle.EditProfessorTitle_nome}" required="true" requiredMessage="#{bundle.EditProfessorRequiredMessage_nome}"/>
                         <p:outputLabel value="#{bundle.EditProfessorLabel_area}" for="area" />
@@ -21,7 +21,7 @@
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{areaController.itemsAvailableSelectOne}"
                                            var="areaItem"
-                                           itemValue="#{areaItem}"/>
+                                           itemValue="#{areaItem}" itemLabel="#{areaItem.nome}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{professorController.update}" value="#{bundle.Save}" update="display,:ProfessorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProfessorEditDialog');"/>
