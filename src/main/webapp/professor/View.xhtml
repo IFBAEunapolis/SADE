@@ -17,7 +17,7 @@
                         <h:outputText value="#{bundle.ViewProfessorLabel_nome}"/>
                         <h:outputText value="#{professorController.selected.nome}" title="#{bundle.ViewProfessorTitle_nome}"/>
                         <h:outputText value="#{bundle.ViewProfessorLabel_area}"/>
-                        <h:outputText value="#{professorController.selected.area}" title="#{bundle.ViewProfessorTitle_area}"/>
+                        <h:outputText value="#{professorController.selected.area.nome}" title="#{bundle.ViewProfessorTitle_area}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProfessorViewDialog.hide()"/>
                 </h:panelGroup>

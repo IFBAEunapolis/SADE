@@ -6,14 +6,14 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/Layout.xhtml">
 
 
-        <ui:define name="title">
+        <ui:define name="titulo">
             <h:outputText value="#{bundle.ListProfessorTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="body">
+        <ui:define name="corpo">
             <h:form id="ProfessorListForm">
                 <p:panel header="#{bundle.ListProfessorTitle}">
                     <p:dataTable id="datalist" value="#{professorController.items}" var="item"
@@ -43,7 +43,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProfessorTitle_area}"/>
                             </f:facet>
-                            <h:outputText value="#{item.area}"/>
+                            <h:outputText value="#{item.area.nome}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{professorController.prepareCreate}" update=":ProfessorCreateForm" oncomplete="PF('ProfessorCreateDialog').show()"/>

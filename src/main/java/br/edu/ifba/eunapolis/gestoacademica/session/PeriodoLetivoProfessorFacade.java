@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifba.eunapolis.gestoacademica.session;
-
-import br.edu.ifba.eunapolis.gestoacademica.model.PeriodoLetivoProfessor;
 import javax.ejb.Stateless;
+import br.edu.ifba.eunapolis.gestoacademica.model.PeriodoLetivoProfessor;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -18,15 +12,15 @@ import javax.persistence.PersistenceContext;
 public class PeriodoLetivoProfessorFacade extends AbstractFacade<PeriodoLetivoProfessor> {
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
     @Override
     protected EntityManager getEntityManager() {
-        return em;
+        return entityManager;
     }
 
     public PeriodoLetivoProfessorFacade() {
         super(PeriodoLetivoProfessor.class);
     }
-    
+
 }

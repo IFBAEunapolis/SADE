@@ -1,27 +1,26 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
  *
- * @author Luana Almeida
+ * @author Huggo Santos
  * @version 1.0
  */
 @Entity
-public class PeriodoLetivoProfessor implements Serializable {
+public class PeriodoLetivoProfessor  extends AbstractModel {
 
-    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     
     @ManyToOne
     private Professor professor;
@@ -30,7 +29,7 @@ public class PeriodoLetivoProfessor implements Serializable {
     private PeriodoLetivo periodoLetivo;
 
     @Column(nullable = false)
-    private Integer maximoHorasProfessor;
+    private Long maximoHorasProfessor;
 
     @OneToMany
     private List<Turma> turmas;
@@ -38,11 +37,12 @@ public class PeriodoLetivoProfessor implements Serializable {
     public PeriodoLetivoProfessor() {
     }
 
-    public Integer getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,11 +70,11 @@ public class PeriodoLetivoProfessor implements Serializable {
         this.turmas = turmas;
     }
 
-    public Integer getMaximoHorasProfessor() {
+    public Long getMaximoHorasProfessor() {
         return maximoHorasProfessor;
     }
 
-    public void setMaximoHorasProfessor(Integer maximoHorasProfessor) {
+    public void setMaximoHorasProfessor(Long maximoHorasProfessor) {
         this.maximoHorasProfessor = maximoHorasProfessor;
     }
 
