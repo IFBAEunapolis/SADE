@@ -8,14 +8,14 @@
     xmlns:p="http://primefaces.org/ui"
 >
 
-    <ui:composition template="/template.xhtml">
+   <ui:composition template="/WEB-INF/template/Layout.xhtml">
 
 
-        <ui:define name="title">
+        <ui:define name="titulo">
             <h:outputText value="#{bundle.ListCursoTitle}"></h:outputText>
         </ui:define>
 
-        <ui:define name="body">
+        <ui:define name="corpo">
             <h:form id="CursoListForm">
                 <p:panel header="#{bundle.ListCursoTitle}">
                     <p:dataTable id="datalist"

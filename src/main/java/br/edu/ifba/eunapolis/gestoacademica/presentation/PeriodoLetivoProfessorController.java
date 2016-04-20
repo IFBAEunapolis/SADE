@@ -20,7 +20,7 @@ public class PeriodoLetivoProfessorController extends AbstractController<Periodo
     }
 
     @Override
-    protected PeriodoLetivoProfessorFacade getFacade() {
+    protected AbstractFacade<PeriodoLetivoProfessor>getFacade() {
         return ejbFacade;
     }
 
