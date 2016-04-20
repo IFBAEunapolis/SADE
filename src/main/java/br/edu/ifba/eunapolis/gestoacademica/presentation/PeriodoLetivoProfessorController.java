@@ -1,9 +1,7 @@
 package br.edu.ifba.eunapolis.gestoacademica.presentation;
-
 import br.edu.ifba.eunapolis.gestoacademica.model.PeriodoLetivoProfessor;
 import br.edu.ifba.eunapolis.gestoacademica.session.AbstractFacade;
 import br.edu.ifba.eunapolis.gestoacademica.session.PeriodoLetivoProfessorFacade;
-
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
@@ -20,7 +18,7 @@ public class PeriodoLetivoProfessorController extends AbstractController<Periodo
     }
 
     @Override
-    protected AbstractFacade<PeriodoLetivoProfessor>getFacade() {
+    protected  AbstractFacade<PeriodoLetivoProfessor>getFacade() {
         return ejbFacade;
     }
 
