@@ -2,13 +2,18 @@ package br.edu.ifba.eunapolis.gestoacademica.presentation;
 
 
 import br.edu.ifba.eunapolis.gestoacademica.model.EspacoFisico;
-import br.edu.ifba.eunapolis.gestoacademica.session.AbstractFacade;
 import br.edu.ifba.eunapolis.gestoacademica.session.EspacoFisicoFacade;
 
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 
+/**
+ *
+ * @author Jonathas 'John'
+ * @version 1.1.0
+ * @since 20/04/2016
+ */
 @Named("espacoFisicoController")
 @ViewScoped
 public class EspacoFisicoController extends AbstractController<EspacoFisico> {
@@ -21,10 +26,7 @@ public class EspacoFisicoController extends AbstractController<EspacoFisico> {
     }
 
     @Override
-    protected AbstractFacade<EspacoFisico> getFacade() {
-           return ejbFacade;
+    protected EspacoFisicoFacade getFacade() {
+        return ejbFacade;
     }
-    
-   
-    
 }
