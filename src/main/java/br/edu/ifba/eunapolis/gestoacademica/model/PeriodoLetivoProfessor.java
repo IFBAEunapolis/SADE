@@ -29,7 +29,7 @@ public class PeriodoLetivoProfessor  extends AbstractModel {
     private PeriodoLetivo periodoLetivo;
 
     @Column(nullable = false)
-    private Integer maximoHorasProfessor;
+    private Long maximoHorasProfessor;
 
     @OneToMany
     private List<Turma> turmas;
@@ -70,11 +70,11 @@ public class PeriodoLetivoProfessor  extends AbstractModel {
         this.turmas = turmas;
     }
 
-    public Integer getMaximoHorasProfessor() {
+    public Long getMaximoHorasProfessor() {
         return maximoHorasProfessor;
     }
 
-    public void setMaximoHorasProfessor(Integer maximoHorasProfessor) {
+    public void setMaximoHorasProfessor(Long maximoHorasProfessor) {
         this.maximoHorasProfessor = maximoHorasProfessor;
     }
 
