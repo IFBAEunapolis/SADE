@@ -18,20 +18,22 @@
                         <p:selectOneMenu id="curso" value="#{disciplinaController.selected.curso}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_curso}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"
-                                           var="cursoItem"
+                                           var="cursoItem" itemLabel="#{cursoItem.nome}"
                                            itemValue="#{cursoItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditDisciplinaLabel_ementa}" for="ementa" />
                         <p:selectOneMenu id="ementa" value="#{disciplinaController.selected.ementa}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_ementa}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{ementaController.itemsAvailableSelectOne}"
-                                           var="ementaItem"
+                                           var="ementaItem" itemLabel="#{ementaItem.nome}"
                                            itemValue="#{ementaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditDisciplinaLabel_cargaHoraria}" for="cargaHoraria" />
                         <p:inputText id="cargaHoraria" value="#{disciplinaController.selected.cargaHoraria}" title="#{bundle.EditDisciplinaTitle_cargaHoraria}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_cargaHoraria}"/>
                         <p:outputLabel value="#{bundle.EditDisciplinaLabel_periodoDoCurso}" for="periodoDoCurso" />
                         <p:inputText id="periodoDoCurso" value="#{disciplinaController.selected.periodoDoCurso}" title="#{bundle.EditDisciplinaTitle_periodoDoCurso}" required="true" requiredMessage="#{bundle.EditDisciplinaRequiredMessage_periodoDoCurso}"/>
+                        <p:outputLabel value="#{bundle.CreateDisciplinaLabel_preRequisito}" for="preRequisitos" />
+                        <p:pickList id="preRequisitos" value="#{disciplinaController.preRequisitos}" var="disciplinaItem" itemLabel="#{disciplinaItem.nome}" itemValue="#{disciplinaItem}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{disciplinaController.update}" value="#{bundle.Save}" update="display,:DisciplinaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DisciplinaEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="DisciplinaEditDialog.hide()"/>

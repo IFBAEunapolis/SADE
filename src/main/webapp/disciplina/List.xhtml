@@ -66,7 +66,7 @@
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{disciplinaController.prepareCreate}" update=":DisciplinaCreateForm" oncomplete="PF('DisciplinaCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DisciplinaViewForm" oncomplete="PF('DisciplinaViewDialog').show()" disabled="#{empty disciplinaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DisciplinaEditForm" oncomplete="PF('DisciplinaEditDialog').show()" disabled="#{empty disciplinaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" actionListener="#{disciplinaController.prepareUpdate}" update=":DisciplinaEditForm" oncomplete="PF('DisciplinaEditDialog').show()" disabled="#{empty disciplinaController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{disciplinaController.destroy}" update=":growl,datalist" disabled="#{empty disciplinaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
