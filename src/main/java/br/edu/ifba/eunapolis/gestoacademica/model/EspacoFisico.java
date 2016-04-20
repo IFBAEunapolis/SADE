@@ -5,16 +5,17 @@
  * and open the template in the editor.
  */
 package br.edu.ifba.eunapolis.gestoacademica.model;
-/**
- *
- * @author Luana
- */
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ *
+ * @author Luana
+ */
 @Entity
 public class EspacoFisico extends AbstractModel{
 
