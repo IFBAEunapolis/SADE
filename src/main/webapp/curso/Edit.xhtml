@@ -21,7 +21,8 @@
                     <p:panelGrid columns="2"
                                  rendered="#{cursoController.selected != null}">
                         
-                        <p:outputLabel value="#{bundle.EditCursoLabel_nome}" for="nome" />
+                        <p:outputLabel value="#{bundle.EditCursoLabel_nome}"
+                                       for="nome" />
                         <p:inputText id="nome"
                                      value="#{cursoController.selected.nome}"
                                      title="#{bundle.EditCursoTitle_nome}"
