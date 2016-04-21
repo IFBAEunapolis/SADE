@@ -35,6 +35,9 @@ public class DisciplinaFacade extends AbstractFacade<Disciplina> {
     public List<Disciplina> retornaPreRequisitos(Disciplina selected){
         temp=em.find(Disciplina.class,selected.getId());
         return temp.getPreRequisitos();
+        /*
+        ver http://www.objectdb.com/java/jpa/query/jpql/from
+        */
     }
     
 }
