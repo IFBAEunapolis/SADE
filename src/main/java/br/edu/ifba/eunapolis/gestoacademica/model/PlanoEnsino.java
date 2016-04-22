@@ -1,7 +1,7 @@
 
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,13 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class PlanoEnsino implements Serializable {
+public class PlanoEnsino extends AbstractModel{
 
-    private static final long serialVersionUID = 1L;
+   
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     @OneToOne(optional = false)
     private Turma turma;
@@ -27,11 +27,12 @@ public class PlanoEnsino implements Serializable {
 
     }
 
-    public Integer getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
