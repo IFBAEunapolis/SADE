@@ -28,6 +28,18 @@
                                      title="#{bundle.CreateCursoTitle_nome}" 
                                      required="true" 
                                      requiredMessage="#{bundle.CreateCursoRequiredMessage_nome}"/>
+                        
+                        <p:outputLabel value="#{bundle.CreateCursoLabel_disciplina}" 
+                                       for="disciplina" />
+                        <p:selectOneMenu id="disciplina" 
+                                         value="#{cursoController.selected.disciplinas}" 
+                                         required="true" 
+                                         requiredMessage="#{bundle.EditCursoRequiredMessage_disciplina}">
+                            <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"
+                                           var="disciplinaItem"
+                                           itemValue="#{disciplinaItem}" 
+                                           itemLabel="#{disciplinaItem.nome}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{cursoController.create}" 
                                      value="#{bundle.Save}" 

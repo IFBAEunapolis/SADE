@@ -24,6 +24,11 @@
                         <h:outputText value="#{bundle.ViewCursoLabel_nome}"/>
                         <h:outputText value="#{cursoController.selected.nome}"
                                       title="#{bundle.ViewCursoTitle_nome}"/>
+                        
+                        <h:outputText value="#{bundle.ViewCursoLabel_disciplina}"/>
+                        <h:outputText value="#{cursoController.selected.disciplina.nome}" 
+                                      title="#{bundle.ViewCursoTitle_disciplina}"/>
+                        
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}"
                                      onclick="CursoViewDialog.hide()"/>

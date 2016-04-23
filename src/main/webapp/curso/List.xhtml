@@ -27,6 +27,7 @@
                                  rowKey="#{item.id}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="#{bundle.noRows}"
                                  >
 
                         <p:ajax event="rowSelect"
@@ -46,6 +47,14 @@
                             </f:facet>
                             <h:outputText value="#{item.nome}"/>
                         </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCursoTitle_disciplina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton"
                                              icon="ui-icon-plus"
