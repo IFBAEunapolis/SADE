@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import javax.persistence.Column;
@@ -17,15 +11,17 @@ import javax.persistence.Id;
  * @author Luana
  */
 @Entity
-public class EspacoFisico extends AbstractModel{
+public class EspacoFisico extends AbstractModel {
 
-  
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @Column(length = 50, nullable = false)
     private String nome;
+
+    public EspacoFisico() {
+    }
 
     @Override
     public Long getId() {
@@ -62,11 +58,6 @@ public class EspacoFisico extends AbstractModel{
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.edu.ifba.eunapolis.gestoacademica.model.EspacoFisico[ id=" + id + " ]";
-    }
+    }   
 
 }

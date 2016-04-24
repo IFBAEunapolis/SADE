@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.edu.ifba.eunapolis.gestoacademica.presentation;
 
 import br.edu.ifba.eunapolis.gestoacademica.model.AbstractModel;
@@ -18,23 +13,23 @@ import javax.ejb.EJBException;
 /**
  *
  * @author root
+ * @param <T>
  */
 public abstract class AbstractController<T extends AbstractModel> implements Serializable {
-    private Class<T> entityClass;
-    private String entityShortName;
-    
+
+    private final Class<T> entityClass;
+    private final String entityShortName;
 
     public AbstractController(Class<T> entityClass) {
         this.entityClass = entityClass;
         this.entityShortName = this.entityClass.getSimpleName();
     }
-    
+
     protected abstract AbstractFacade<T> getFacade();
-    
-    
+
     private List<T> items = null;
     private T selected;
-    
+
     public T getSelected() {
         return selected;
     }
@@ -48,6 +43,7 @@ public abstract class AbstractController<T extends AbstractModel> implements Ser
 
     protected void initializeEmbeddableKey() {
     }
+
     public T prepareCreate() throws InstantiationException, IllegalAccessException {
         selected = entityClass.newInstance();
         initializeEmbeddableKey();
@@ -55,18 +51,18 @@ public abstract class AbstractController<T extends AbstractModel> implements Ser
     }
 
     public void create() {
-        persist(JsfUtil.PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString(entityShortName+"Created"));
+        persist(JsfUtil.PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString(entityShortName + "Created"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(JsfUtil.PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString(entityShortName+"Updated"));
+        persist(JsfUtil.PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString(entityShortName + "Updated"));
     }
 
     public void destroy() {
-        persist(JsfUtil.PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString(entityShortName+"Deleted"));
+        persist(JsfUtil.PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString(entityShortName + "Deleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -119,6 +115,5 @@ public abstract class AbstractController<T extends AbstractModel> implements Ser
     public List<T> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
-    
-    
+
 }

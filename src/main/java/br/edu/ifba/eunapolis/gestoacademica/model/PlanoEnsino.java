@@ -1,20 +1,17 @@
-
 package br.edu.ifba.eunapolis.gestoacademica.model;
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class PlanoEnsino extends AbstractModel{
-
-   
+public class PlanoEnsino extends AbstractModel {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToOne(optional = false)

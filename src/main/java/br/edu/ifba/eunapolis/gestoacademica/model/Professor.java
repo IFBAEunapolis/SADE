@@ -1,8 +1,6 @@
-
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 /**
  *
  * @author Luana
@@ -19,9 +16,8 @@ import javax.persistence.OneToMany;
  * @since 01/03/2016
  */
 @Entity
-public class Professor extends AbstractModel{
+public class Professor extends AbstractModel {
 
-   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -37,6 +33,7 @@ public class Professor extends AbstractModel{
 
     public Professor() {
     }
+
     @Override
     public Long getId() {
         return id;
@@ -61,7 +58,7 @@ public class Professor extends AbstractModel{
     public void setArea(Area area) {
         this.area = area;
     }
-    
+
     public List<PeriodoLetivoProfessor> getPeriodoLetivoProfessors() {
         return periodoLetivoProfessors;
     }
@@ -69,8 +66,6 @@ public class Professor extends AbstractModel{
     public void setPeriodoLetivoProfessors(List<PeriodoLetivoProfessor> periodoLetivoProfessors) {
         this.periodoLetivoProfessors = periodoLetivoProfessors;
     }
-
-    
 
     @Override
     public int hashCode() {

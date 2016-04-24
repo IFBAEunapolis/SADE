@@ -2,7 +2,6 @@ package br.edu.ifba.eunapolis.gestoacademica.presentation;
 
 import br.edu.ifba.eunapolis.gestoacademica.model.Curso;
 import br.edu.ifba.eunapolis.gestoacademica.session.CursoFacade;
-
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;

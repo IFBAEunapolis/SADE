@@ -8,10 +8,10 @@ import javax.faces.convert.FacesConverter;
  * @author root
  */
 @FacesConverter(forClass = Area.class)
-public class AreaControllerConverter extends AbstractControllerConverter<Area>{
-    
+public class AreaControllerConverter extends AbstractControllerConverter<Area> {
+
     public AreaControllerConverter() {
         super(Area.class, "areaController");
     }
-    
+
 }

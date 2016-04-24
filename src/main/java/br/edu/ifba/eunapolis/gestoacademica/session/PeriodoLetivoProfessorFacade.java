@@ -1,4 +1,5 @@
 package br.edu.ifba.eunapolis.gestoacademica.session;
+
 import javax.ejb.Stateless;
 import br.edu.ifba.eunapolis.gestoacademica.model.PeriodoLetivoProfessor;
 import javax.persistence.EntityManager;

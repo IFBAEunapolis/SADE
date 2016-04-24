@@ -117,8 +117,8 @@ public class PlanoEnsinoTesteJPA extends TestCase{
         ementa.setDescricao("Descrição Teste");       
         
     
-        ha.setHoraInicio(Calendar.getInstance(Locale.ENGLISH));
-        ha.setHoraInicio(Calendar.getInstance(Locale.ENGLISH));
+      //  ha.setHoraInicio(Calendar.getInstance(Locale.ENGLISH));
+      //  ha.setHoraInicio(Calendar.getInstance(Locale.ENGLISH));
         has.add(ha);
         
        

@@ -1,7 +1,6 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,15 +15,15 @@ import javax.persistence.OneToMany;
  * @version 1.0
  */
 @Entity
-public class PeriodoLetivoProfessor  extends AbstractModel {
+public class PeriodoLetivoProfessor extends AbstractModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @ManyToOne
     private Professor professor;
-    
+
     @ManyToOne
     private PeriodoLetivo periodoLetivo;
 
@@ -33,7 +32,7 @@ public class PeriodoLetivoProfessor  extends AbstractModel {
 
     @OneToMany
     private List<Turma> turmas;
-    
+
     public PeriodoLetivoProfessor() {
     }
 

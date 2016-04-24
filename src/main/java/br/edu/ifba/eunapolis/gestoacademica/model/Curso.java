@@ -24,12 +24,11 @@ public class Curso extends AbstractModel {
 
     @Column(length = 50, nullable = false)
     private String nome;
-    
+
     /*
     @Column(length = 50, nullable = false)
     private Integer fase;
-    */
-
+     */
     @OneToMany
     private List<Disciplina> disciplinas;
 
@@ -37,18 +36,6 @@ public class Curso extends AbstractModel {
 
     }
 
-    public Curso(String nome/*, Integer fase*/, List<Disciplina> disciplinas) {
-        this.nome = nome;
-        this.disciplinas = disciplinas;
-        /*
-        this.setFase(fase);
-        */
-    }
-
-    /**
-     *
-     * @return
-     */
     @Override
     public Long getId() {
         return id;
@@ -65,6 +52,7 @@ public class Curso extends AbstractModel {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     /*
     public Integer getFase() {
         return fase;
@@ -73,7 +61,7 @@ public class Curso extends AbstractModel {
     public void setFase(Integer fase) {
         this.fase = fase;
     }
-    */
+     */
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }

@@ -2,7 +2,6 @@ package br.edu.ifba.eunapolis.gestoacademica.presentation;
 
 import br.edu.ifba.eunapolis.gestoacademica.model.Turma;
 import br.edu.ifba.eunapolis.gestoacademica.session.TurmaFacade;
-
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;

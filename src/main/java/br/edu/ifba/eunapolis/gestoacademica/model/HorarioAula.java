@@ -1,43 +1,42 @@
 package br.edu.ifba.eunapolis.gestoacademica.model;
 
-import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class HorarioAula implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class HorarioAula extends AbstractModel {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(nullable = false)
     private Integer diaSemana;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "hora_inicio", nullable = false)
-    private Calendar horaInicio;
+    private Date horaInicio;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "hora_fim", nullable = false)
-    private Calendar horaFim;
+    private Date horaFim;
 
     public HorarioAula() {
 
     }
 
-    public Integer getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -48,20 +47,20 @@ public class HorarioAula implements Serializable {
     public void setDiaSemana(Integer diaSemana) {
         this.diaSemana = diaSemana;
     }
-    
-    public Calendar getHoraInicio() {
+
+    public Date getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Calendar horaInicio) {
+    public void setHoraInicio(Date horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Calendar getHoraFim() {
+    public Date getHoraFim() {
         return horaFim;
     }
 
-    public void setHoraFim(Calendar horaFim) {
+    public void setHoraFim(Date horaFim) {
         this.horaFim = horaFim;
     }
 

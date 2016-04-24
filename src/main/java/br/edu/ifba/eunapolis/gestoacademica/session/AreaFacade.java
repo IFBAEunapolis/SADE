@@ -23,5 +23,5 @@ public class AreaFacade extends AbstractFacade<Area> {
     public AreaFacade() {
         super(Area.class);
     }
-    
+
 }

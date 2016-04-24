@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
  * @version 1.0
  */
 @Entity
-public class PeriodoLetivo extends AbstractModel{
+public class PeriodoLetivo extends AbstractModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

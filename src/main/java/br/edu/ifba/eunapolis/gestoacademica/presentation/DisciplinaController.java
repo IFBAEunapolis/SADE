@@ -2,7 +2,6 @@ package br.edu.ifba.eunapolis.gestoacademica.presentation;
 
 import br.edu.ifba.eunapolis.gestoacademica.model.Disciplina;
 import br.edu.ifba.eunapolis.gestoacademica.session.DisciplinaFacade;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -15,20 +14,20 @@ import org.primefaces.model.DualListModel;
 public class DisciplinaController extends AbstractController<Disciplina> {
 
     @EJB
-    private br.edu.ifba.eunapolis.gestoacademica.session.DisciplinaFacade ejbFacade;
+    private DisciplinaFacade ejbFacade;
     private DualListModel<Disciplina> preRequisitos;
     private List<Disciplina> source;
     private Disciplina temp;
-    
+
     public DisciplinaController() {
         super(Disciplina.class);
     }
-    
+
     @Override
     protected DisciplinaFacade getFacade() {
         return ejbFacade;
     }
-    
+
     /**
      * @return the preRequisitos
      */
@@ -42,22 +41,22 @@ public class DisciplinaController extends AbstractController<Disciplina> {
     public void setPreRequisitos(DualListModel<Disciplina> preRequisitos) {
         this.preRequisitos = preRequisitos;
     }
-    
+
     @Override
     public Disciplina prepareCreate() {
         this.setSelected(new Disciplina());
         getSelected().setPreRequisitos(new ArrayList<Disciplina>());
         initializeEmbeddableKey();
-        preRequisitos=new DualListModel<>(this.getItemsAvailableSelectOne(),getSelected().getPreRequisitos());
+        preRequisitos = new DualListModel<>(this.getItemsAvailableSelectOne(), getSelected().getPreRequisitos());
         return this.getSelected();
     }
 
-    public void prepareUpdate(){
-        source=this.getItemsAvailableSelectOne();
-        temp=this.getSelected();
+    public void prepareUpdate() {
+        source = this.getItemsAvailableSelectOne();
+        temp = this.getSelected();
         this.temp.setPreRequisitos(ejbFacade.retornaPreRequisitos(this.getSelected()));
         source.removeAll(temp.getPreRequisitos());
-        preRequisitos=new DualListModel<>(source,temp.getPreRequisitos());
+        preRequisitos = new DualListModel<>(source, temp.getPreRequisitos());
     }
-    
+
 }

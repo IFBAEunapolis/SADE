@@ -13,23 +13,26 @@ import javax.persistence.OneToMany;
  * @author root
  */
 @Entity
-public class Area extends AbstractModel{
+public class Area extends AbstractModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     private String nome;
-    
-    @ManyToOne(optional = false)    
+
+    @ManyToOne(optional = false)
     private Professor coordenador;
-    
+
     @OneToMany
     private List<Disciplina> disciplinas;
-    
+
     @OneToMany
     private List<Professor> professores;
-    
+
+    public Area() {
+    }
+
     @Override
     public Long getId() {
         return id;
@@ -71,9 +74,6 @@ public class Area extends AbstractModel{
         this.professores = professores;
     }
 
-    
-    
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -94,9 +94,4 @@ public class Area extends AbstractModel{
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "br.edu.ifba.eunapolis.gestoacademica.model.Area[ id=" + id + " ]";
-    }
-    
 }
